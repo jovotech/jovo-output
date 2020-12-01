@@ -1,7 +1,10 @@
 import { plainToClass } from 'class-transformer';
 import { validate, ValidationError } from 'class-validator';
+import {InvalidOutputModelError} from './errors/InvalidOutputModelError';
+import {OutputValidationError} from './errors/OutputValidationError';
 import { GenericOutput, OutputStrategy } from './index';
 
+// TODO: find a better name
 export class Output<OUTPUT extends Record<string, unknown>> {
   constructor(public strategy: OutputStrategy<OUTPUT>) {}
 
@@ -15,11 +18,19 @@ export class Output<OUTPUT extends Record<string, unknown>> {
     return validate(instance);
   }
 
-  convert(genericOutput: GenericOutput): Promise<OUTPUT> {
+  async convert(genericOutput: GenericOutput): Promise<OUTPUT> {
+    const errors = await this.validateGenericOutput(genericOutput);
+    if (errors.length) {
+      throw new OutputValidationError(errors, 'Can not convert.\n');
+    }
     return this.strategy.convert(genericOutput);
   }
 
-  parse(platformOutput: OUTPUT): Promise<GenericOutput> {
+  async parse(platformOutput: OUTPUT): Promise<GenericOutput> {
+    const errors = await this.validateGenericOutput(platformOutput);
+    if (errors.length) {
+      throw new OutputValidationError(errors, 'Can not parse.\n');
+    }
     return this.strategy.parse(platformOutput);
   }
 }

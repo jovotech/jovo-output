@@ -39,16 +39,18 @@ export function IsClassOrString(
           return false;
         },
         defaultMessage(args: ValidationArguments) {
+          const each = options?.each || false;
+          const eachText = each ? 'each item in ' : '';
           const errors: ValidationError[] = args.constraints[1];
           if (!errors?.length) {
-            return `$property should either be a non-empty string or a valid ${args.constraints[0].name}-object`;
+            return `${eachText}$property should either be a non-empty string or a valid ${args.constraints[0].name}-object`;
           }
           const errorText = errors
             .map((error) => {
               return Object.values(error.constraints || {});
             })
             .join(', ');
-          return `$property is invalid: ${errorText}`;
+          return `$property is invalid: ${eachText}${errorText}`;
         },
       },
     });
