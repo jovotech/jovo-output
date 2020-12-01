@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString } from '..';
+import { IsNotEmpty, IsOptional, IsString, IsUrl } from '..';
 
 export class GenericCard {
   @IsOptional()
@@ -17,6 +17,7 @@ export class GenericCard {
 
   @IsOptional()
   @IsString()
+  @IsUrl()
   @IsNotEmpty()
   imageUrl?: string;
 }

@@ -1,6 +1,7 @@
 import { Type } from 'class-transformer';
-import { GenericQuickReply, IsNotEmpty, IsOptional, IsString } from '..';
-import { QuickReply } from './GenericQuickReply';
+import { IsArray, IsNotEmpty, IsOptional, IsString } from '..';
+import { IsClassOrString } from '../validation/decorators/IsClassOrString';
+import { GenericQuickReply, QuickReply } from './GenericQuickReply';
 
 export type Message = string | GenericMessage;
 
@@ -15,7 +16,10 @@ export class GenericMessage {
   displayText?: string;
 
   @IsOptional()
-  // TODO: add validation
+  @IsArray()
+  @IsClassOrString(GenericQuickReply, {
+    each: true,
+  })
   @Type(() => GenericQuickReply)
   quickReplies?: QuickReply[];
 }

@@ -1,24 +1,30 @@
 import { Type } from 'class-transformer';
-import {
-  GenericCard,
-  GenericCarousel,
-  GenericMessage,
-  IsBoolean,
-  IsOptional,
-  Message,
-  ValidateNested,
-} from '../index';
+import { IsArray, IsBoolean, IsInstance, IsOptional, ValidateNested } from '../index';
+import { IsClassOrString } from '../validation/decorators/IsClassOrString';
+import { GenericCard } from './GenericCard';
+import { GenericCarousel } from './GenericCarousel';
+import { GenericMessage, Message } from './GenericMessage';
+import { GenericQuickReply, QuickReply } from './GenericQuickReply';
 
-export class GenericOutput {
+export interface GenericOutputBase {
+  message?: Message;
+  reprompt?: Message;
+  listen?: boolean;
+  quickReplies?: QuickReply[];
+  card?: GenericCard;
+  carousel?: GenericCarousel;
+}
+
+export class GenericOutput implements GenericOutputBase {
   [key: string]: unknown;
 
   @IsOptional()
-  // TODO: add validation
+  @IsClassOrString(GenericMessage)
   @Type(() => GenericMessage)
   message?: Message;
 
   @IsOptional()
-  // TODO: add validation
+  @IsClassOrString(GenericMessage)
   @Type(() => GenericMessage)
   reprompt?: Message;
 
@@ -27,11 +33,21 @@ export class GenericOutput {
   listen?: boolean;
 
   @IsOptional()
+  @IsArray()
+  @IsClassOrString(GenericQuickReply, {
+    each: true,
+  })
+  @Type(() => GenericQuickReply)
+  quickReplies?: QuickReply[];
+
+  @IsOptional()
+  @IsInstance(GenericCard)
   @ValidateNested()
   @Type(() => GenericCard)
   card?: GenericCard;
 
   @IsOptional()
+  @IsInstance(GenericCarousel)
   @ValidateNested()
   @Type(() => GenericCarousel)
   carousel?: GenericCarousel;
