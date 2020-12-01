@@ -5,8 +5,4 @@ import { GoogleAssistantOutput } from './GoogleAssistantOutput';
 export class GenericGoogleAssistantOutput
   extends GenericOutput
   implements Partial<GoogleAssistantOutput> {
-  @IsOptional()
-  @IsString()
-  @IsNotEmpty()
-  test?: string;
 }

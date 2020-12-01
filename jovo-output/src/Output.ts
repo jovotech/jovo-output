@@ -1,7 +1,6 @@
 import { plainToClass } from 'class-transformer';
 import { validate, ValidationError } from 'class-validator';
-import {InvalidOutputModelError} from './errors/InvalidOutputModelError';
-import {OutputValidationError} from './errors/OutputValidationError';
+import { OutputValidationError } from './errors/OutputValidationError';
 import { GenericOutput, OutputStrategy } from './index';
 
 // TODO: find a better name
