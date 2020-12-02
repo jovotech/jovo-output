@@ -16,8 +16,6 @@ export class GenericCard {
   subtitle?: string;
 
   @IsOptional()
-  @IsString()
   @IsUrl()
-  @IsNotEmpty()
   imageUrl?: string;
 }

@@ -9,3 +9,4 @@ export function decoratePropertyOfGenericOutput<TYPE extends Record<string, unkn
   ValidateNested()(GenericOutput.prototype, propertyKey);
   Type(() => propertyType)(GenericOutput.prototype, propertyKey);
 }
+

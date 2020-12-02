@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "jovo-output": "^1.0.0",
-    "jovo-output-googleassistant": "^1.0.0"
+    "jovo-output-googleassistantlegacy": "^1.0.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.15",

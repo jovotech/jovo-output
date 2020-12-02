@@ -1,7 +1,11 @@
 import 'reflect-metadata';
 
-// Export class-validator so that other packages can use it to decorate their models.
+// Export class-validator and class-transformer so that other packages can use it to decorate their models.
+export * from 'class-transformer';
 export * from 'class-validator';
+
+export * from './validation/decorators/IsClassOrString';
+export * from './validation/decorators/ConditionalMaxLength';
 
 export * from './models/GenericCard';
 export * from './models/GenericCarousel';

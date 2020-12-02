@@ -83,6 +83,7 @@ async function validateAndExpectLength<T>(
   options?: ValidationOptions,
 ) {
   const errors = await transformAndValidate(objClass, obj, options);
+  console.log(errors);
   expect(errors).toHaveLength(expectedLength);
 }
 
