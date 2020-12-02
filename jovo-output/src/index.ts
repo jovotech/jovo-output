@@ -13,8 +13,7 @@ export * from './models/GenericQuickReply';
 export * from './models/GenericMessage';
 export * from './models/GenericOutput';
 
-export * from './strategy';
-
-export * from './Output';
+export * from './OutputConverterStrategy';
+export * from './OutputConverter';
 
 export * from './utils';

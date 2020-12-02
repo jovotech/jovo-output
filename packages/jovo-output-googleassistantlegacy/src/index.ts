@@ -1,17 +1,14 @@
 import { decoratePropertyOfGenericOutput } from 'jovo-output';
-import { GenericGoogleAssistantOutput } from './models/GenericGoogleAssistantOutput';
+import { GoogleAssistantOutput } from './models/GoogleAssistantOutput';
 
-// Make GenericGoogleAssistantOutput available for the GenericOutput-object via the GoogleAssistant-key.
+// Make GoogleAssistantOutput available for the GenericOutput-object via the GoogleAssistant-key.
 declare module 'jovo-output/dist/models/GenericOutput' {
   interface GenericOutput {
-    GoogleAssistant?: GenericGoogleAssistantOutput;
+    GoogleAssistant?: GoogleAssistantOutput;
   }
 }
 // Additionally, make class-validator and class-transformer aware of the added property.
-decoratePropertyOfGenericOutput('GoogleAssistant', GenericGoogleAssistantOutput);
+decoratePropertyOfGenericOutput('GoogleAssistant', GoogleAssistantOutput);
 
-
-
-export * from './models/GoogleAssistantOutput';
-export * from './models/GenericGoogleAssistantOutput';
+export * from './models';
 export * from './GoogleAssistantOutputStrategy';

@@ -1,14 +1,15 @@
-import { GenericOutput, OutputStrategy } from 'jovo-output';
-import { GoogleAssistantOutput } from './index';
+import { GenericOutput, OutputConverterStrategy } from 'jovo-output';
+import { GoogleAssistantResponse } from './index';
 
-export class GoogleAssistantOutputStrategy implements OutputStrategy<GoogleAssistantOutput> {
-  outputClass = GoogleAssistantOutput;
+export class GoogleAssistantOutputConverterStrategy
+  implements OutputConverterStrategy<GoogleAssistantResponse> {
+  responseClass = GoogleAssistantResponse;
 
-  convert(genericOutput: GenericOutput): Promise<GoogleAssistantOutput> {
-    throw new Error('Not implemented!');
+  toResponse(output: GenericOutput): Promise<GoogleAssistantResponse> {
+    throw new Error('Not implemented yet.');
   }
 
-  parse(platformOutput: GoogleAssistantOutput): Promise<GenericOutput> {
-    throw new Error('Not implemented!');
+  fromResponse(response: GoogleAssistantResponse): Promise<GenericOutput> {
+    throw new Error('Not implemented yet.');
   }
 }
