@@ -9,6 +9,7 @@ import {
   Type,
   ValidateNested,
 } from 'jovo-output';
+import { Location } from './Location';
 import { StaffFacilitator } from './StaffFacilitator';
 import { Time } from './Time';
 
