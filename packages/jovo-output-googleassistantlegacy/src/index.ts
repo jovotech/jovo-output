@@ -11,4 +11,4 @@ declare module 'jovo-output/dist/models/GenericOutput' {
 decoratePropertyOfGenericOutput('GoogleAssistant', GoogleAssistantOutput);
 
 export * from './models';
-export * from './GoogleAssistantOutputStrategy';
+export * from './GoogleAssistantOutputConverterStrategy';
