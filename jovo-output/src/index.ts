@@ -4,6 +4,8 @@ import 'reflect-metadata';
 export * from 'class-transformer';
 export * from 'class-validator';
 
+export * from './errors/OutputValidationError';
+
 export * from './validation/decorators/IsClassOrString';
 export * from './validation/decorators/ConditionalMaxLength';
 
