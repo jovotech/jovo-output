@@ -6,6 +6,8 @@ import {
   OutputValidationError,
   toSSML,
 } from 'jovo-output';
+import { RichResponse } from '../dist';
+import { Intent } from '../dist/models/common/Intent';
 import {
   GoogleAssistantOutputConverterStrategy,
   GoogleAssistantResponse,
@@ -198,6 +200,14 @@ describe('toResponse', () => {
       return expect(
         outputConverter.toResponse({
           quickReplies: [],
+        }),
+      ).rejects.toThrowError(OutputValidationError);
+    });
+    test('output.quickReplies is set but has more than 8 items', () => {
+      return expect(
+        outputConverter.toResponse({
+          message: 'foo',
+          quickReplies: ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'],
         }),
       ).rejects.toThrowError(OutputValidationError);
     });
@@ -492,6 +502,123 @@ describe('toResponse', () => {
           richResponse: {
             items: [{ simpleResponse: { ssml: toSSML('foo') } }],
           },
+        },
+      );
+    });
+  });
+
+  describe('platform-specific properties', () => {
+    test('output.GoogleAssistant.expectUserResponse overwrites output.listen and output.GoogleAssistant.listen', () => {
+      return convertAndExpectToEqual(
+        {
+          message: 'foo',
+          listen: false,
+          GoogleAssistant: {
+            listen: false,
+            expectUserResponse: true,
+          },
+        },
+        {
+          expectUserResponse: true,
+          richResponse: {
+            items: [{ simpleResponse: { ssml: toSSML('foo') } }],
+          },
+        },
+      );
+    });
+
+    test('output.GoogleAssistant.systemIntent overwrites output.carousel and output.GoogleAssistant.carousel', () => {
+      const systemIntent: Intent = {
+        intent: 'actions.intent.OPTION',
+        data: {
+          '@type': 'type.googleapis.com/google.actions.v2.OptionValueSpec',
+          'carouselSelect': {
+            items: [
+              {
+                optionInfo: {
+                  key: 'one',
+                  synonyms: [],
+                },
+                title: 'one',
+                description: 'one',
+              },
+              {
+                optionInfo: {
+                  key: 'two',
+                  synonyms: [],
+                },
+                title: 'two',
+                description: 'two',
+              },
+            ],
+          },
+        },
+      };
+      return convertAndExpectToEqual(
+        {
+          message: 'foo',
+          carousel: {
+            items: [
+              { title: 'foo', subtitle: 'bar', key: 'test' },
+              { title: 'bar', subtitle: 'foo' },
+            ],
+          },
+          GoogleAssistant: {
+            carousel: {
+              items: [
+                { title: 'bar', subtitle: 'foo' },
+                { title: 'foo', subtitle: 'bar', key: 'test' },
+              ],
+            },
+            systemIntent,
+          },
+        },
+        {
+          systemIntent,
+          richResponse: {
+            items: [{ simpleResponse: { ssml: toSSML('foo') } }],
+          },
+        },
+      );
+    });
+
+    test('output.GoogleAssistant.noInputPrompts overwrites output.reprompt and output.GoogleAssistant.reprompt', () => {
+      const noInputPrompts: SimpleResponse[] = [{ ssml: toSSML('test') }];
+      return convertAndExpectToEqual(
+        {
+          message: 'foo',
+          reprompt: 'foo',
+          GoogleAssistant: {
+            reprompt: 'bar',
+            noInputPrompts,
+          },
+        },
+        {
+          noInputPrompts,
+          richResponse: {
+            items: [{ simpleResponse: { ssml: toSSML('foo') } }],
+          },
+        },
+      );
+    });
+
+    test('output.GoogleAssistant.richResponse overwrites richResponse', () => {
+      const richResponse: RichResponse = {
+        items: [{ simpleResponse: { ssml: toSSML('test') } }],
+      };
+      return convertAndExpectToEqual(
+        {
+          message: 'foo',
+          card: {
+            title: 'test',
+            subtitle: 'more',
+          },
+          GoogleAssistant: {
+            richResponse,
+          },
+        },
+        {
+          richResponse,
         },
       );
     });

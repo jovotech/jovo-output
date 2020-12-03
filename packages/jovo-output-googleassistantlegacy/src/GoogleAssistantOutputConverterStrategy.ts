@@ -14,7 +14,6 @@ export class GoogleAssistantOutputConverterStrategy
   implements OutputConverterStrategy<GoogleAssistantResponse> {
   responseClass = GoogleAssistantResponse;
 
-  // TODO implement case where richResponse for example is set in output.GoogleAssistant
   toResponse(output: GenericOutput): GoogleAssistantResponse {
     const response: GoogleAssistantResponse = {
       expectUserResponse: output.GoogleAssistant?.listen ?? output.listen,
@@ -56,6 +55,19 @@ export class GoogleAssistantOutputConverterStrategy
           'carouselSelect': this.convertCarousel(carousel),
         },
       };
+    }
+
+    const responseKeys: Array<keyof GoogleAssistantResponse> = [
+      'expectUserResponse',
+      'systemIntent',
+      'noInputPrompts',
+      'richResponse',
+    ];
+
+    for (const responseKey of responseKeys) {
+      if (output.GoogleAssistant?.[responseKey]) {
+        response[responseKey] = output.GoogleAssistant[responseKey];
+      }
     }
 
     return response;

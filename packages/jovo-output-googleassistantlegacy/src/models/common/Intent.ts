@@ -5,7 +5,7 @@ import { IsString } from 'jovo-output';
 export class Intent<T = Record<string | '@type', any>> {
   @IsString()
   @IsNotEmpty()
-  intent: string;
+  intent: string | 'actions.intent.OPTION';
 
   @IsNotEmptyObject()
   data: T;
