@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 import { IsArray, IsBoolean, IsInstance, IsOptional, ValidateNested } from '../index';
-import { IsClassOrString } from '../validation/decorators/IsClassOrString';
+import { IsInstanceOrString } from '../validation/decorators/IsInstanceOrString';
 import { GenericCard } from './GenericCard';
 import { GenericCarousel } from './GenericCarousel';
 import { GenericMessage, Message } from './GenericMessage';
@@ -19,12 +19,12 @@ export class GenericOutput implements GenericOutputBase {
   [key: string]: unknown;
 
   @IsOptional()
-  @IsClassOrString(GenericMessage)
+  @IsInstanceOrString(GenericMessage)
   @Type(() => GenericMessage)
   message?: Message;
 
   @IsOptional()
-  @IsClassOrString(GenericMessage)
+  @IsInstanceOrString(GenericMessage)
   @Type(() => GenericMessage)
   reprompt?: Message;
 
@@ -34,7 +34,7 @@ export class GenericOutput implements GenericOutputBase {
 
   @IsOptional()
   @IsArray()
-  @IsClassOrString(GenericQuickReply, {
+  @IsInstanceOrString(GenericQuickReply, {
     each: true,
   })
   @Type(() => GenericQuickReply)

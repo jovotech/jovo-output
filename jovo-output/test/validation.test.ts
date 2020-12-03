@@ -83,7 +83,6 @@ async function validateAndExpectLength<T>(
   options?: ValidationOptions,
 ) {
   const errors = await transformAndValidate(objClass, obj, options);
-  console.log(errors);
   expect(errors).toHaveLength(expectedLength);
 }
 
@@ -325,16 +324,16 @@ describe('validation - GenericOutput', () => {
     await validateAndExpectLength(GenericOutput, { card: { title: 'foo' } }, 0);
   });
 
-  test('carousel - optional', async () => {
+  test('collection - optional', async () => {
     await validateAndExpectLength(GenericOutput, {}, 0);
   });
-  test('carousel - invalid: wrong type', async () => {
+  test('collection - invalid: wrong type', async () => {
     await validateAndExpectLength(GenericOutput, { carousel: 'foo' as any }, 1);
   });
-  test('carousel - invalid: invalid object', async () => {
+  test('collection - invalid: invalid object', async () => {
     await validateAndExpectLength(GenericOutput, { carousel: { items: {} as any } }, 1);
   });
-  test('carousel - valid', async () => {
+  test('collection - valid', async () => {
     await validateAndExpectLength(
       GenericOutput,
       {

@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, Type, ValidateIf, ValidateNested } from 'jovo-output';
+import { IsNotEmpty, IsOptional, IsString, Type, ValidateIf, ValidateNested } from 'jovo-output';
 import { BasicCard } from './basic-card/BasicCard';
 import { CarouselBrowse } from './carousel-browse/CarouselBrowse';
 import { HtmlResponse } from './html-response/HtmlResponse';
@@ -8,9 +8,10 @@ import { StructuredResponse } from './structured-response/StructuredResponse';
 import { TableCard } from './table-card/TableCard';
 
 export class RichResponseItem {
+  @IsOptional()
   @IsString()
   @IsNotEmpty()
-  name: string;
+  name?: string;
 
   @ValidateIf((o) => Object.keys(o).length === 1 || Object.keys(o).includes('simpleResponse'))
   @ValidateNested()

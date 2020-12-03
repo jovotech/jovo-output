@@ -10,3 +10,11 @@ export function decoratePropertyOfGenericOutput<TYPE extends Record<string, unkn
   Type(() => propertyType)(GenericOutput.prototype, propertyKey);
 }
 
+export function toSSML(text: string): string {
+  text = text.replace(/<[/]?speak>/g, '');
+  return `<speak>${text}</speak>`;
+}
+
+export function removeSSML(ssml: string): string {
+  return ssml.replace(/<[^>]*>/g, '');
+}

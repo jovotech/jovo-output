@@ -6,13 +6,13 @@ import {
   ValidationOptions,
 } from '../..';
 
-export function IsClassOrString(
+export function IsInstanceOrString(
   classType: new () => any,
   options?: ValidationOptions,
 ): PropertyDecorator {
   return function (object: any, propertyKey: string | symbol) {
     registerDecorator({
-      name: 'isClassOrString',
+      name: 'isInstanceOrString',
       target: object.constructor,
       propertyName: propertyKey.toString(),
       constraints: [classType],
@@ -32,7 +32,7 @@ export function IsClassOrString(
           error.property = propertyKey.toString();
           error.value = value;
           error.constraints = {
-            isValidMessage: `$property should either be a non-empty string or a valid ${args.constraints[0].name}-object`,
+            isValidMessage: `$property should either be a non-empty string or a valid ${args.constraints[0].name}-instance`,
           };
           error.children = [];
           args.constraints[1] = [error];
@@ -43,7 +43,7 @@ export function IsClassOrString(
           const eachText = each ? 'each item in ' : '';
           const errors: ValidationError[] = args.constraints[1];
           if (!errors?.length) {
-            return `${eachText}$property should either be a non-empty string or a valid ${args.constraints[0].name}-object`;
+            return `${eachText}$property should either be a non-empty string or a valid ${args.constraints[0].name}-instance`;
           }
           const errorText = errors
             .map((error) => {

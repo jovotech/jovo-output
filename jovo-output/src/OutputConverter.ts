@@ -3,6 +3,7 @@ import { validate, ValidationError } from 'class-validator';
 import { OutputValidationError } from './errors/OutputValidationError';
 import { GenericOutput, OutputConverterStrategy } from './index';
 
+// TODO: check if validation should happen before and after conversion
 export class OutputConverter<Response extends Record<string, unknown>> {
   constructor(public strategy: OutputConverterStrategy<Response>) {}
 
@@ -17,18 +18,28 @@ export class OutputConverter<Response extends Record<string, unknown>> {
   }
 
   async toResponse(output: GenericOutput): Promise<Response> {
-    const errors = await this.validateOutput(output);
+    let errors = await this.validateOutput(output);
     if (errors.length) {
       throw new OutputValidationError(errors, 'Can not convert.\n');
     }
-    return this.strategy.toResponse(output);
+    const response = this.strategy.toResponse(output);
+    errors = await this.validateResponse(response);
+    if (errors.length) {
+      throw new OutputValidationError(errors, 'Conversion caused invalid response.\n');
+    }
+    return response;
   }
 
   async fromResponse(response: Response): Promise<GenericOutput> {
-    const errors = await this.validateResponse(response);
+    let errors = await this.validateResponse(response);
     if (errors.length) {
       throw new OutputValidationError(errors, 'Can not parse.\n');
     }
-    return this.strategy.fromResponse(response);
+    const output = this.strategy.fromResponse(response);
+    errors = await this.validateOutput(output);
+    if (errors.length) {
+      throw new OutputValidationError(errors, 'Conversion caused invalid output.\n');
+    }
+    return output;
   }
 }

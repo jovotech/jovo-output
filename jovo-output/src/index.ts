@@ -6,7 +6,7 @@ export * from 'class-validator';
 
 export * from './errors/OutputValidationError';
 
-export * from './validation/decorators/IsClassOrString';
+export * from './validation/decorators/IsInstanceOrString';
 export * from './validation/decorators/ConditionalMaxLength';
 
 export * from './models/GenericCard';
@@ -18,4 +18,4 @@ export * from './models/GenericOutput';
 export * from './OutputConverterStrategy';
 export * from './OutputConverter';
 
-export * from './utils';
+export * from './utilities';

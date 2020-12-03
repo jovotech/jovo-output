@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 import { IsArray, IsNotEmpty, IsOptional, IsString } from '..';
-import { IsClassOrString } from '../validation/decorators/IsClassOrString';
+import { IsInstanceOrString } from '../validation/decorators/IsInstanceOrString';
 import { GenericQuickReply, QuickReply } from './GenericQuickReply';
 
 export type Message = string | GenericMessage;
@@ -17,7 +17,7 @@ export class GenericMessage {
 
   @IsOptional()
   @IsArray()
-  @IsClassOrString(GenericQuickReply, {
+  @IsInstanceOrString(GenericQuickReply, {
     each: true,
   })
   @Type(() => GenericQuickReply)

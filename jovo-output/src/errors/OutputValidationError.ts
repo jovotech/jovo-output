@@ -7,19 +7,31 @@ export class OutputValidationError extends Error {
   }
 
   private buildMessage(): string {
-    const constraintErrors = this.validationErrors
-      .filter((error) => {
-        return error.constraints;
-      })
-      .map((error) => {
-        return Object.values(error.constraints as Record<string, string>);
-      })
-      .reduce((prev, current, index) => {
-        prev.push(...current);
-        return prev;
-      }, []);
-    return `${this.prefix}Validation errors:\n - ${constraintErrors.join(
-      '\n - ',
-    )}`;
+    // TODO also use children
+    const errorMessages: string[] = [];
+
+    // go through each validation error, add message for constraints, if children add children with updated path
+    function handleValidationError(error: ValidationError, path = '') {
+      if (error.constraints) {
+        const values = Object.values(error.constraints);
+        errorMessages.push(
+          ...values.map((text) => {
+            return `${path}: ${text}`;
+          }),
+        );
+      }
+      path += error.property;
+      if (error.children?.length) {
+        for (let i = 0, len = error.children.length; i < len; i++) {
+          handleValidationError(error.children[i], path + '.');
+        }
+      }
+    }
+
+    for (let i = 0, len = this.validationErrors.length; i < len; i++) {
+      handleValidationError(this.validationErrors[i]);
+    }
+
+    return `${this.prefix}Validation errors:\n - ${errorMessages.join('\n - ')}`;
   }
 }
