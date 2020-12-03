@@ -1,22 +1,21 @@
 import {
   GenericCard,
   GenericOutput,
-  Message,
   OutputConverter,
   OutputValidationError,
   toSSML,
 } from 'jovo-output';
 import { RichResponse } from '../dist';
-import { Intent } from '../dist/models/common/Intent';
 import {
   GoogleAssistantOutputConverterStrategy,
   GoogleAssistantResponse,
   SimpleResponse,
+  SystemIntent,
 } from '../src';
 
 const outputConverter = new OutputConverter(new GoogleAssistantOutputConverterStrategy());
 
-async function convertAndExpectToEqual(
+async function convertToResponseAndExpectToEqual(
   output: GenericOutput,
   expectedResponse: GoogleAssistantResponse,
 ) {
@@ -26,7 +25,7 @@ async function convertAndExpectToEqual(
 describe('toResponse', () => {
   describe('output.message', () => {
     test('output.message is string', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
         },
@@ -44,7 +43,7 @@ describe('toResponse', () => {
       );
     });
     test('output.message is GenericMessage', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: {
             text: 'foo',
@@ -66,7 +65,7 @@ describe('toResponse', () => {
       );
     });
     test('output.GoogleAssistant.message overwrites output.message', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           GoogleAssistant: {
@@ -91,7 +90,7 @@ describe('toResponse', () => {
       ).rejects.toThrowError(OutputValidationError);
     });
     test('output.reprompt is string', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           reprompt: 'bar',
@@ -105,7 +104,7 @@ describe('toResponse', () => {
       );
     });
     test('output.reprompt is GenericMessage', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           reprompt: {
@@ -122,7 +121,7 @@ describe('toResponse', () => {
       );
     });
     test('output.GoogleAssistant.reprompt overwrites output.reprompt', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           reprompt: 'bar',
@@ -149,7 +148,7 @@ describe('toResponse', () => {
       ).rejects.toThrowError(OutputValidationError);
     });
     test('output.listen is false', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           listen: false,
@@ -163,7 +162,7 @@ describe('toResponse', () => {
       );
     });
     test('output.listen is true', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           listen: true,
@@ -177,7 +176,7 @@ describe('toResponse', () => {
       );
     });
     test('output.GoogleAssistant.listen overwrites output.listen', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           listen: true,
@@ -212,7 +211,7 @@ describe('toResponse', () => {
       ).rejects.toThrowError(OutputValidationError);
     });
     test('output.quickReplies is array of string and GenericQuickReply', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           quickReplies: ['hello', { text: 'world' }],
@@ -226,7 +225,7 @@ describe('toResponse', () => {
       );
     });
     test('output.GoogleAssistant.quickReplies overwrites output.quickReplies', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           quickReplies: ['hello'],
@@ -266,7 +265,7 @@ describe('toResponse', () => {
       ).rejects.toThrowError(OutputValidationError);
     });
     test('output.card is set with subtitle', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           card: {
@@ -285,7 +284,7 @@ describe('toResponse', () => {
       );
     });
     test('output.card is set with image', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           card: {
@@ -309,7 +308,7 @@ describe('toResponse', () => {
       );
     });
     test('output.card is set with image and subtitle', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           card: {
@@ -335,7 +334,7 @@ describe('toResponse', () => {
       );
     });
     test('output.GoogleAssistant.card overwrites output.card', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           card: {
@@ -398,7 +397,7 @@ describe('toResponse', () => {
     });
 
     test('output.carousel is set and has 2 or more items', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           carousel: {
@@ -454,7 +453,7 @@ describe('toResponse', () => {
     });
 
     test('output.GoogleAssistant.carousel overwrites output.carousel', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           carousel: {
@@ -509,7 +508,7 @@ describe('toResponse', () => {
 
   describe('platform-specific properties', () => {
     test('output.GoogleAssistant.expectUserResponse overwrites output.listen and output.GoogleAssistant.listen', () => {
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           listen: false,
@@ -528,7 +527,7 @@ describe('toResponse', () => {
     });
 
     test('output.GoogleAssistant.systemIntent overwrites output.carousel and output.GoogleAssistant.carousel', () => {
-      const systemIntent: Intent = {
+      const systemIntent: SystemIntent = {
         intent: 'actions.intent.OPTION',
         data: {
           '@type': 'type.googleapis.com/google.actions.v2.OptionValueSpec',
@@ -554,7 +553,7 @@ describe('toResponse', () => {
           },
         },
       };
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           carousel: {
@@ -584,7 +583,7 @@ describe('toResponse', () => {
 
     test('output.GoogleAssistant.noInputPrompts overwrites output.reprompt and output.GoogleAssistant.reprompt', () => {
       const noInputPrompts: SimpleResponse[] = [{ ssml: toSSML('test') }];
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           reprompt: 'foo',
@@ -606,7 +605,7 @@ describe('toResponse', () => {
       const richResponse: RichResponse = {
         items: [{ simpleResponse: { ssml: toSSML('test') } }],
       };
-      return convertAndExpectToEqual(
+      return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           card: {
@@ -623,4 +622,8 @@ describe('toResponse', () => {
       );
     });
   });
+});
+
+describe('fromResponse', () => {
+  // TODO: implement tests
 });

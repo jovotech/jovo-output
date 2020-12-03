@@ -21,5 +21,3 @@ export class MediaObject {
   @Type(() => Image)
   icon?: Image;
 }
-
-

@@ -14,7 +14,7 @@ import {
   Type,
   ValidateNested,
 } from 'jovo-output';
-import { Intent } from './common/Intent';
+import { SystemIntent } from './common/SystemIntent';
 import { GoogleAssistantResponse } from './GoogleAssistantResponse';
 import { RichResponse } from './RichResponse';
 import { SimpleResponse } from './simple-response/SimpleResponse';
@@ -64,7 +64,8 @@ export class GoogleAssistantOutput
 
   @IsOptional()
   @ValidateNested()
-  systemIntent?: Intent;
+  @Type(() => SystemIntent)
+  systemIntent?: SystemIntent;
 
   @IsOptional()
   @ValidateNested()

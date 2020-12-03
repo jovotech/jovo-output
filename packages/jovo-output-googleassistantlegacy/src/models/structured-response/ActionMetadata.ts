@@ -1,4 +1,4 @@
-import { IsDateString } from "jovo-output";
+import { IsDateString } from 'jovo-output';
 
 export class ActionMetadata {
   @IsDateString()

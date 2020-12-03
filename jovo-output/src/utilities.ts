@@ -15,6 +15,10 @@ export function toSSML(text: string): string {
   return `<speak>${text}</speak>`;
 }
 
+export function removeSSMLSpeakTags(ssml: string): string {
+  return ssml.replace(/<[/]?speak>/g, '');
+}
+
 export function removeSSML(ssml: string): string {
   return ssml.replace(/<[^>]*>/g, '');
 }

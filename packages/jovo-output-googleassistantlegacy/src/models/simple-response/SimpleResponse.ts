@@ -1,4 +1,12 @@
-import { IsString, IsNotEmpty, ValidateIf, IsOptional, MaxLength } from 'jovo-output';
+import {
+  IsString,
+  IsNotEmpty,
+  ValidateIf,
+  IsOptional,
+  MaxLength,
+  Message,
+  removeSSMLSpeakTags,
+} from 'jovo-output';
 
 // TODO: probably find a better way to type that either textToSpeech or ssml has to be defined
 export class SimpleResponse {
@@ -17,4 +25,14 @@ export class SimpleResponse {
   @IsNotEmpty()
   @MaxLength(640)
   displayText?: string;
+
+  toMessage?(): Message {
+    const text = removeSSMLSpeakTags(this.ssml || this.textToSpeech || '');
+    return this.displayText
+      ? {
+          displayText: this.displayText,
+          text,
+        }
+      : text;
+  }
 }

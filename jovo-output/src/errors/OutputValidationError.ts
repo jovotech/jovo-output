@@ -15,7 +15,7 @@ export class OutputValidationError extends Error {
         const values = Object.values(error.constraints);
         errorMessages.push(
           ...values.map((text) => {
-            return `${path}: ${text}`;
+            return `${path.endsWith('.') ? path.slice(0, path.length - 1) : path}: ${text}`;
           }),
         );
       }

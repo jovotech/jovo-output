@@ -1,14 +1,5 @@
-import {
-  GenericCard,
-  GenericCarousel,
-  GenericOutput,
-  Message,
-  OutputConverterStrategy,
-  QuickReply,
-  toSSML,
-} from 'jovo-output';
-import { BasicCard, GoogleAssistantResponse, SimpleResponse, Suggestion } from './index';
-import { Carousel } from './models/collection/Carousel';
+import { GenericOutput, Message, OutputConverterStrategy, QuickReply, toSSML } from 'jovo-output';
+import { GoogleAssistantResponse, SimpleResponse, Suggestion } from './index';
 
 export class GoogleAssistantOutputConverterStrategy
   implements OutputConverterStrategy<GoogleAssistantResponse> {
@@ -25,24 +16,24 @@ export class GoogleAssistantOutputConverterStrategy
     const message = output.GoogleAssistant?.message || output.message;
     if (message) {
       response.richResponse.items.push({
-        simpleResponse: this.convertMessage(message),
+        simpleResponse: this.convertMessageToSimpleResponse(message),
       });
     }
 
     const reprompt = output.GoogleAssistant?.reprompt || output.reprompt;
     if (reprompt) {
-      response.noInputPrompts = [this.convertMessage(reprompt)];
+      response.noInputPrompts = [this.convertMessageToSimpleResponse(reprompt)];
     }
 
     const quickReplies = output.GoogleAssistant?.quickReplies || output.quickReplies;
     if (quickReplies?.length) {
-      response.richResponse.suggestions = quickReplies.map(this.convertQuickReply);
+      response.richResponse.suggestions = quickReplies.map(this.convertQuickReplyToSuggestion);
     }
 
     const card = output.GoogleAssistant?.card || output.card;
     if (card) {
       response.richResponse.items.push({
-        basicCard: this.convertCard(card),
+        basicCard: card.toGoogleAssistantBasicCard?.(),
       });
     }
 
@@ -52,7 +43,7 @@ export class GoogleAssistantOutputConverterStrategy
         intent: 'actions.intent.OPTION',
         data: {
           '@type': 'type.googleapis.com/google.actions.v2.OptionValueSpec',
-          'carouselSelect': this.convertCarousel(carousel),
+          'carouselSelect': carousel.toGoogleAssistantCarousel?.(),
         },
       };
     }
@@ -74,54 +65,57 @@ export class GoogleAssistantOutputConverterStrategy
   }
 
   fromResponse(response: GoogleAssistantResponse): GenericOutput {
-    throw new Error('Not implemented yet.');
+    const output: GenericOutput = {};
+
+    const simpleResponse = response.richResponse?.items?.[0]?.simpleResponse;
+    if (simpleResponse && simpleResponse.ssml && simpleResponse.toMessage) {
+      output.message = simpleResponse.toMessage();
+    }
+
+    if (response.noInputPrompts?.length) {
+      output.reprompt = response.noInputPrompts[0].toMessage?.();
+    }
+
+    if (response.expectUserResponse) {
+      output.listen = response.expectUserResponse;
+    }
+
+    const suggestions = response.richResponse.suggestions;
+    if (suggestions?.length) {
+      output.quickReplies = suggestions.map((suggestion) => {
+        return suggestion.toQuickReply!();
+      });
+    }
+
+    const basicCard = response.richResponse.items.find((item) => item.basicCard)?.basicCard;
+    if (basicCard?.toGenericCard) {
+      output.card = basicCard?.toGenericCard();
+    }
+
+    if (
+      response.systemIntent?.intent === 'actions.intent.OPTION' &&
+      response.systemIntent?.data?.carouselSelect
+    ) {
+      output.carousel = response.systemIntent.data.carouselSelect.toGenericCarousel?.();
+    }
+
+    return output;
   }
 
-  convertMessage(message: Message): SimpleResponse {
-    return {
-      displayText: typeof message !== 'string' ? message.displayText : undefined,
-      ssml: toSSML(typeof message === 'string' ? message : message.text),
-    };
-  }
-
-  convertQuickReply(quickReply: QuickReply): Suggestion {
-    return {
-      title: typeof quickReply === 'string' ? quickReply : quickReply.text,
-    };
-  }
-
-  // TODO maybe set values differently
-  convertCard(card: GenericCard): BasicCard {
-    return {
-      title: card.title,
-      image: card.imageUrl
-        ? {
-            url: card.imageUrl,
-            accessibilityText: card.title,
-          }
-        : undefined,
-      formattedText: card.subtitle,
-    };
-  }
-
-  convertCarousel(carousel: GenericCarousel): Carousel {
-    return {
-      items: carousel.items.map((item) => {
-        return {
-          optionInfo: {
-            key: item.key || item.title,
-            synonyms: [],
-          },
-          title: item.title,
-          description: item.subtitle,
-          image: item.imageUrl
-            ? {
-                url: item.imageUrl,
-                accessibilityText: item.title,
-              }
-            : undefined,
+  convertMessageToSimpleResponse(message: Message): SimpleResponse {
+    return typeof message === 'string'
+      ? { ssml: toSSML(message) }
+      : message.toGoogleAssistantSimpleResponse?.() || {
+          ssml: toSSML(message.text),
+          displayText: message.displayText,
         };
-      }),
-    };
+  }
+
+  convertQuickReplyToSuggestion(quickReply: QuickReply): Suggestion {
+    return typeof quickReply === 'string'
+      ? { title: quickReply }
+      : quickReply.toGoogleAssistantSuggestion?.() || {
+          title: quickReply.text,
+        };
   }
 }

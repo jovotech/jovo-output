@@ -10,6 +10,7 @@ import {
   ArrayMaxSize,
   ValidateNested,
   ConditionalMaxLength,
+  GenericCard,
 } from 'jovo-output';
 import { Button } from '../common/Button';
 import { Image } from '../common/Image';
@@ -53,4 +54,12 @@ export class BasicCard {
   @IsOptional()
   @IsEnum(ImageDisplayOptions)
   imageDisplayOptions?: ImageDisplayOptions;
+
+  toGenericCard?(): GenericCard {
+    return {
+      title: this.title || '',
+      subtitle: this.formattedText || this.subtitle,
+      imageUrl: this.image?.url,
+    };
+  }
 }

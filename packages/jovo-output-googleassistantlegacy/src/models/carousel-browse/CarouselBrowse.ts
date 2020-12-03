@@ -1,4 +1,12 @@
-import {ArrayMaxSize, ArrayMinSize, IsArray, IsEnum, IsOptional, Type, ValidateNested } from 'jovo-output';
+import {
+  ArrayMaxSize,
+  ArrayMinSize,
+  IsArray,
+  IsEnum,
+  IsOptional,
+  Type,
+  ValidateNested,
+} from 'jovo-output';
 import { ImageDisplayOptions } from '../basic-card/BasicCard';
 import { Item } from './Item';
 
