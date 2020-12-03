@@ -1,4 +1,4 @@
-import { ValidationError } from '..';
+import { IsString, ValidationError } from '..';
 
 export class OutputValidationError extends Error {
   constructor(readonly validationErrors: ValidationError[], readonly prefix = '') {
@@ -7,7 +7,6 @@ export class OutputValidationError extends Error {
   }
 
   private buildMessage(): string {
-    // TODO also use children
     const errorMessages: string[] = [];
 
     // go through each validation error, add message for constraints, if children add children with updated path

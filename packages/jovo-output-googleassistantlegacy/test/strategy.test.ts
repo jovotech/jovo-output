@@ -442,5 +442,58 @@ describe('toResponse', () => {
         }),
       ).rejects.toThrowError(OutputValidationError);
     });
+
+    test('output.GoogleAssistant.carousel overwrites output.carousel', () => {
+      return convertAndExpectToEqual(
+        {
+          message: 'foo',
+          carousel: {
+            items: [
+              { title: 'foo', subtitle: 'bar', key: 'test' },
+              { title: 'bar', subtitle: 'foo' },
+            ],
+          },
+          GoogleAssistant: {
+            carousel: {
+              items: [
+                { title: 'bar', subtitle: 'foo' },
+                { title: 'foo', subtitle: 'bar', key: 'test' },
+              ],
+            },
+          },
+        },
+        {
+          systemIntent: {
+            intent: 'actions.intent.OPTION',
+            data: {
+              '@type': 'type.googleapis.com/google.actions.v2.OptionValueSpec',
+              'carouselSelect': {
+                items: [
+                  {
+                    optionInfo: {
+                      key: 'bar',
+                      synonyms: [],
+                    },
+                    title: 'bar',
+                    description: 'foo',
+                  },
+                  {
+                    optionInfo: {
+                      key: 'test',
+                      synonyms: [],
+                    },
+                    title: 'foo',
+                    description: 'bar',
+                  },
+                ],
+              },
+            },
+          },
+          richResponse: {
+            items: [{ simpleResponse: { ssml: toSSML('foo') } }],
+          },
+        },
+      );
+    });
   });
 });
