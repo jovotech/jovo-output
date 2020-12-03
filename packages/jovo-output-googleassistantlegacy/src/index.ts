@@ -6,7 +6,14 @@ import {
   GenericQuickReply,
   toSSML,
 } from 'jovo-output';
-import { BasicCard, Carousel, GoogleAssistantOutput, SimpleResponse, Suggestion } from './models';
+import {
+  BasicCard,
+  Carousel,
+  CollectionItem,
+  GoogleAssistantOutput,
+  SimpleResponse,
+  Suggestion,
+} from './models';
 
 declare module 'jovo-output/dist/models/GenericCard' {
   interface GenericCard {
@@ -34,44 +41,51 @@ declare module 'jovo-output/dist/models/GenericQuickReply' {
 
 function augmentPrototypes() {
   GenericCard.prototype.toGoogleAssistantBasicCard = function () {
-    return {
+    const basicCard: BasicCard = {
       title: this.title,
-      image: this.imageUrl
-        ? {
-            url: this.imageUrl,
-            accessibilityText: this.title,
-          }
-        : undefined,
       formattedText: this.subtitle,
     };
+    if (this.imageUrl) {
+      basicCard.image = {
+        url: this.imageUrl,
+        accessibilityText: this.title,
+      };
+    }
+    return basicCard;
   };
 
   GenericCarousel.prototype.toGoogleAssistantCarousel = function () {
     return {
       items: this.items.map((item) => {
-        return {
+        const collectionItem: CollectionItem = {
           optionInfo: {
             key: item.key || item.title,
             synonyms: [],
           },
           title: item.title,
-          description: item.subtitle,
-          image: item.imageUrl
-            ? {
-                url: item.imageUrl,
-                accessibilityText: item.title,
-              }
-            : undefined,
         };
+        if (item.subtitle) {
+          collectionItem.description = item.subtitle;
+        }
+        if (item.imageUrl) {
+          collectionItem.image = {
+            url: item.imageUrl,
+            accessibilityText: item.title,
+          };
+        }
+        return collectionItem;
       }),
     };
   };
 
   GenericMessage.prototype.toGoogleAssistantSimpleResponse = function () {
-    return {
-      displayText: this.displayText,
+    const simpleResponse: SimpleResponse = {
       ssml: toSSML(this.text),
     };
+    if (this.displayText) {
+      simpleResponse.displayText = this.displayText;
+    }
+    return simpleResponse;
   };
 
   GenericQuickReply.prototype.toGoogleAssistantSuggestion = function () {

@@ -56,10 +56,15 @@ export class BasicCard {
   imageDisplayOptions?: ImageDisplayOptions;
 
   toGenericCard?(): GenericCard {
-    return {
-      title: this.title || '',
-      subtitle: this.formattedText || this.subtitle,
-      imageUrl: this.image?.url,
+    const card: GenericCard = {
+      title: (this.title || this.formattedText || this.subtitle) as string,
     };
+    if (this.formattedText || this.subtitle) {
+      card.subtitle = this.formattedText || this.subtitle;
+    }
+    if (this.image?.url) {
+      card.imageUrl = this.image.url;
+    }
+    return card;
   }
 }

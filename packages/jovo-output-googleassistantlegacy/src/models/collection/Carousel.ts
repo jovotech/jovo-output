@@ -1,6 +1,7 @@
 import {
   ArrayMaxSize,
   ArrayMinSize,
+  GenericCard,
   GenericCarousel,
   IsArray,
   Type,
@@ -19,12 +20,19 @@ export class Carousel {
   toGenericCarousel?(): GenericCarousel {
     return {
       items: this.items.map((item) => {
-        return {
-          key: item.optionInfo.key !== item.title ? item.optionInfo.key : undefined,
+        const card: GenericCard = {
           title: item.title,
-          subtitle: item.description,
-          imageUrl: item.image?.url,
         };
+        if (item.optionInfo?.key) {
+          card.key = item.optionInfo.key;
+        }
+        if (item.description) {
+          card.subtitle = item.description;
+        }
+        if (item.image?.url) {
+          card.imageUrl = item.image.url;
+        }
+        return card;
       }),
     };
   }

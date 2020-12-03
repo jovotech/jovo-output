@@ -22,6 +22,13 @@ async function convertToResponseAndExpectToEqual(
   expect(await outputConverter.toResponse(output)).toEqual(expectedResponse);
 }
 
+async function convertToOutputAndExpectToEqual(
+  response: GoogleAssistantResponse,
+  expectedOutput: GenericOutput,
+) {
+  expect(await outputConverter.fromResponse(response)).toEqual(expectedOutput);
+}
+
 describe('toResponse', () => {
   describe('output.message', () => {
     test('output.message is string', () => {
@@ -625,5 +632,103 @@ describe('toResponse', () => {
 });
 
 describe('fromResponse', () => {
-  // TODO: implement tests
+  test('response.expectUserResponse', () => {
+    return convertToOutputAndExpectToEqual(
+      {
+        expectUserResponse: true,
+        richResponse: {
+          items: [
+            {
+              simpleResponse: {
+                ssml: toSSML('foo'),
+              },
+            },
+          ],
+        },
+      },
+      {
+        message: 'foo',
+        listen: true,
+      },
+    );
+  });
+
+  test('response.systemIntent', () => {
+    return convertToOutputAndExpectToEqual(
+      {
+        systemIntent: {
+          intent: 'actions.intent.OPTION',
+          data: {
+            '@type': 'type.googleapis.com/google.actions.v2.OptionValueSpec',
+            'carouselSelect': {
+              items: [
+                { optionInfo: { key: 'one', synonyms: [] }, title: 'one' },
+                { optionInfo: { key: 'two', synonyms: [] }, title: 'two' },
+              ],
+            },
+          },
+        },
+        richResponse: {
+          items: [
+            {
+              simpleResponse: {
+                ssml: toSSML('foo'),
+              },
+            },
+          ],
+        },
+      },
+      {
+        message: 'foo',
+        carousel: {
+          items: [
+            { key: 'one', title: 'one' },
+            { key: 'two', title: 'two' },
+          ],
+        },
+      },
+    );
+  });
+
+  test('response.noInputPrompts', () => {
+    return convertToOutputAndExpectToEqual(
+      {
+        noInputPrompts: [{ ssml: toSSML('foo') }],
+        richResponse: {
+          items: [
+            {
+              simpleResponse: {
+                ssml: toSSML('foo'),
+              },
+            },
+          ],
+        },
+      },
+      {
+        message: 'foo',
+        reprompt: 'foo',
+      },
+    );
+  });
+
+  test('response.richResponse', () => {
+    return convertToOutputAndExpectToEqual(
+      {
+        richResponse: {
+          suggestions: [{ title: 'one' }, { title: 'two' }],
+          items: [
+            {
+              simpleResponse: {
+                ssml: toSSML('foo'),
+              },
+            },
+          ],
+        },
+      },
+      {
+        message: 'foo',
+        quickReplies: ['one', 'two'],
+      },
+    );
+  });
 });
