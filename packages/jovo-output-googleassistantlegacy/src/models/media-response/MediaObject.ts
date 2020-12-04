@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsString, IsUrl, Type, ValidateIf, ValidateNested } from 'jovo-output';
+import { IsNotEmpty, IsString, IsUrl, Type } from 'jovo-output';
+import { IsValidMediaObjectImage } from '../../validation/decorators/IsValidMediaObjectImage';
 import { Image } from '../common/Image';
 
 export class MediaObject {
@@ -11,13 +12,11 @@ export class MediaObject {
   @IsUrl()
   contentUrl: string;
 
-  @ValidateIf((o) => !o.icon)
-  @ValidateNested()
+  @IsValidMediaObjectImage()
   @Type(() => Image)
   largeImage?: Image;
 
-  @ValidateIf((o) => !o.largeImage)
-  @ValidateNested()
+  @IsValidMediaObjectImage()
   @Type(() => Image)
   icon?: Image;
 }

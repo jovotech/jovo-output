@@ -1,23 +1,20 @@
 import {
-  IsString,
   IsNotEmpty,
-  ValidateIf,
   IsOptional,
+  isString,
+  IsString,
   MaxLength,
   Message,
   removeSSMLSpeakTags,
 } from 'jovo-output';
+import { IsEitherValid } from '../../validation/decorators/IsEitherValid';
+import { IsValidSimpleResponseString } from '../../validation/decorators/IsValidSimpleResponseString';
 
-// TODO: probably find a better way to type that either textToSpeech or ssml has to be defined
 export class SimpleResponse {
-  @ValidateIf((o) => !o.ssml)
-  @IsString()
-  @IsNotEmpty()
+  @IsValidSimpleResponseString()
   textToSpeech?: string;
 
-  @ValidateIf((o) => !o.textToSpeech)
-  @IsString()
-  @IsNotEmpty()
+  @IsValidSimpleResponseString()
   ssml?: string;
 
   @IsOptional()

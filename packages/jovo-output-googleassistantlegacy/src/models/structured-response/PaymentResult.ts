@@ -1,13 +1,9 @@
-import { IsNotEmpty, IsString, ValidateIf } from 'jovo-output';
+import { IsValidPaymentResultString } from '../../validation/decorators/IsValidPaymentResultString';
 
 export class PaymentResult {
-  @ValidateIf((o) => !o.merchantPaymentMethodId)
-  @IsString()
-  @IsNotEmpty()
+  @IsValidPaymentResultString()
   googlePaymentData?: string;
 
-  @ValidateIf((o) => !o.googlePaymentData)
-  @IsString()
-  @IsNotEmpty()
+  @IsValidPaymentResultString()
   merchantPaymentMethodId?: string;
 }

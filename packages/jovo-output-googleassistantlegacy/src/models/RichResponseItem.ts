@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsOptional, IsString, Type, ValidateIf, ValidateNested } from 'jovo-output';
+import { IsValidRichResponseItemObject } from '../validation/decorators/IsValidRichResponseItemObject';
 import { BasicCard } from './basic-card/BasicCard';
 import { CarouselBrowse } from './carousel-browse/CarouselBrowse';
 import { HtmlResponse } from './html-response/HtmlResponse';
@@ -13,38 +14,31 @@ export class RichResponseItem {
   @IsNotEmpty()
   name?: string;
 
-  @ValidateIf((o) => Object.keys(o).length === 1 || Object.keys(o).includes('simpleResponse'))
-  @ValidateNested()
+  @IsValidRichResponseItemObject()
   @Type(() => SimpleResponse)
   simpleResponse?: SimpleResponse;
 
-  @ValidateIf((o) => Object.keys(o).length === 1 || Object.keys(o).includes('basicCard'))
-  @ValidateNested()
+  @IsValidRichResponseItemObject()
   @Type(() => BasicCard)
   basicCard?: BasicCard;
 
-  @ValidateIf((o) => Object.keys(o).length === 1 || Object.keys(o).includes('structuredResponse'))
-  @ValidateNested()
+  @IsValidRichResponseItemObject()
   @Type(() => StructuredResponse)
   structuredResponse?: StructuredResponse;
 
-  @ValidateIf((o) => Object.keys(o).length === 1 || Object.keys(o).includes('mediaResponse'))
-  @ValidateNested()
+  @IsValidRichResponseItemObject()
   @Type(() => MediaResponse)
   mediaResponse?: MediaResponse;
 
-  @ValidateIf((o) => Object.keys(o).length === 1 || Object.keys(o).includes('carouselBrowse'))
-  @ValidateNested()
+  @IsValidRichResponseItemObject()
   @Type(() => CarouselBrowse)
   carouselBrowse?: CarouselBrowse;
 
-  @ValidateIf((o) => Object.keys(o).length === 1 || Object.keys(o).includes('tableCard'))
-  @ValidateNested()
+  @IsValidRichResponseItemObject()
   @Type(() => TableCard)
   tableCard?: TableCard;
 
-  @ValidateIf((o) => Object.keys(o).length === 1 || Object.keys(o).includes('htmlResponse'))
-  @ValidateNested()
+  @IsValidRichResponseItemObject()
   @Type(() => HtmlResponse)
   htmlResponse?: HtmlResponse;
 }

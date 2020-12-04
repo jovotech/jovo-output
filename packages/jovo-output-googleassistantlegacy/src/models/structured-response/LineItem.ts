@@ -5,9 +5,9 @@ import {
   IsString,
   MaxLength,
   Type,
-  ValidateIf,
   ValidateNested,
 } from 'jovo-output';
+import { IsValidLineItemExtension } from '../../validation/decorators/IsValidLineItemExtension';
 import { Image } from '../common/Image';
 import { Action } from './Action';
 import { Disclosure } from './Disclosure';
@@ -82,13 +82,11 @@ export class LineItem {
   @Type(() => Disclosure)
   disclosures?: Disclosure[];
 
-  @ValidateIf((o) => !o.reservation)
-  @ValidateNested()
+  @IsValidLineItemExtension()
   @Type(() => PurchaseItemExtension)
   purchase: PurchaseItemExtension;
 
-  @ValidateIf((o) => !o.purchase)
-  @ValidateNested()
+  @IsValidLineItemExtension()
   @Type(() => ReservationItemExtension)
   reservation: ReservationItemExtension;
 }
