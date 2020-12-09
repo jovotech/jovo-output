@@ -7,11 +7,16 @@ export class GoogleAssistantOutputConverterStrategy
 
   toResponse(output: GenericOutput): GoogleAssistantResponse {
     const response: GoogleAssistantResponse = {
-      expectUserResponse: output.GoogleAssistant?.listen ?? output.listen,
       richResponse: {
         items: [],
       },
     };
+
+    // TODO: fully determine when to set listen
+    const listen = output.GoogleAssistant?.listen ?? output.listen;
+    if (typeof listen !== 'undefined') {
+      response.expectUserResponse = listen;
+    }
 
     const message = output.GoogleAssistant?.message || output.message;
     if (message) {
