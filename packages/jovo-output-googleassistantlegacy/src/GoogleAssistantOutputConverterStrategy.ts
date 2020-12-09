@@ -73,7 +73,7 @@ export class GoogleAssistantOutputConverterStrategy
     const output: GenericOutput = {};
 
     const simpleResponse = response.richResponse?.items?.[0]?.simpleResponse;
-    if (simpleResponse && simpleResponse.ssml && simpleResponse.toMessage) {
+    if (simpleResponse?.ssml && simpleResponse?.toMessage) {
       output.message = simpleResponse.toMessage();
     }
 
@@ -81,7 +81,7 @@ export class GoogleAssistantOutputConverterStrategy
       output.reprompt = response.noInputPrompts[0].toMessage?.();
     }
 
-    if (response.expectUserResponse) {
+    if (typeof response.expectUserResponse === 'boolean') {
       output.listen = response.expectUserResponse;
     }
 

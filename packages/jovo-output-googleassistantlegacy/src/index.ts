@@ -43,8 +43,10 @@ function augmentPrototypes() {
   GenericCard.prototype.toGoogleAssistantBasicCard = function () {
     const basicCard: BasicCard = {
       title: this.title,
-      formattedText: this.subtitle,
     };
+    if (this.subtitle) {
+      basicCard.formattedText = this.subtitle;
+    }
     if (this.imageUrl) {
       basicCard.image = {
         url: this.imageUrl,
