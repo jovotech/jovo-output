@@ -1,4 +1,4 @@
-import { plainToClass, validate, ValidationOptions } from 'jovo-output';
+import { GenericOutput, plainToClass, validate, ValidationOptions } from 'jovo-output';
 import { SimpleResponse } from '../src';
 
 function transformAndValidate<T extends Record<string, any> = Record<string, any>>(
@@ -16,9 +16,49 @@ async function validateAndExpectLength<T>(
   options?: ValidationOptions,
 ) {
   const errors = await transformAndValidate(objClass, obj, options);
-  console.log(errors);
   expect(errors).toHaveLength(expectedLength);
 }
+
+describe('validation - GenericOutput', () => {
+  test('GoogleAssistant - optional', () => {
+    return validateAndExpectLength(GenericOutput, {}, 0);
+  });
+
+  test('GoogleAssistant - invalid: wrong type', () => {
+    return validateAndExpectLength(
+      GenericOutput,
+      {
+        GoogleAssistant: 2,
+      } as any,
+      1,
+    );
+  });
+
+  test('GoogleAssistant - invalid: wrong nested value', () => {
+    return validateAndExpectLength(
+      GenericOutput,
+      {
+        GoogleAssistant: {
+          quickReplies: 2 as any,
+        },
+      },
+      1,
+    );
+  });
+
+  test('GoogleAssistant - valid', () => {
+    return validateAndExpectLength(
+      GenericOutput,
+      {
+        GoogleAssistant: {
+          message: 'foo',
+          quickReplies: [],
+        },
+      },
+      0,
+    );
+  });
+});
 
 describe('validation - SimpleResponse', () => {
   test('empty - invalid: either ssml or textToSpeech should be set', () => {
