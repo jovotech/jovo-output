@@ -12,6 +12,7 @@ import {
   ValidateNested,
 } from 'jovo-output';
 import { IsEitherValid } from '../../validation/decorators/IsEitherValid';
+import {IsSomeValid} from '../../validation/decorators/IsSomeValid';
 import { Button } from '../common/Button';
 import { Image } from '../common/Image';
 
@@ -32,7 +33,7 @@ export class BasicCard {
   @IsNotEmpty()
   subtitle?: string;
 
-  @IsEitherValid<BasicCard>({
+  @IsSomeValid<BasicCard>({
     keys: ['formattedText', 'image'],
     validate: (value, args) => {
       if (!isString(value)) {
@@ -50,7 +51,7 @@ export class BasicCard {
   })
   formattedText?: string;
 
-  @IsEitherValid<BasicCard>({
+  @IsSomeValid<BasicCard>({
     keys: ['formattedText', 'image'],
     validate: async (value, args) => {
       if (!(value instanceof Image)) {
