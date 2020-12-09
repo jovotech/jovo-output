@@ -1,5 +1,6 @@
 import { registerDecorator, ValidationArguments, ValidationOptions } from 'jovo-output';
 import { OutputSpeech, OutputSpeechType } from '../../models/OutputSpeech';
+import {validateAlexaString} from '../../utilities';
 
 export function IsValidOutputSpeechString(
   relatedType: OutputSpeechType,
@@ -20,12 +21,9 @@ export function IsValidOutputSpeechString(
             return true;
           }
           if (type === relatedType) {
-            if (typeof value !== 'string') {
-              args.constraints[0] = '$property must be a string';
-              return false;
-            }
-            if (!value) {
-              args.constraints[0] = '$property should not be empty';
+            const result = validateAlexaString(value);
+            if (result) {
+              args.constraints[0] = result;
               return false;
             }
           } else if (value) {

@@ -1,5 +1,6 @@
 import { isDefined, registerDecorator, ValidationArguments, ValidationOptions } from 'jovo-output';
 import { Card, CardType } from '../../models/Card';
+import { validateAlexaString } from '../../utilities';
 
 export function IsValidCardString(
   relatedTypes: CardType[],
@@ -26,13 +27,9 @@ export function IsValidCardString(
           }
 
           if (isDefined(value)) {
-            if (typeof value !== 'string') {
-              args.constraints[0] = '$property must be a string';
-              return false;
-            }
-
-            if (!value) {
-              args.constraints[0] = '$property should not be empty';
+            const result = validateAlexaString(value);
+            if (result) {
+              args.constraints[0] = result;
               return false;
             }
           }

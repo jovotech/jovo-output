@@ -67,3 +67,5 @@ export * from './models/Reprompt';
 export * from './models/Response';
 
 export * from './AlexaOutputConverterStrategy';
+
+export * from './utilities'

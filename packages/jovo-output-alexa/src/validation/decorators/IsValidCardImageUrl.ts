@@ -11,6 +11,10 @@ export function IsValidCardImageUrl(options?: ValidationOptions): PropertyDecora
           return '$property must be an URL address';
         }
 
+        if (value.length > 2000) {
+          return '$property can not exceed 2000 characters.';
+        }
+
         return;
       },
     },
