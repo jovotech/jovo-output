@@ -6,7 +6,7 @@ export * from 'class-validator';
 
 export * from './errors/OutputValidationError';
 
-export * from './validation/decorators/IsInstanceOrString';
+export * from './validation/decorators/IsStringOrInstance';
 export * from './validation/decorators/ConditionalMaxLength';
 
 export * from './models/GenericCard';

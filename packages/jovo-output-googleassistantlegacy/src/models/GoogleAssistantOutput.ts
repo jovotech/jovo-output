@@ -7,8 +7,8 @@ import {
   IsArray,
   IsBoolean,
   IsInstance,
-  IsInstanceOrString,
   IsOptional,
+  IsStringOrInstance,
   Message,
   QuickReply,
   Type,
@@ -25,12 +25,12 @@ export class GoogleAssistantOutput
   [key: string]: unknown;
 
   @IsOptional()
-  @IsInstanceOrString(GenericMessage)
+  @IsStringOrInstance(GenericMessage)
   @Type(() => GenericMessage)
   message?: Message;
 
   @IsOptional()
-  @IsInstanceOrString(GenericMessage)
+  @IsStringOrInstance(GenericMessage)
   @Type(() => GenericMessage)
   reprompt?: Message;
 
@@ -40,7 +40,7 @@ export class GoogleAssistantOutput
 
   @IsOptional()
   @IsArray()
-  @IsInstanceOrString(GenericQuickReply, {
+  @IsStringOrInstance(GenericQuickReply, {
     each: true,
   })
   @Type(() => GenericQuickReply)

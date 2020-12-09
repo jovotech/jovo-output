@@ -6,13 +6,13 @@ import {
   ValidationOptions,
 } from '../..';
 
-export function IsInstanceOrString(
+export function IsStringOrInstance(
   classType: new () => any,
   options?: ValidationOptions,
 ): PropertyDecorator {
   return function (object: any, propertyKey: string | symbol) {
     registerDecorator({
-      name: 'isInstanceOrString',
+      name: 'isStringOrInstance',
       target: object.constructor,
       propertyName: propertyKey.toString(),
       constraints: [classType],
