@@ -1,5 +1,5 @@
 import { IsOptional, Type, ValidateNested } from 'jovo-output';
-import { OutputSpeech } from './OutputSpeech';
+import { OutputSpeech } from './common/OutputSpeech';
 
 export class Reprompt {
   @IsOptional()

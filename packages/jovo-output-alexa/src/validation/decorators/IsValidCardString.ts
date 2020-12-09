@@ -1,5 +1,5 @@
 import { isDefined, registerDecorator, ValidationArguments, ValidationOptions } from 'jovo-output';
-import { Card, CardType } from '../../models/Card';
+import { Card, CardType } from '../../models/card/Card';
 import { validateAlexaString } from '../../utilities';
 
 export function IsValidCardString(

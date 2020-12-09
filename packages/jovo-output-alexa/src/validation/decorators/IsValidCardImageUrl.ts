@@ -1,5 +1,5 @@
 import { IsEitherValid, isURL, ValidationOptions } from 'jovo-output';
-import { CardImage } from '../../models/CardImage';
+import { CardImage } from '../../models/card/CardImage';
 
 export function IsValidCardImageUrl(options?: ValidationOptions): PropertyDecorator {
   return IsEitherValid<CardImage>(
@@ -7,7 +7,7 @@ export function IsValidCardImageUrl(options?: ValidationOptions): PropertyDecora
       name: 'isValidCardImageUrl',
       keys: ['smallImageUrl', 'largeImageUrl'],
       validate: async (value, args) => {
-        if (!isURL(value)) {
+        if (!isURL(value, { protocols: ['https'] })) {
           return '$property must be an URL address';
         }
 

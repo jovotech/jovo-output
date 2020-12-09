@@ -5,8 +5,8 @@ import {
   ValidationArguments,
   ValidationOptions,
 } from 'jovo-output';
-import { Card, CardType } from '../../models/Card';
-import { CardImage } from '../../models/CardImage';
+import { Card, CardType } from '../../models/card/Card';
+import { CardImage } from '../../models/card/CardImage';
 
 export function IsValidCardImage(
   relatedTypes: CardType[],

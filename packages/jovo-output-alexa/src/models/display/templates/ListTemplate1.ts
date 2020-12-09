@@ -1,0 +1,44 @@
+import {
+  ArrayMinSize,
+  Equals,
+  IsArray,
+  IsEnum,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  Type,
+  ValidateNested,
+} from 'jovo-output';
+import { Image } from '../../common/Image';
+import { BackButtonVisibility, DisplayTemplate, DisplayTemplateType } from '../DisplayTemplate';
+import { DisplayTemplateList1Item } from '../list-items/DisplayTemplateList1Item';
+
+export class ListTemplate1 implements DisplayTemplate<DisplayTemplateType.List1> {
+  @Equals(DisplayTemplateType.List1)
+  type: DisplayTemplateType.List1;
+
+  @IsString()
+  @IsNotEmpty()
+  token: string;
+
+  @IsOptional()
+  @IsEnum(BackButtonVisibility)
+  backButton?: BackButtonVisibility;
+
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => Image)
+  backgroundImage?: Image;
+
+  @IsArray()
+  @ArrayMinSize(1)
+  @ValidateNested({
+    each: true,
+  })
+  @Type(() => DisplayTemplateList1Item)
+  listItems: DisplayTemplateList1Item[];
+}

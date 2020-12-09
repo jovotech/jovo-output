@@ -1,6 +1,6 @@
 import { GenericOutput, Message, OutputConverterStrategy, toSSML } from 'jovo-output';
 import { AlexaResponse } from './models/AlexaResponse';
-import { OutputSpeech, OutputSpeechType, PlayBehavior } from './models/OutputSpeech';
+import { OutputSpeech, OutputSpeechType, PlayBehavior } from './models/common/OutputSpeech';
 
 export class AlexaOutputConverterStrategy implements OutputConverterStrategy<AlexaResponse> {
   responseClass = AlexaResponse;

@@ -1,4 +1,4 @@
-import { IsValidCardImageUrl } from '../validation/decorators/IsValidCardImageUrl';
+import { IsValidCardImageUrl } from '../../validation/decorators/IsValidCardImageUrl';
 
 export class CardImage {
   @IsValidCardImageUrl()

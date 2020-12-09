@@ -1,7 +1,7 @@
 import { IsArray, IsBoolean, IsOptional, Type, ValidateNested } from 'jovo-output';
-import { Card } from './Card';
+import { Card } from './card/Card';
 import { Directive } from './Directive';
-import { OutputSpeech } from './OutputSpeech';
+import { OutputSpeech } from './common/OutputSpeech';
 import { Reprompt } from './Reprompt';
 
 export class Response {

@@ -1,5 +1,5 @@
 import { registerDecorator, ValidationArguments, ValidationOptions } from 'jovo-output';
-import { OutputSpeech, OutputSpeechType } from '../../models/OutputSpeech';
+import { OutputSpeech, OutputSpeechType } from '../../models/common/OutputSpeech';
 import {validateAlexaString} from '../../utilities';
 
 export function IsValidOutputSpeechString(

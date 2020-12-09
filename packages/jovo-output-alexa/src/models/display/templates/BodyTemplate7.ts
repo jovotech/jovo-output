@@ -1,0 +1,37 @@
+import {
+  Equals,
+  IsEnum,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  Type,
+  ValidateNested,
+} from 'jovo-output';
+import { Image } from '../../common/Image';
+import { BackButtonVisibility, DisplayTemplate, DisplayTemplateType } from '../DisplayTemplate';
+
+export class BodyTemplate7 implements DisplayTemplate<DisplayTemplateType.Body7> {
+  @Equals(DisplayTemplateType.Body7)
+  type: DisplayTemplateType.Body7;
+
+  @IsString()
+  @IsNotEmpty()
+  token: string;
+
+  @IsOptional()
+  @IsEnum(BackButtonVisibility)
+  backButton?: BackButtonVisibility;
+
+  @IsString()
+  @IsNotEmpty()
+  title: string;
+
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => Image)
+  backgroundImage?: Image;
+
+  @ValidateNested()
+  @Type(() => Image)
+  image: Image;
+}

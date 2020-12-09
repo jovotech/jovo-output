@@ -1,7 +1,7 @@
 import { decoratePropertyOfGenericOutput, GenericCard, GenericMessage } from 'jovo-output';
 import { AlexaOutput } from './models/AlexaOutput';
-import { Card, CardType } from './models/Card';
-import { OutputSpeech, OutputSpeechType, PlayBehavior } from './models/OutputSpeech';
+import { Card, CardType } from './models/card/Card';
+import { OutputSpeech, OutputSpeechType, PlayBehavior } from './models/common/OutputSpeech';
 
 declare module 'jovo-output/dist/models/GenericCard' {
   interface GenericCard {
@@ -55,17 +55,11 @@ decoratePropertyOfGenericOutput('Alexa', AlexaOutput);
 export * from './validation/decorators/IsValidCardImage';
 export * from './validation/decorators/IsValidCardImageUrl';
 export * from './validation/decorators/IsValidCardString';
+export * from './validation/decorators/IsValidAlexaString';
 export * from './validation/decorators/IsValidOutputSpeechString';
 
-export * from './models/AlexaOutput';
-export * from './models/AlexaResponse';
-export * from './models/Card';
-export * from './models/CardImage';
-export * from './models/Directive';
-export * from './models/OutputSpeech';
-export * from './models/Reprompt';
-export * from './models/Response';
+export * from './models';
 
 export * from './AlexaOutputConverterStrategy';
 
-export * from './utilities'
+export * from './utilities';

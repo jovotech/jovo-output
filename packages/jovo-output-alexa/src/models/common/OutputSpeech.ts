@@ -1,5 +1,5 @@
 import { IsEnum, IsOptional, Message, removeSSMLSpeakTags } from 'jovo-output';
-import { IsValidOutputSpeechString } from '../validation/decorators/IsValidOutputSpeechString';
+import { IsValidOutputSpeechString } from '../../validation/decorators/IsValidOutputSpeechString';
 
 export enum OutputSpeechType {
   Plain = 'PlainText',
