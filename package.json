@@ -3,7 +3,9 @@
   "private": true,
   "scripts": {
     "postinstall": "npm run init",
-    "init": "lerna bootstrap --hoist"
+    "init": "lerna bootstrap --hoist",
+    "build": "lerna exec npm run build --ignore jovo-output-e2e",
+    "test": "lerna exec npm run test"
   },
   "author": "jovotech",
   "license": "Apache-2.0",
