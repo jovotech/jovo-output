@@ -1,6 +1,5 @@
-import { validate, ValidationOptions } from 'jovo-output';
+import { IsEitherValid, validate, ValidationOptions } from 'jovo-output';
 import { LineItem, PurchaseItemExtension, ReservationItemExtension } from '../../models';
-import { IsEitherValid } from './IsEitherValid';
 
 export function IsValidLineItemExtension(validationOptions?: ValidationOptions): PropertyDecorator {
   return IsEitherValid<LineItem>(

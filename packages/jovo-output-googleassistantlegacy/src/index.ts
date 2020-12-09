@@ -107,8 +107,6 @@ declare module 'jovo-output/dist/models/GenericOutput' {
 // Additionally, make class-validator and class-transformer aware of the added property.
 decoratePropertyOfGenericOutput('GoogleAssistant', GoogleAssistantOutput);
 
-export * from './validation/decorators/IsEitherValid';
-export * from './validation/decorators/IsSomeValid';
 export * from './validation/decorators/IsValidLineItemExtension';
 export * from './validation/decorators/IsValidMediaObjectImage';
 export * from './validation/decorators/IsValidOrderExtension';

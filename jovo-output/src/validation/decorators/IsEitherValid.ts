@@ -1,4 +1,4 @@
-import { isDefined, registerDecorator, ValidationArguments, ValidationOptions } from 'jovo-output';
+import { isDefined, registerDecorator, ValidationArguments, ValidationOptions } from '../..';
 
 export interface IsEitherValidOptions<T = any> {
   name?: string;

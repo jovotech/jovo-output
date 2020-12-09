@@ -1,13 +1,5 @@
-import {
-  isDefined,
-  isString,
-  registerDecorator,
-  validate,
-  ValidationArguments,
-  ValidationOptions,
-} from 'jovo-output';
-import { Image, MediaObject, SimpleResponse } from '../../models';
-import { IsEitherValid } from './IsEitherValid';
+import { IsEitherValid, validate, ValidationOptions } from 'jovo-output';
+import { Image, MediaObject } from '../../models';
 
 export function IsValidMediaObjectImage(validationOptions?: ValidationOptions): PropertyDecorator {
   return IsEitherValid<MediaObject>(

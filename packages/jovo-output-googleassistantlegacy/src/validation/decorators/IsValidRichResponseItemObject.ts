@@ -1,6 +1,5 @@
-import { validate, ValidationOptions } from 'jovo-output';
+import { IsEitherValid, validate, ValidationOptions } from 'jovo-output';
 import { RichResponseItem } from '../../models';
-import { IsEitherValid } from './IsEitherValid';
 
 export function IsValidRichResponseItemObject(
   validationOptions?: ValidationOptions,

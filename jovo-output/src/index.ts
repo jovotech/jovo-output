@@ -6,6 +6,8 @@ export * from 'class-validator';
 
 export * from './errors/OutputValidationError';
 
+export * from './validation/decorators/IsSomeValid';
+export * from './validation/decorators/IsEitherValid';
 export * from './validation/decorators/IsStringOrInstance';
 export * from './validation/decorators/ConditionalMaxLength';
 

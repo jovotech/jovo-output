@@ -5,14 +5,13 @@ import {
   IsEnum,
   IsNotEmpty,
   IsOptional,
+  IsSomeValid,
   IsString,
   isString,
   Type,
   validate,
   ValidateNested,
 } from 'jovo-output';
-import { IsEitherValid } from '../../validation/decorators/IsEitherValid';
-import {IsSomeValid} from '../../validation/decorators/IsSomeValid';
 import { Button } from '../common/Button';
 import { Image } from '../common/Image';
 

@@ -1,12 +1,5 @@
-import {
-  isDefined,
-  isString,
-  registerDecorator,
-  ValidationArguments,
-  ValidationOptions,
-} from 'jovo-output';
+import { IsEitherValid, isString, ValidationArguments, ValidationOptions } from 'jovo-output';
 import { SimpleResponse } from '../../models';
-import { IsEitherValid } from './IsEitherValid';
 
 export function IsValidSimpleResponseString(
   validationOptions?: ValidationOptions,

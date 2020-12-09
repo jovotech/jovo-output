@@ -1,6 +1,5 @@
-import { isString, ValidationOptions } from 'jovo-output';
+import { IsEitherValid, isString, ValidationOptions } from 'jovo-output';
 import { PaymentResult } from '../../models';
-import { IsEitherValid } from './IsEitherValid';
 
 export function IsValidPaymentResultString(
   validationOptions?: ValidationOptions,
