@@ -1,5 +1,6 @@
 import {
-  ArrayMaxSize, formatValidationErrors,
+  ArrayMaxSize,
+  formatValidationErrors,
   GenericCard,
   IsArray,
   IsEnum,

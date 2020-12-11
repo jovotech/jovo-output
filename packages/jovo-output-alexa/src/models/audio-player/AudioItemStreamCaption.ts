@@ -10,6 +10,4 @@ export class AudioItemStreamCaption {
   @IsString()
   @IsNotEmpty()
   content?: string;
-
-
 }

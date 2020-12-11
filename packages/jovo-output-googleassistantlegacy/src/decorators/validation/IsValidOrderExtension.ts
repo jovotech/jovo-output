@@ -1,4 +1,4 @@
-import {formatValidationErrors, IsEitherValid, validate, ValidationOptions} from 'jovo-output';
+import { formatValidationErrors, IsEitherValid, validate, ValidationOptions } from 'jovo-output';
 import { Order, PurchaseOrderExtension, TicketOrderExtension } from '../../models';
 
 export function IsValidOrderExtension(validationOptions?: ValidationOptions): PropertyDecorator {
