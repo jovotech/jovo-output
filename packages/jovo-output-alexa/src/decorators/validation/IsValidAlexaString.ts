@@ -1,14 +1,8 @@
-import {
-  isDefined,
-  registerDecorator,
-  validate,
-  ValidationArguments,
-  ValidationOptions,
-} from 'jovo-output';
+import { registerDecorator, ValidationArguments, ValidationOptions } from 'jovo-output';
 import { validateAlexaString } from '../../utilities';
 
 export function IsValidAlexaString(options?: ValidationOptions): PropertyDecorator {
-  return function (object: any, propertyKey: string | symbol) {
+  return function (object, propertyKey) {
     registerDecorator({
       name: 'isValidAlexaString',
       target: object.constructor,

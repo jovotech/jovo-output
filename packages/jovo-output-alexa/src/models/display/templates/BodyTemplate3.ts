@@ -4,6 +4,7 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
+  MaxLength,
   Type,
   ValidateNested,
 } from 'jovo-output';
@@ -30,6 +31,7 @@ export class BodyTemplate3 implements DisplayTemplate<DisplayTemplateType.Body3>
 
   @IsString()
   @IsNotEmpty()
+  @MaxLength(200)
   title: string;
 
   @ValidateNested()

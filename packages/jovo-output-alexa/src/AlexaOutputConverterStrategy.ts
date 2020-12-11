@@ -34,7 +34,15 @@ export class AlexaOutputConverterStrategy implements OutputConverterStrategy<Ale
       response.response.card = card.toAlexaCard?.();
     }
 
-    throw new Error('Not implemented');
+    const responseKeys: Array<keyof AlexaResponse> = ['version', 'sessionAttributes', 'response'];
+
+    for (const responseKey of responseKeys) {
+      if (output.Alexa?.[responseKey]) {
+        response[responseKey] = output.Alexa[responseKey];
+      }
+    }
+
+    return response;
   }
 
   fromResponse(response: AlexaResponse): GenericOutput {

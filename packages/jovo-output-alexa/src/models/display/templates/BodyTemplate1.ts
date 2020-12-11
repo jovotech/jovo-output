@@ -4,9 +4,11 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
+  MaxLength,
   Type,
   ValidateNested,
 } from 'jovo-output';
+import { MainTextMaxLength } from '../../../decorators/validation/MainTextMaxLength';
 import { Image } from '../../common/Image';
 import { BackButtonVisibility, DisplayTemplate, DisplayTemplateType } from '../DisplayTemplate';
 import { TextContent } from '../TextContent';
@@ -30,8 +32,10 @@ export class BodyTemplate1 implements DisplayTemplate<DisplayTemplateType.Body1>
 
   @IsString()
   @IsNotEmpty()
+  @MaxLength(200)
   title: string;
 
+  @MainTextMaxLength(85)
   @ValidateNested()
   @Type(() => TextContent)
   textContent: TextContent;

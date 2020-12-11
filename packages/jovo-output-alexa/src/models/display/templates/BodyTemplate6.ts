@@ -7,6 +7,7 @@ import {
   Type,
   ValidateNested,
 } from 'jovo-output';
+import { MainTextMaxLength } from '../../../decorators/validation/MainTextMaxLength';
 import { Image } from '../../common/Image';
 import { BackButtonVisibility, DisplayTemplate, DisplayTemplateType } from '../DisplayTemplate';
 import { TextContent } from '../TextContent';
@@ -32,6 +33,7 @@ export class BodyTemplate6 implements DisplayTemplate<DisplayTemplateType.Body6>
   @Type(() => Image)
   image: Image;
 
+  @MainTextMaxLength(85)
   @ValidateNested()
   @Type(() => TextContent)
   textContent: TextContent;

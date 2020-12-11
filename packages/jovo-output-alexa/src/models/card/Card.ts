@@ -1,6 +1,6 @@
 import { GenericCard, IsEnum, Type } from 'jovo-output';
-import { IsValidCardImage } from '../../validation/decorators/IsValidCardImage';
-import { IsValidCardString } from '../../validation/decorators/IsValidCardString';
+import { IsValidCardImage } from '../../decorators/validation/IsValidCardImage';
+import { IsValidCardString } from '../../decorators/validation/IsValidCardString';
 import { CardImage } from './CardImage';
 
 export enum CardType {

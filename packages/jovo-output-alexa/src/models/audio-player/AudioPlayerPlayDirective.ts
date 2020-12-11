@@ -3,7 +3,7 @@ import { PlayBehavior } from '../common/OutputSpeech';
 import { Directive } from '../Directive';
 import { AudioItem } from './AudioItem';
 
-export class AudioPlayerPlayDirective extends Directive {
+export class AudioPlayerPlayDirective extends Directive<'AudioPlayer.Play'> {
   @Equals('AudioPlayer.Play')
   type: 'AudioPlayer.Play';
 

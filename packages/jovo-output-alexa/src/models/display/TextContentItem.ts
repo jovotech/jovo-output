@@ -1,5 +1,5 @@
 import { IsEnum } from 'jovo-output';
-import { IsValidAlexaString } from '../../validation/decorators/IsValidAlexaString';
+import { IsValidAlexaString } from '../../decorators/validation/IsValidAlexaString';
 
 export enum DisplayTemplateTextContentItemType {
   Plain = 'PlainText',

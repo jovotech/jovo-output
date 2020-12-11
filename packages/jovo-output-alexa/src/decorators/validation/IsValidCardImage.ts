@@ -5,14 +5,13 @@ import {
   ValidationArguments,
   ValidationOptions,
 } from 'jovo-output';
-import { Card, CardType } from '../../models/card/Card';
-import { CardImage } from '../../models/card/CardImage';
+import { Card, CardImage, CardType } from '../../models';
 
 export function IsValidCardImage(
   relatedTypes: CardType[],
   options?: ValidationOptions,
 ): PropertyDecorator {
-  return function (object: any, propertyKey: string | symbol) {
+  return function (object, propertyKey) {
     registerDecorator({
       name: 'isValidCardImage',
       target: object.constructor,

@@ -52,11 +52,11 @@ declare module 'jovo-output/dist/models/GenericOutput' {
 // Additionally, make class-validator and class-transformer aware of the added property.
 decoratePropertyOfGenericOutput('Alexa', AlexaOutput);
 
-export * from './validation/decorators/IsValidCardImage';
-export * from './validation/decorators/IsValidCardImageUrl';
-export * from './validation/decorators/IsValidCardString';
-export * from './validation/decorators/IsValidAlexaString';
-export * from './validation/decorators/IsValidOutputSpeechString';
+export * from './decorators/validation/IsValidCardImage';
+export * from './decorators/validation/IsValidCardImageUrl';
+export * from './decorators/validation/IsValidCardString';
+export * from './decorators/validation/IsValidAlexaString';
+export * from './decorators/validation/IsValidOutputSpeechString';
 
 export * from './models';
 

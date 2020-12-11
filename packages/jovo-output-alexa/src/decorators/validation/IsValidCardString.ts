@@ -1,34 +1,37 @@
-import { registerDecorator, ValidationArguments, ValidationOptions } from 'jovo-output';
-import { OutputSpeech, OutputSpeechType } from '../../models/common/OutputSpeech';
-import {validateAlexaString} from '../../utilities';
+import { isDefined, registerDecorator, ValidationArguments, ValidationOptions } from 'jovo-output';
+import { Card, CardType } from '../../models';
+import { validateAlexaString } from '../../utilities';
 
-export function IsValidOutputSpeechString(
-  relatedType: OutputSpeechType,
+export function IsValidCardString(
+  relatedTypes: CardType[],
   options?: ValidationOptions,
 ): PropertyDecorator {
-  return function (object: any, propertyKey: string | symbol) {
+  return function (object, propertyKey) {
     registerDecorator({
-      name: 'isValidOutputSpeechString',
+      name: 'isValidCardString',
       target: object.constructor,
       propertyName: propertyKey.toString(),
       constraints: [],
       options,
       validator: {
         validate(value: any, args: ValidationArguments) {
-          const type = (args.object as OutputSpeech).type;
+          const type = (args.object as Card).type;
           // if there is no type, skip for now because another decorator should take care of that
           if (!type) {
             return true;
           }
-          if (type === relatedType) {
+
+          if (isDefined(value) && !relatedTypes.includes(type)) {
+            args.constraints[0] = `$property can not be set when the type is ${type}`;
+            return false;
+          }
+
+          if (isDefined(value)) {
             const result = validateAlexaString(value);
             if (result) {
               args.constraints[0] = result;
               return false;
             }
-          } else if (value) {
-            args.constraints[0] = `$property can not be set when the type is ${type}`;
-            return false;
           }
 
           return true;

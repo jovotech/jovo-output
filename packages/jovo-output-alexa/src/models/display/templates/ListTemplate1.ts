@@ -6,6 +6,7 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
+  MaxLength,
   Type,
   ValidateNested,
 } from 'jovo-output';
@@ -27,6 +28,7 @@ export class ListTemplate1 implements DisplayTemplate<DisplayTemplateType.List1>
 
   @IsString()
   @IsNotEmpty()
+  @MaxLength(200)
   title: string;
 
   @IsOptional()

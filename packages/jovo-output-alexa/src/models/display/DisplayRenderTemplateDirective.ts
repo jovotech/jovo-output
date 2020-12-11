@@ -9,7 +9,7 @@ import { BodyTemplate7 } from './templates/BodyTemplate7';
 import { ListTemplate1 } from './templates/ListTemplate1';
 import { ListTemplate2 } from './templates/ListTemplate2';
 
-export class DisplayRenderTemplateDirective extends Directive {
+export class DisplayRenderTemplateDirective extends Directive<'Display.RenderTemplate'> {
   @Equals('Display.RenderTemplate')
   type: 'Display.RenderTemplate';
 
