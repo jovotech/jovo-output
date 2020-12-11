@@ -1,5 +1,5 @@
 import { ArrayMaxSize, ArrayMinSize, IsArray, IsOptional, Type, ValidateNested } from 'jovo-output';
-import { IsValidRichResponseItemArray } from '../validation/decorators/IsValidRichResponseItemArray';
+import { IsValidRichResponseItemArray } from '../decorators/validation/IsValidRichResponseItemArray';
 import { Suggestion } from './common/Suggestion';
 import { LinkOutSuggestion } from './LinkOutSuggestion';
 import { RichResponseItem } from './RichResponseItem';

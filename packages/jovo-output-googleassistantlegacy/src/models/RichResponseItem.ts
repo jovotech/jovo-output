@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsOptional, IsString, Type, ValidateIf, ValidateNested } from 'jovo-output';
-import { IsValidRichResponseItemObject } from '../validation/decorators/IsValidRichResponseItemObject';
+import { IsValidRichResponseItemObject } from '../decorators/validation/IsValidRichResponseItemObject';
 import { BasicCard } from './basic-card/BasicCard';
 import { CarouselBrowse } from './carousel-browse/CarouselBrowse';
 import { HtmlResponse } from './html-response/HtmlResponse';

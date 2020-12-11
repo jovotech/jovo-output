@@ -1,4 +1,4 @@
-import { IsValidPaymentResultString } from '../../validation/decorators/IsValidPaymentResultString';
+import { IsValidPaymentResultString } from '../../decorators/validation/IsValidPaymentResultString';
 
 export class PaymentResult {
   @IsValidPaymentResultString()

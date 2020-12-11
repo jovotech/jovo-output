@@ -7,7 +7,7 @@ import {
   Message,
   removeSSMLSpeakTags,
 } from 'jovo-output';
-import { IsValidSimpleResponseString } from '../../validation/decorators/IsValidSimpleResponseString';
+import { IsValidSimpleResponseString } from '../../decorators/validation/IsValidSimpleResponseString';
 
 export class SimpleResponse {
   @IsValidSimpleResponseString()

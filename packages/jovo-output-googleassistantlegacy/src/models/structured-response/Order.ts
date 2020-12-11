@@ -10,7 +10,7 @@ import {
   ValidateIf,
   ValidateNested,
 } from 'jovo-output';
-import { IsValidOrderExtension } from '../../validation/decorators/IsValidOrderExtension';
+import { IsValidOrderExtension } from '../../decorators/validation/IsValidOrderExtension';
 import { Image } from '../common/Image';
 import { Action } from './Action';
 import { Contents } from './Contents';
@@ -113,9 +113,9 @@ export class Order {
 
   @IsValidOrderExtension()
   @Type(() => PurchaseOrderExtension)
-  purchase: PurchaseOrderExtension;
+  purchase?: PurchaseOrderExtension;
 
   @IsValidOrderExtension()
   @Type(() => TicketOrderExtension)
-  ticket: TicketOrderExtension;
+  ticket?: TicketOrderExtension;
 }

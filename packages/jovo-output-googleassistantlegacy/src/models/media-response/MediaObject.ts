@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString, IsUrl, Type } from 'jovo-output';
-import { IsValidMediaObjectImage } from '../../validation/decorators/IsValidMediaObjectImage';
+import { IsValidMediaObjectImage } from '../../decorators/validation/IsValidMediaObjectImage';
 import { Image } from '../common/Image';
 
 export class MediaObject {
