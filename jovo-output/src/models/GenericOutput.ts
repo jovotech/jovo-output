@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 import { IsArray, IsBoolean, IsInstance, IsOptional, ValidateNested } from '../index';
-import { IsStringOrInstance } from '../validation/decorators/IsStringOrInstance';
+import { IsStringOrInstance } from '../decorators/validation/IsStringOrInstance';
 import { GenericCard } from './GenericCard';
 import { GenericCarousel } from './GenericCarousel';
 import { GenericMessage, Message } from './GenericMessage';

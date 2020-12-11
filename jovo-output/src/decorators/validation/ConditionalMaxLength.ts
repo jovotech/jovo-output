@@ -1,4 +1,4 @@
-import { registerDecorator, ValidationArguments, ValidationOptions } from '../..';
+import { registerDecorator, ValidationArguments, ValidationOptions } from '../../index';
 
 export function ConditionalMaxLength<T = any>(
   conditionFn: (obj: T) => number,

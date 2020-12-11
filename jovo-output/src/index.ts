@@ -6,10 +6,12 @@ export * from 'class-validator';
 
 export * from './errors/OutputValidationError';
 
-export * from './validation/decorators/IsSomeValid';
-export * from './validation/decorators/IsEitherValid';
-export * from './validation/decorators/IsStringOrInstance';
-export * from './validation/decorators/ConditionalMaxLength';
+export * from './decorators/transformation/TransformMap';
+export * from './decorators/validation/IsSomeValid';
+export * from './decorators/validation/IsEitherValid';
+export * from './decorators/validation/IsOfEitherType';
+export * from './decorators/validation/IsStringOrInstance';
+export * from './decorators/validation/ConditionalMaxLength';
 
 export * from './models/GenericCard';
 export * from './models/GenericCarousel';

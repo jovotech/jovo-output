@@ -1,9 +1,9 @@
-import { isDefined, registerDecorator, ValidationArguments, ValidationOptions } from '../..';
+import { isDefined, registerDecorator, ValidationArguments, ValidationOptions } from '../../index';
 
 export interface IsEitherValidOptions<T = any> {
   name?: string;
   keys: Array<keyof T>;
-  validate: (
+  validate?: (
     value: any,
     args: ValidationArguments,
   ) => string | undefined | void | Promise<string | undefined | void>;
@@ -74,11 +74,13 @@ export function IsEitherValid<T = any>(
             return true;
           }
 
-          const validationResult = await validate(value, args);
+          if (validate) {
+            const validationResult = await validate(value, args);
 
-          if (validationResult) {
-            args.constraints[1] = validationResult;
-            return false;
+            if (validationResult) {
+              args.constraints[1] = validationResult;
+              return false;
+            }
           }
 
           return true;

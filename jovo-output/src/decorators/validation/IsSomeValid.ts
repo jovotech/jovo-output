@@ -1,4 +1,4 @@
-import { isDefined, registerDecorator, ValidationArguments, ValidationOptions } from '../..';
+import { isDefined, registerDecorator, ValidationArguments, ValidationOptions } from '../../index';
 
 export interface IsSomeValidOptions<T = any> {
   name?: string;
