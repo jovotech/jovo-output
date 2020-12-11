@@ -13,8 +13,8 @@ import { ColumnProperties } from './ColumnProperties';
 import { Image } from '../common/Image';
 import { Row } from './Row';
 
-// TODO: determine why there is @ValidateIf and replace it with a custom one
 export class TableCard {
+  // title must be set if subtitle is set, otherwise it's optional
   @ValidateIf((o) => o.subtitle || o.title)
   @IsString()
   @IsNotEmpty()
