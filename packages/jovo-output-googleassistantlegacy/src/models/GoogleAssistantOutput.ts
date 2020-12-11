@@ -19,7 +19,6 @@ import { GoogleAssistantResponse } from './GoogleAssistantResponse';
 import { RichResponse } from './RichResponse';
 import { SimpleResponse } from './simple-response/SimpleResponse';
 
-// TODO: find a better way than having to copy the decorators
 export class GoogleAssistantOutput
   implements Partial<GoogleAssistantResponse>, Partial<GenericOutputBase> {
   [key: string]: unknown;

@@ -1,4 +1,4 @@
-import { registerDecorator, ValidationArguments, ValidationOptions } from '../..';
+import { formatList, registerDecorator, ValidationArguments, ValidationOptions } from '../..';
 
 export type PossibleType =
   | 'array'
@@ -41,10 +41,7 @@ export function IsOfEitherType(
           return false;
         },
         defaultMessage(args: ValidationArguments) {
-          const types = args.constraints[0];
-          const typesText = `${types.slice(0, types.length - 1).join(', ')} or ${
-            types[types.length - 1]
-          }`;
+          const typesText = formatList(args.constraints[0]);
           const eachText = options?.each ? 'each item in ' : '';
           return `${eachText}$property has to be one of the following types ${typesText}. Current type is ${args.constraints[1]}`;
         },

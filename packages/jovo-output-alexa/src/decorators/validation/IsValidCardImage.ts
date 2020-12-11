@@ -1,4 +1,5 @@
 import {
+  formatValidationErrors,
   isDefined,
   registerDecorator,
   validate,
@@ -39,8 +40,11 @@ export function IsValidCardImage(
             }
 
             const errors = await validate(value);
-            // TODO: implement message
-            args.constraints[0] = 'TBD';
+            args.constraints[0] = formatValidationErrors(errors, {
+              text: '$property is invalid:',
+              delimiter: '\n  - ',
+              path: '$property',
+            });
             return !errors.length;
           }
 

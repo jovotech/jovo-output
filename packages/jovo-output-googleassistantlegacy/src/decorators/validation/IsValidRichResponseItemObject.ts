@@ -1,4 +1,4 @@
-import { IsEitherValid, validate, ValidationOptions } from 'jovo-output';
+import {formatValidationErrors, IsEitherValid, validate, ValidationOptions} from 'jovo-output';
 import { RichResponseItem } from '../../models';
 
 export function IsValidRichResponseItemObject(
@@ -24,8 +24,11 @@ export function IsValidRichResponseItemObject(
 
         const errors = await validate(value);
         if (errors.length) {
-          // TODO: build error message based on errors
-          return `TBD`;
+          return formatValidationErrors(errors, {
+            text: '$property is invalid:',
+            delimiter: '\n  - ',
+            path: '$property',
+          });
         }
         return;
       },

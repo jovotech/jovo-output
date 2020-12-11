@@ -1,4 +1,10 @@
-import { isDefined, registerDecorator, ValidationArguments, ValidationOptions } from '../../index';
+import {
+  formatList,
+  isDefined,
+  registerDecorator,
+  ValidationArguments,
+  ValidationOptions,
+} from '../../index';
 
 export interface IsSomeValidOptions<T = any> {
   name?: string;
@@ -43,9 +49,7 @@ export function IsSomeValid<T = any>(
 
           // check if none are defined
           if (!isDefined(value) && !otherDefinedPropertyPairs.length) {
-            const keysText = `${keys.slice(0, keys.length - 1).join(', ')} or ${
-              keys[keys.length - 1]
-            }`;
+            const keysText = formatList(keys);
             args.constraints[1] = `At least one of the properties ${keysText} must be defined. None is set.`;
             return false;
           }

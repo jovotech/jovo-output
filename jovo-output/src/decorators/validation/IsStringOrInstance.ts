@@ -39,8 +39,7 @@ export function IsStringOrInstance(
           return false;
         },
         defaultMessage(args: ValidationArguments) {
-          const each = options?.each || false;
-          const eachText = each ? 'each item in ' : '';
+          const eachText = options?.each ? 'each item in ' : '';
           const errors: ValidationError[] = args.constraints[1];
           const errorText = errors
             .map((error) => {

@@ -1,4 +1,4 @@
-import { IsEitherValid, validate, ValidationOptions } from 'jovo-output';
+import { formatValidationErrors, IsEitherValid, validate, ValidationOptions } from 'jovo-output';
 import { LineItem, PurchaseItemExtension, ReservationItemExtension } from '../../models';
 
 export function IsValidLineItemExtension(validationOptions?: ValidationOptions): PropertyDecorator {
@@ -16,8 +16,11 @@ export function IsValidLineItemExtension(validationOptions?: ValidationOptions):
 
         const errors = await validate(value);
         if (errors.length) {
-          // TODO: build error message based on errors
-          return `TBD`;
+          return formatValidationErrors(errors, {
+            text: '$property is invalid:',
+            delimiter: '\n  - ',
+            path: '$property',
+          });
         }
         return;
       },

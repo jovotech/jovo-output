@@ -1,4 +1,5 @@
 import {
+  formatValidationErrors,
   isDefined,
   registerDecorator,
   validate,
@@ -31,8 +32,11 @@ export function IsValidDynamicEntitiesSlotTypesArray(
               return false;
             }
             const errors = await validate(value);
-            // TODO: set actual error message
-            args.constraints[0] = 'TBD';
+            args.constraints[0] = formatValidationErrors(errors, {
+              text: '$property is invalid:',
+              delimiter: '\n  - ',
+              path: '$property',
+            });
             return !errors.length;
           } else {
             if (isDefined(value)) {

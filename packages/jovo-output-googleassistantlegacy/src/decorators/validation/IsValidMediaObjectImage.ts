@@ -1,4 +1,4 @@
-import { IsEitherValid, validate, ValidationOptions } from 'jovo-output';
+import {formatValidationErrors, IsEitherValid, validate, ValidationOptions} from 'jovo-output';
 import { Image, MediaObject } from '../../models';
 
 export function IsValidMediaObjectImage(validationOptions?: ValidationOptions): PropertyDecorator {
@@ -13,8 +13,11 @@ export function IsValidMediaObjectImage(validationOptions?: ValidationOptions): 
 
         const errors = await validate(value);
         if (errors.length) {
-          // TODO: build error message based on errors
-          return `TBD`;
+          return formatValidationErrors(errors, {
+            text: '$property is invalid:',
+            delimiter: '\n  - ',
+            path: '$property',
+          });
         }
         return;
       },

@@ -1,4 +1,10 @@
-import { isDefined, registerDecorator, ValidationArguments, ValidationOptions } from '../../index';
+import {
+  formatList,
+  isDefined,
+  registerDecorator,
+  ValidationArguments,
+  ValidationOptions,
+} from '../../index';
 
 export interface IsEitherValidOptions<T = any> {
   name?: string;
@@ -46,9 +52,7 @@ export function IsEitherValid<T = any>(
             (isDefined(value) && otherDefinedPropertyPairs.length) ||
             (!isDefined(value) && !otherDefinedPropertyPairs.length)
           ) {
-            const keysText = `${keys.slice(0, keys.length - 1).join(', ')} or ${
-              keys[keys.length - 1]
-            }`;
+            const keysText = formatList(keys);
 
             const otherDefinedPropertyKeys = otherDefinedPropertyPairs.map((entry) => {
               return entry[0];
@@ -59,11 +63,11 @@ export function IsEitherValid<T = any>(
                 ? 'None is defined.'
                 : otherDefinedPropertyKeys.length === 1
                 ? `The property ${otherDefinedPropertyKeys[0]} is also defined.`
-                : `The properties ${otherDefinedPropertyKeys
-                    .slice(0, otherDefinedPropertyKeys.length - 1)
-                    .join(', ')} and ${
-                    otherDefinedPropertyKeys[otherDefinedPropertyKeys.length - 1]
-                  } are also defined.`;
+                : `The properties ${formatList(
+                    otherDefinedPropertyKeys,
+                    ', ',
+                    ' and ',
+                  )} are also defined.`;
 
             args.constraints[1] = `Either ${keysText} must be defined. ${tipText}`;
             return false;

@@ -1,5 +1,5 @@
 import {
-  ArrayMaxSize,
+  ArrayMaxSize, formatValidationErrors,
   GenericCard,
   IsArray,
   IsEnum,
@@ -59,8 +59,11 @@ export class BasicCard {
 
       const errors = await validate(value);
       if (errors.length) {
-        // TODO: build error message based on errors
-        return `TBD`;
+        return formatValidationErrors(errors, {
+          text: '$property is invalid:',
+          delimiter: '\n  - ',
+          path: '$property',
+        });
       }
       return;
     },
