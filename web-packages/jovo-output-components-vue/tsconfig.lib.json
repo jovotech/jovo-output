@@ -4,5 +4,7 @@
     "outDir": "dist",
     "declaration": true
   },
-  "exclude": ["src/main.ts"]
+  "exclude": [
+    "src/main.ts"
+  ]
 }

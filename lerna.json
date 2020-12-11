@@ -2,7 +2,8 @@
   "packages": [
     "e2e",
     "jovo-output",
-    "packages/*"
+    "packages/*",
+    "web-packages/*"
   ],
   "version": "independent"
 }

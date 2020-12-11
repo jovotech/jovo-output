@@ -7,7 +7,7 @@ import './assets/css/theme.css';
 
 declare global {
   interface Window {
-    JovoOutputComponentsVue: typeof import('.');
+    JovoOutputComponentsVue: typeof import('./index');
   }
 }
 
