@@ -43,7 +43,7 @@ function augmentPrototypes() {
 
 augmentPrototypes();
 
-// Make GoogleAssistantOutput available for the GenericOutput-object via the GoogleAssistant-key.
+// Make AlexaOutput available for the GenericOutput-object via the Alexa-key.
 declare module 'jovo-output/dist/models/GenericOutput' {
   interface GenericOutput {
     Alexa?: AlexaOutput;
