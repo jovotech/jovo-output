@@ -1,4 +1,4 @@
-import { Transform } from '../..';
+import { plainToClass, Transform } from '../..';
 
 export function TransformMap<T extends Record<string, unknown>>(
   type: new () => T,
@@ -8,13 +8,7 @@ export function TransformMap<T extends Record<string, unknown>>(
     const entries = Object.entries<T>(value);
     for (let i = 0, len = entries.length; i < len; i++) {
       const [key, obj] = entries[i];
-      const instance = new type();
-      for (const prop in obj) {
-        if (obj.hasOwnProperty(prop)) {
-          instance[prop] = obj[prop];
-        }
-      }
-      result[key] = instance;
+      result[key] = plainToClass<T, T>(type, obj);
     }
     return result;
   }) as PropertyDecorator;
