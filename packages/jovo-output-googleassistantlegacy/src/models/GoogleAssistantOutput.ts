@@ -2,7 +2,7 @@ import {
   GenericCard,
   GenericCarousel,
   GenericMessage,
-  GenericOutputBase,
+  GenericOutput,
   GenericQuickReply,
   IsArray,
   IsBoolean,
@@ -20,42 +20,9 @@ import { RichResponse } from './RichResponse';
 import { SimpleResponse } from './simple-response/SimpleResponse';
 
 export class GoogleAssistantOutput
-  implements Partial<GoogleAssistantResponse>, Partial<GenericOutputBase> {
+  extends GenericOutput
+  implements Partial<GoogleAssistantResponse> {
   [key: string]: unknown;
-
-  @IsOptional()
-  @IsStringOrInstance(GenericMessage)
-  @Type(() => GenericMessage)
-  message?: Message;
-
-  @IsOptional()
-  @IsStringOrInstance(GenericMessage)
-  @Type(() => GenericMessage)
-  reprompt?: Message;
-
-  @IsOptional()
-  @IsBoolean()
-  listen?: boolean;
-
-  @IsOptional()
-  @IsArray()
-  @IsStringOrInstance(GenericQuickReply, {
-    each: true,
-  })
-  @Type(() => GenericQuickReply)
-  quickReplies?: QuickReply[];
-
-  @IsOptional()
-  @IsInstance(GenericCard)
-  @ValidateNested()
-  @Type(() => GenericCard)
-  card?: GenericCard;
-
-  @IsOptional()
-  @IsInstance(GenericCarousel)
-  @ValidateNested()
-  @Type(() => GenericCarousel)
-  carousel?: GenericCarousel;
 
   @IsOptional()
   @IsBoolean()

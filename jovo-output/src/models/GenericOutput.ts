@@ -6,16 +6,7 @@ import { GenericCarousel } from './GenericCarousel';
 import { GenericMessage, Message } from './GenericMessage';
 import { GenericQuickReply, QuickReply } from './GenericQuickReply';
 
-export interface GenericOutputBase {
-  message?: Message;
-  reprompt?: Message;
-  listen?: boolean;
-  quickReplies?: QuickReply[];
-  card?: GenericCard;
-  carousel?: GenericCarousel;
-}
-
-export class GenericOutput implements GenericOutputBase {
+export class GenericOutput {
   [key: string]: unknown;
 
   @IsOptional()

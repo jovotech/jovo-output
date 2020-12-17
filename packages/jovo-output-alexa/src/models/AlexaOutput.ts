@@ -1,61 +1,17 @@
 import {
-  GenericCard,
-  GenericCarousel,
-  GenericMessage,
-  GenericOutputBase,
-  GenericQuickReply,
-  IsArray,
-  IsBoolean,
-  IsInstance,
+  GenericOutput,
   IsNotEmpty,
   IsObject,
   IsOptional,
   IsString,
-  IsStringOrInstance,
-  Message,
-  QuickReply,
   Type,
   ValidateNested,
 } from 'jovo-output';
 import { AlexaResponse } from './AlexaResponse';
 import { Response } from './Response';
 
-export class AlexaOutput implements Partial<AlexaResponse>, Partial<GenericOutputBase> {
+export class AlexaOutput extends GenericOutput implements Partial<AlexaResponse> {
   [key: string]: unknown;
-
-  @IsOptional()
-  @IsStringOrInstance(GenericMessage)
-  @Type(() => GenericMessage)
-  message?: Message;
-
-  @IsOptional()
-  @IsStringOrInstance(GenericMessage)
-  @Type(() => GenericMessage)
-  reprompt?: Message;
-
-  @IsOptional()
-  @IsBoolean()
-  listen?: boolean;
-
-  @IsOptional()
-  @IsArray()
-  @IsStringOrInstance(GenericQuickReply, {
-    each: true,
-  })
-  @Type(() => GenericQuickReply)
-  quickReplies?: QuickReply[];
-
-  @IsOptional()
-  @IsInstance(GenericCard)
-  @ValidateNested()
-  @Type(() => GenericCard)
-  card?: GenericCard;
-
-  @IsOptional()
-  @IsInstance(GenericCarousel)
-  @ValidateNested()
-  @Type(() => GenericCarousel)
-  carousel?: GenericCarousel;
 
   @IsOptional()
   @IsString()
@@ -64,7 +20,7 @@ export class AlexaOutput implements Partial<AlexaResponse>, Partial<GenericOutpu
 
   @IsOptional()
   @IsObject()
-  sessionAttributes?: Record<string, any>;
+  sessionAttributes?: Record<string, unknown>;
 
   @IsOptional()
   @ValidateNested()
