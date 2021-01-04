@@ -71,12 +71,14 @@ describe('toResponse', () => {
         },
       );
     });
-    test('output.GoogleAssistant.message overwrites output.message', () => {
+    test('output.platforms.GoogleAssistant.message overwrites output.message', () => {
       return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
-          GoogleAssistant: {
-            message: 'bar',
+          platforms: {
+            GoogleAssistant: {
+              message: 'bar',
+            },
           },
         },
         {
@@ -127,13 +129,15 @@ describe('toResponse', () => {
         },
       );
     });
-    test('output.GoogleAssistant.reprompt overwrites output.reprompt', () => {
+    test('output.platforms.GoogleAssistant.reprompt overwrites output.reprompt', () => {
       return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           reprompt: 'bar',
-          GoogleAssistant: {
-            reprompt: 'foo',
+          platforms: {
+            GoogleAssistant: {
+              reprompt: 'foo',
+            },
           },
         },
         {
@@ -182,13 +186,15 @@ describe('toResponse', () => {
         },
       );
     });
-    test('output.GoogleAssistant.listen overwrites output.listen', () => {
+    test('output.platforms.GoogleAssistant.listen overwrites output.listen', () => {
       return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           listen: true,
-          GoogleAssistant: {
-            listen: false,
+          platforms: {
+            GoogleAssistant: {
+              listen: false,
+            },
           },
         },
         {
@@ -231,13 +237,15 @@ describe('toResponse', () => {
         },
       );
     });
-    test('output.GoogleAssistant.quickReplies overwrites output.quickReplies', () => {
+    test('output.platforms.GoogleAssistant.quickReplies overwrites output.quickReplies', () => {
       return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           quickReplies: ['hello'],
-          GoogleAssistant: {
-            quickReplies: ['world'],
+          platforms: {
+            GoogleAssistant: {
+              quickReplies: ['world'],
+            },
           },
         },
         {
@@ -340,7 +348,7 @@ describe('toResponse', () => {
         },
       );
     });
-    test('output.GoogleAssistant.card overwrites output.card', () => {
+    test('output.platforms.GoogleAssistant.card overwrites output.card', () => {
       return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
@@ -348,10 +356,12 @@ describe('toResponse', () => {
             title: 'foo',
             subtitle: 'bar',
           },
-          GoogleAssistant: {
-            card: {
-              title: 'overwritten',
-              subtitle: 'overwritten',
+          platforms: {
+            GoogleAssistant: {
+              card: {
+                title: 'overwritten',
+                subtitle: 'overwritten',
+              },
             },
           },
         },
@@ -459,7 +469,7 @@ describe('toResponse', () => {
       ).rejects.toThrowError(OutputValidationError);
     });
 
-    test('output.GoogleAssistant.carousel overwrites output.carousel', () => {
+    test('output.platforms.GoogleAssistant.carousel overwrites output.carousel', () => {
       return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
@@ -469,12 +479,14 @@ describe('toResponse', () => {
               { title: 'bar', subtitle: 'foo' },
             ],
           },
-          GoogleAssistant: {
-            carousel: {
-              items: [
-                { title: 'bar', subtitle: 'foo' },
-                { title: 'foo', subtitle: 'bar', key: 'test' },
-              ],
+          platforms: {
+            GoogleAssistant: {
+              carousel: {
+                items: [
+                  { title: 'bar', subtitle: 'foo' },
+                  { title: 'foo', subtitle: 'bar', key: 'test' },
+                ],
+              },
             },
           },
         },
@@ -514,14 +526,18 @@ describe('toResponse', () => {
   });
 
   describe('platform-specific properties', () => {
-    test('output.GoogleAssistant.expectUserResponse overwrites output.listen and output.GoogleAssistant.listen', () => {
+    test('output.platforms.GoogleAssistant.nativeResponse.expectUserResponse overwrites output.listen and output.GoogleAssistant.listen', () => {
       return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           listen: false,
-          GoogleAssistant: {
-            listen: false,
-            expectUserResponse: true,
+          platforms: {
+            GoogleAssistant: {
+              listen: false,
+              nativeResponse: {
+                expectUserResponse: true,
+              },
+            },
           },
         },
         {
@@ -533,7 +549,7 @@ describe('toResponse', () => {
       );
     });
 
-    test('output.GoogleAssistant.systemIntent overwrites output.carousel and output.GoogleAssistant.carousel', () => {
+    test('output.platforms.GoogleAssistant.nativeResponse.systemIntent overwrites output.carousel and output.GoogleAssistant.carousel', () => {
       const systemIntent: SystemIntent = {
         intent: 'actions.intent.OPTION',
         data: {
@@ -569,14 +585,18 @@ describe('toResponse', () => {
               { title: 'bar', subtitle: 'foo' },
             ],
           },
-          GoogleAssistant: {
-            carousel: {
-              items: [
-                { title: 'bar', subtitle: 'foo' },
-                { title: 'foo', subtitle: 'bar', key: 'test' },
-              ],
+          platforms: {
+            GoogleAssistant: {
+              carousel: {
+                items: [
+                  { title: 'bar', subtitle: 'foo' },
+                  { title: 'foo', subtitle: 'bar', key: 'test' },
+                ],
+              },
+              nativeResponse: {
+                systemIntent,
+              },
             },
-            systemIntent,
           },
         },
         {
@@ -588,15 +608,19 @@ describe('toResponse', () => {
       );
     });
 
-    test('output.GoogleAssistant.noInputPrompts overwrites output.reprompt and output.GoogleAssistant.reprompt', () => {
+    test('output.platforms.GoogleAssistant.nativeResponse.noInputPrompts overwrites output.reprompt and output.GoogleAssistant.reprompt', () => {
       const noInputPrompts: SimpleResponse[] = [{ ssml: toSSML('test') }];
       return convertToResponseAndExpectToEqual(
         {
           message: 'foo',
           reprompt: 'foo',
-          GoogleAssistant: {
-            reprompt: 'bar',
-            noInputPrompts,
+          platforms: {
+            GoogleAssistant: {
+              reprompt: 'bar',
+              nativeResponse: {
+                noInputPrompts,
+              },
+            },
           },
         },
         {
@@ -608,7 +632,7 @@ describe('toResponse', () => {
       );
     });
 
-    test('output.GoogleAssistant.richResponse overwrites richResponse', () => {
+    test('output.platforms.GoogleAssistant.nativeResponse.richResponse overwrites richResponse', () => {
       const richResponse: RichResponse = {
         items: [{ simpleResponse: { ssml: toSSML('test') } }],
       };
@@ -619,8 +643,12 @@ describe('toResponse', () => {
             title: 'test',
             subtitle: 'more',
           },
-          GoogleAssistant: {
-            richResponse,
+          platforms: {
+            GoogleAssistant: {
+              nativeResponse: {
+                richResponse,
+              },
+            },
           },
         },
         {

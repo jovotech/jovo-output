@@ -1,19 +1,6 @@
-import {
-  decoratePropertyOfGenericOutput,
-  GenericCard,
-  GenericCarousel,
-  GenericMessage,
-  GenericQuickReply,
-  toSSML,
-} from 'jovo-output';
-import {
-  BasicCard,
-  Carousel,
-  CollectionItem,
-  GoogleAssistantOutput,
-  SimpleResponse,
-  Suggestion,
-} from './models';
+import { registerOutputPlatform } from 'jovo-output';
+import { BasicCard, Carousel, GoogleAssistantOutput, SimpleResponse, Suggestion } from './models';
+import { augmentGenericPrototypes } from './utilities';
 
 declare module 'jovo-output/dist/models/GenericCard' {
   interface GenericCard {
@@ -39,75 +26,17 @@ declare module 'jovo-output/dist/models/GenericQuickReply' {
   }
 }
 
-function augmentPrototypes() {
-  GenericCard.prototype.toGoogleAssistantBasicCard = function () {
-    const basicCard: BasicCard = {
-      title: this.title,
-    };
-    if (this.subtitle) {
-      basicCard.formattedText = this.subtitle;
-    }
-    if (this.imageUrl) {
-      basicCard.image = {
-        url: this.imageUrl,
-        accessibilityText: this.title,
-      };
-    }
-    return basicCard;
-  };
-
-  GenericCarousel.prototype.toGoogleAssistantCarousel = function () {
-    return {
-      items: this.items.map((item) => {
-        const collectionItem: CollectionItem = {
-          optionInfo: {
-            key: item.key || item.title,
-            synonyms: [],
-          },
-          title: item.title,
-        };
-        if (item.subtitle) {
-          collectionItem.description = item.subtitle;
-        }
-        if (item.imageUrl) {
-          collectionItem.image = {
-            url: item.imageUrl,
-            accessibilityText: item.title,
-          };
-        }
-        return collectionItem;
-      }),
-    };
-  };
-
-  GenericMessage.prototype.toGoogleAssistantSimpleResponse = function () {
-    const simpleResponse: SimpleResponse = {
-      ssml: toSSML(this.text),
-    };
-    if (this.displayText) {
-      simpleResponse.displayText = this.displayText;
-    }
-    return simpleResponse;
-  };
-
-  GenericQuickReply.prototype.toGoogleAssistantSuggestion = function () {
-    return {
-      title: this.text,
-    };
-  };
-}
-
 // augment the prototypes of the generic models to have methods to convert to the GoogleAssistant-variant
-augmentPrototypes();
+augmentGenericPrototypes();
 
-// Make GoogleAssistantOutput available for the GenericOutput-object via the GoogleAssistant-key.
-declare module 'jovo-output/dist/models/GenericOutput' {
-  interface GenericOutput {
+// Make GoogleAssistantOutput available for the GenericOutputPlatforms-object via the GoogleAssistant-key.
+declare module 'jovo-output/dist/models/GenericOutputPlatforms' {
+  interface GenericOutputPlatforms {
     GoogleAssistant?: GoogleAssistantOutput;
   }
 }
 // Additionally, make class-validator and class-transformer aware of the added property.
-decoratePropertyOfGenericOutput('GoogleAssistant', GoogleAssistantOutput);
+registerOutputPlatform('GoogleAssistant', GoogleAssistantOutput);
 
 export * from './decorators/validation/IsValidLineItemExtension';
 export * from './decorators/validation/IsValidMediaObjectImage';

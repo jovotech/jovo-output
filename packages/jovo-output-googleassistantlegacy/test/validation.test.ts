@@ -28,7 +28,7 @@ describe('validation - GenericOutput', () => {
     return validateAndExpectLength(
       GenericOutput,
       {
-        GoogleAssistant: 2,
+        platforms: { GoogleAssistant: 2 },
       } as any,
       1,
     );
@@ -38,8 +38,10 @@ describe('validation - GenericOutput', () => {
     return validateAndExpectLength(
       GenericOutput,
       {
-        GoogleAssistant: {
-          quickReplies: 2 as any,
+        platforms: {
+          GoogleAssistant: {
+            quickReplies: 2 as any,
+          },
         },
       },
       1,
@@ -50,9 +52,11 @@ describe('validation - GenericOutput', () => {
     return validateAndExpectLength(
       GenericOutput,
       {
-        GoogleAssistant: {
-          message: 'foo',
-          quickReplies: [],
+        platforms: {
+          GoogleAssistant: {
+            message: 'foo',
+            quickReplies: [],
+          },
         },
       },
       0,

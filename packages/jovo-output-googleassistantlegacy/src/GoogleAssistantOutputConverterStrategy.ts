@@ -13,36 +13,36 @@ export class GoogleAssistantOutputConverterStrategy
     };
 
     // TODO: fully determine when to set listen
-    const listen = output.GoogleAssistant?.listen ?? output.listen;
+    const listen = output.platforms?.GoogleAssistant?.listen ?? output.listen;
     if (typeof listen !== 'undefined') {
       response.expectUserResponse = listen;
     }
 
-    const message = output.GoogleAssistant?.message || output.message;
+    const message = output.platforms?.GoogleAssistant?.message || output.message;
     if (message) {
       response.richResponse.items.push({
         simpleResponse: this.convertMessageToSimpleResponse(message),
       });
     }
 
-    const reprompt = output.GoogleAssistant?.reprompt || output.reprompt;
+    const reprompt = output.platforms?.GoogleAssistant?.reprompt || output.reprompt;
     if (reprompt) {
       response.noInputPrompts = [this.convertMessageToSimpleResponse(reprompt)];
     }
 
-    const quickReplies = output.GoogleAssistant?.quickReplies || output.quickReplies;
+    const quickReplies = output.platforms?.GoogleAssistant?.quickReplies || output.quickReplies;
     if (quickReplies?.length) {
       response.richResponse.suggestions = quickReplies.map(this.convertQuickReplyToSuggestion);
     }
 
-    const card = output.GoogleAssistant?.card || output.card;
+    const card = output.platforms?.GoogleAssistant?.card || output.card;
     if (card) {
       response.richResponse.items.push({
         basicCard: card.toGoogleAssistantBasicCard?.(),
       });
     }
 
-    const carousel = output.GoogleAssistant?.carousel || output.carousel;
+    const carousel = output.platforms?.GoogleAssistant?.carousel || output.carousel;
     if (carousel) {
       response.systemIntent = {
         intent: 'actions.intent.OPTION',
@@ -60,9 +60,10 @@ export class GoogleAssistantOutputConverterStrategy
       'richResponse',
     ];
 
+    // TODO: replace with merge or defaults
     for (const responseKey of responseKeys) {
-      if (output.GoogleAssistant?.[responseKey]) {
-        response[responseKey] = output.GoogleAssistant[responseKey];
+      if (output.platforms?.GoogleAssistant?.nativeResponse?.[responseKey]) {
+        response[responseKey] = output.platforms.GoogleAssistant.nativeResponse[responseKey];
       }
     }
 
