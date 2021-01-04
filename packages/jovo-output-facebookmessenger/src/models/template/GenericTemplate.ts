@@ -1,6 +1,8 @@
 import {
   ArrayMaxSize,
   Equals,
+  GenericCard,
+  GenericCarousel,
   IsArray,
   IsBoolean,
   IsEnum,
@@ -71,6 +73,19 @@ export class GenericTemplateElement {
   @ValidateNested({ each: true })
   @TransformButton()
   buttons?: Button[];
+
+  toGenericCard?(): GenericCard {
+    const card: GenericCard = {
+      title: this.title,
+    };
+    if (this.subtitle) {
+      card.subtitle = this.subtitle;
+    }
+    if (this.image_url) {
+      card.imageUrl = this.image_url;
+    }
+    return card;
+  }
 }
 
 export class GenericTemplate extends Template<TemplateType.Generic> {
@@ -86,4 +101,10 @@ export class GenericTemplate extends Template<TemplateType.Generic> {
   @ValidateNested({ each: true })
   @Type(() => GenericTemplateElement)
   elements: GenericTemplateElement[];
+
+  toGenericCarousel?(): GenericCarousel {
+    return {
+      items: this.elements.map((element) => element.toGenericCard!()),
+    };
+  }
 }

@@ -9,43 +9,28 @@ import {
   ValidateNested,
 } from 'jovo-output';
 import { IdentityData } from './common/IdentityData';
+import {
+  FacebookMessengerResponse,
+  MessageTag,
+  MessagingType,
+  NotificationType,
+  SenderActionType,
+} from './FacebookMessengerResponse';
 import { Message } from './message/Message';
 
-export enum MessagingType {
-  Response = 'RESPONSE',
-  Update = 'UPDATE',
-  MessageTag = 'MESSAGE_TAG',
-}
-
-export enum SenderActionType {
-  MarkSeen = 'mark_seen',
-  TypingOn = 'typing_on',
-  TypingOff = 'typing_off',
-}
-
-export enum NotificationType {
-  Regular = 'REGULAR',
-  SilentPush = 'SILENT_PUSH',
-  NoPush = 'NO_PUSH',
-}
-
-export enum MessageTag {
-  ConfirmedEventUpdate = 'CONFIRMED_EVENT_UPDATE',
-  PostPurchaseUpdate = 'POST_PURCHASE_UPDATE',
-  AccountUpdate = 'ACCOUNT_UPDATE',
-  HumanAgent = 'HUMAN_AGENT',
-}
-
-export class FacebookMessengerResponse {
+export class FacebookMessengerOutputResponse implements Partial<FacebookMessengerResponse> {
   [key: string]: unknown;
 
+  @IsOptional()
   @IsEnum(MessagingType)
-  messaging_type: MessagingType;
+  messaging_type?: MessagingType;
 
+  @IsOptional()
   @ValidateNested()
   @Type(() => IdentityData)
-  recipient: IdentityData;
+  recipient?: IdentityData;
 
+  @IsOptional()
   @IsEitherValid<FacebookMessengerResponse>({
     keys: ['message', 'sender_action'],
     validate: async (value, args) => {
@@ -65,6 +50,7 @@ export class FacebookMessengerResponse {
   @Type(() => Message)
   message?: Message;
 
+  @IsOptional()
   @IsEitherValid<FacebookMessengerResponse>({
     keys: ['message', 'sender_action'],
     validate: (value, args) => {

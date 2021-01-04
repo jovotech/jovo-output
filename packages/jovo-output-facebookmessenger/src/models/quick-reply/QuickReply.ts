@@ -1,4 +1,4 @@
-import { IsEnum } from 'jovo-output';
+import { IsEnum, QuickReply as GenericQuickReplyOrString } from 'jovo-output';
 
 export enum QuickReplyContentType {
   Text = 'text',
@@ -25,4 +25,16 @@ export class QuickReply<T extends QuickReplyContentType = QuickReplyContentType>
   image_url?: T extends QuickReplyContentType.Email | QuickReplyContentType.PhoneNumber
     ? never
     : string | undefined;
+
+  toQuickReply?(): GenericQuickReplyOrString | undefined {
+    if (this.content_type !== QuickReplyContentType.Text || !this.title) {
+      return undefined;
+    }
+    return this.payload
+      ? {
+          text: this.title,
+          value: this.payload.toString(),
+        }
+      : this.title;
+  }
 }
