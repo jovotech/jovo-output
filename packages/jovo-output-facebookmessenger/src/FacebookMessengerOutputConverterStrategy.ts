@@ -9,6 +9,7 @@ import {
   QuickReplyContentType,
   TemplateType,
 } from './models';
+import _merge from 'lodash.merge';
 
 export class FacebookMessengerOutputConverterStrategy
   implements OutputConverterStrategy<FacebookMessengerResponse> {
@@ -47,20 +48,8 @@ export class FacebookMessengerOutputConverterStrategy
       };
     }
 
-    const responseKeys: Array<keyof FacebookMessengerResponse> = [
-      'messaging_type',
-      'recipient',
-      'message',
-      'sender_action',
-      'notification_type',
-      'tag',
-    ];
-
-    // TODO: replace with merge or defaults
-    for (const responseKey of responseKeys) {
-      if (output.platforms?.FacebookMessenger?.nativeResponse?.[responseKey]) {
-        response[responseKey] = output.platforms.FacebookMessenger.nativeResponse[responseKey];
-      }
+    if (output.platforms?.FacebookMessenger?.nativeResponse) {
+      _merge(response, output.platforms.FacebookMessenger.nativeResponse);
     }
 
     return response;

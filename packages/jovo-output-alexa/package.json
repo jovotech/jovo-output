@@ -18,8 +18,12 @@
     "format:fix": "prettier -w -l src/**/*",
     "test": "jest"
   },
+  "dependencies": {
+    "lodash.merge": "^4.6.2"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.15",
+    "@types/lodash.merge": "^4.6.6",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
     "barrelsby": "^2.2.0",

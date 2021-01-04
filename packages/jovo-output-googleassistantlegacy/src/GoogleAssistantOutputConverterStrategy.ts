@@ -1,5 +1,6 @@
 import { GenericOutput, Message, OutputConverterStrategy, QuickReply, toSSML } from 'jovo-output';
 import { GoogleAssistantResponse, SimpleResponse, Suggestion } from './index';
+import _merge from 'lodash.merge';
 
 export class GoogleAssistantOutputConverterStrategy
   implements OutputConverterStrategy<GoogleAssistantResponse> {
@@ -53,18 +54,8 @@ export class GoogleAssistantOutputConverterStrategy
       };
     }
 
-    const responseKeys: Array<keyof GoogleAssistantResponse> = [
-      'expectUserResponse',
-      'systemIntent',
-      'noInputPrompts',
-      'richResponse',
-    ];
-
-    // TODO: replace with merge or defaults
-    for (const responseKey of responseKeys) {
-      if (output.platforms?.GoogleAssistant?.nativeResponse?.[responseKey]) {
-        response[responseKey] = output.platforms.GoogleAssistant.nativeResponse[responseKey];
-      }
+    if (output.platforms?.GoogleAssistant?.nativeResponse) {
+      _merge(response, output.platforms.GoogleAssistant.nativeResponse);
     }
 
     return response;

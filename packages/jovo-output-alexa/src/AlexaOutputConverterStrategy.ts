@@ -1,5 +1,6 @@
 import { GenericOutput, Message, OutputConverterStrategy, toSSML } from 'jovo-output';
 import { AlexaResponse, OutputSpeech, OutputSpeechType, PlayBehavior } from './models';
+import _merge from 'lodash.merge';
 
 export class AlexaOutputConverterStrategy implements OutputConverterStrategy<AlexaResponse> {
   responseClass = AlexaResponse;
@@ -33,13 +34,8 @@ export class AlexaOutputConverterStrategy implements OutputConverterStrategy<Ale
       response.response.card = card.toAlexaCard?.();
     }
 
-    const responseKeys: Array<keyof AlexaResponse> = ['version', 'sessionAttributes', 'response'];
-
-    // TODO: replace with merge or defaults
-    for (const responseKey of responseKeys) {
-      if (output.platforms?.Alexa?.[responseKey]) {
-        response[responseKey] = output.platforms.Alexa[responseKey];
-      }
+    if (output.platforms?.Alexa?.nativeResponse) {
+      _merge(response, output.platforms.Alexa.nativeResponse);
     }
 
     return response;
