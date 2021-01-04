@@ -1,6 +1,5 @@
 import { GenericOutput, Message, OutputConverterStrategy, toSSML } from 'jovo-output';
-import { AlexaResponse } from './models/AlexaResponse';
-import { OutputSpeech, OutputSpeechType, PlayBehavior } from './models/common/OutputSpeech';
+import { AlexaResponse, OutputSpeech, OutputSpeechType, PlayBehavior } from './models';
 
 export class AlexaOutputConverterStrategy implements OutputConverterStrategy<AlexaResponse> {
   responseClass = AlexaResponse;
@@ -12,33 +11,34 @@ export class AlexaOutputConverterStrategy implements OutputConverterStrategy<Ale
     };
 
     // TODO: fully determine when to set listen
-    const listen = output.Alexa?.listen ?? output.listen;
+    const listen = output.platforms?.Alexa?.listen ?? output.listen;
     if (typeof listen !== 'undefined') {
       response.response.shouldEndSession = !listen;
     }
 
-    const message = output.Alexa?.message || output.message;
+    const message = output.platforms?.Alexa?.message || output.message;
     if (message) {
       response.response.outputSpeech = this.convertMessageToOutputSpeech(message);
     }
 
-    const reprompt = output.Alexa?.reprompt || output.reprompt;
+    const reprompt = output.platforms?.Alexa?.reprompt || output.reprompt;
     if (reprompt) {
       response.response.reprompt = {
         outputSpeech: this.convertMessageToOutputSpeech(reprompt),
       };
     }
 
-    const card = output.Alexa?.card || output.card;
+    const card = output.platforms?.Alexa?.card || output.card;
     if (card) {
       response.response.card = card.toAlexaCard?.();
     }
 
     const responseKeys: Array<keyof AlexaResponse> = ['version', 'sessionAttributes', 'response'];
 
+    // TODO: replace with merge or defaults
     for (const responseKey of responseKeys) {
-      if (output.Alexa?.[responseKey]) {
-        response[responseKey] = output.Alexa[responseKey];
+      if (output.platforms?.Alexa?.[responseKey]) {
+        response[responseKey] = output.platforms.Alexa[responseKey];
       }
     }
 

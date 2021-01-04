@@ -1,4 +1,5 @@
 export * from './AlexaOutput';
+export * from './AlexaOutputResponse';
 export * from './AlexaResponse';
 export * from './Directive';
 export * from './Reprompt';
