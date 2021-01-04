@@ -9,10 +9,6 @@ import {
   ValidationOptions,
 } from '../src';
 
-type DeepPartial<T> = {
-  [P in keyof T]?: DeepPartial<T[P]>;
-};
-
 function transformAndValidate<T extends Record<string, any> = Record<string, any>>(
   objClass: new () => T,
   obj: T,

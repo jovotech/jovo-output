@@ -1,14 +1,14 @@
 import { Type } from 'class-transformer';
-import { GenericOutput, IsOptional, ValidateNested, ValidationError } from '.';
+import { IsOptional, ValidateNested, ValidationError } from '.';
+import { GenericOutputPlatforms } from './models/GenericOutputPlatforms';
 
-// TODO: find a better name
-export function decoratePropertyOfGenericOutput<TYPE extends Record<string, unknown>>(
-  propertyKey: string,
-  propertyType: new () => TYPE,
+export function registerOutputPlatform<TYPE extends Record<string, unknown>>(
+  platformKey: string,
+  platformType: new () => TYPE,
 ): void {
-  IsOptional()(GenericOutput.prototype, propertyKey);
-  ValidateNested()(GenericOutput.prototype, propertyKey);
-  Type(() => propertyType)(GenericOutput.prototype, propertyKey);
+  IsOptional()(GenericOutputPlatforms.prototype, platformKey);
+  ValidateNested()(GenericOutputPlatforms.prototype, platformKey);
+  Type(() => platformType)(GenericOutputPlatforms.prototype, platformKey);
 }
 
 export function toSSML(text: string): string {
@@ -38,9 +38,7 @@ export function formatValidationErrors(
 
   // go through each validation error, add message for constraints, if children add children with updated path
   function handleValidationError(error: ValidationError, path = '') {
-    console.log(error);
     path += error.property;
-    console.log(path);
     if (error.constraints) {
       const values = Object.values(error.constraints);
       errorMessages.push(

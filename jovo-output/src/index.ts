@@ -18,6 +18,9 @@ export * from './models/GenericCarousel';
 export * from './models/GenericQuickReply';
 export * from './models/GenericMessage';
 export * from './models/GenericOutput';
+export * from './models/GenericOutputBase';
+export * from './models/GenericOutputPlatforms';
+export * from './models/PlatformOutput';
 
 export * from './OutputConverterStrategy';
 export * from './OutputConverter';
