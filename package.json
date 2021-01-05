@@ -6,7 +6,9 @@
     "init": "lerna bootstrap --hoist",
     "clean": "lerna clean",
     "build": "lerna exec npm run build --ignore jovo-output-e2e",
-    "test": "lerna exec npm run test --ignore jovo-output-components-*"
+    "test": "lerna exec npm run test --ignore jovo-output-components-*",
+    "prettier": "lerna exec npm run prettier --ignore jovo-output-components-*",
+    "eslint": "lerna exec npm run eslint --ignore jovo-output-components-*"
   },
   "author": "jovotech",
   "license": "Apache-2.0",

@@ -11,11 +11,9 @@
     "prebuild": "npm run rimraf",
     "build": "tsc",
     "watch": "tsc -w",
+    "prettier": "prettier -w -l src test",
+    "eslint": "eslint src test --fix --ext .ts",
     "rimraf": "rimraf ./dist",
-    "lint:check": "tsc --noEmit && eslint --ext .ts src",
-    "lint:fix": "eslint --ext .ts src --fix",
-    "format:check": "prettier -c src/**/*",
-    "format:fix": "prettier -w -l src/**/*",
     "test": "jest"
   },
   "dependencies": {

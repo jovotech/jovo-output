@@ -3,10 +3,8 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "lint:check": "tsc --noEmit && eslint --ext .ts test",
-    "lint:fix": "eslint --ext .ts test --fix",
-    "format:check": "prettier -c test/**/*",
-    "format:fix": "prettier -w -l test/**/*",
+    "prettier": "prettier -w -l test",
+    "eslint": "eslint test --fix --ext .ts",
     "test": "jest"
   },
   "dependencies": {
