@@ -1,5 +1,5 @@
 import { formatValidationErrors, IsEitherValid, validate, ValidationOptions } from 'jovo-output';
-import { Content } from '../../models/prompt/Content';
+import { Content } from '../../models';
 
 export function IsValidContentObject(validationOptions?: ValidationOptions): PropertyDecorator {
   return IsEitherValid<Content>(
