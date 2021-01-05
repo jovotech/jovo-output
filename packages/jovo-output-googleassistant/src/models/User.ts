@@ -28,8 +28,7 @@ export class User {
 
   @IsOptional()
   @IsObject()
-  @IsString({ each: true })
-  params?: Record<string, string>;
+  params?: Record<string, unknown>;
 
   @IsEnum(AccountLinkingStatus)
   accountLinkingStatus: AccountLinkingStatus;

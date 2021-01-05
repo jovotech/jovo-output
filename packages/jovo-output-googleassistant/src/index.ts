@@ -1,30 +1,37 @@
 import { registerOutputPlatform } from 'jovo-output';
-import { GoogleAssistantOutput } from './models';
+import {
+  Card,
+  Collection,
+  GoogleAssistantOutput,
+  Simple,
+  Suggestion,
+  TypeOverride,
+} from './models';
 import { augmentGenericPrototypes } from './utilities';
 
-// declare module 'jovo-output/dist/models/GenericCard' {
-//   interface GenericCard {
-//     toGoogleAssistantBasicCard?(): BasicCard;
-//   }
-// }
-//
-// declare module 'jovo-output/dist/models/GenericCarousel' {
-//   interface GenericCarousel {
-//     toGoogleAssistantCarousel?(): Carousel;
-//   }
-// }
-//
-// declare module 'jovo-output/dist/models/GenericMessage' {
-//   interface GenericMessage {
-//     toGoogleAssistantSimpleResponse?(): SimpleResponse;
-//   }
-// }
-//
-// declare module 'jovo-output/dist/models/GenericQuickReply' {
-//   interface GenericQuickReply {
-//     toGoogleAssistantSuggestion?(): Suggestion;
-//   }
-// }
+declare module 'jovo-output/dist/models/GenericCard' {
+  interface GenericCard {
+    toGoogleAssistantCard?(): Card;
+  }
+}
+
+declare module 'jovo-output/dist/models/GenericCarousel' {
+  interface GenericCarousel {
+    toGoogleAssistantCollectionData?(): { collection: Collection; typeOverride: TypeOverride };
+  }
+}
+
+declare module 'jovo-output/dist/models/GenericMessage' {
+  interface GenericMessage {
+    toGoogleAssistantSimple?(): Simple;
+  }
+}
+
+declare module 'jovo-output/dist/models/GenericQuickReply' {
+  interface GenericQuickReply {
+    toGoogleAssistantSuggestion?(): Suggestion;
+  }
+}
 
 // augment the prototypes of the generic models to have methods to convert to the GoogleAssistant-variant
 augmentGenericPrototypes();

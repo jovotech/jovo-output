@@ -1,65 +1,66 @@
-import {
-  GenericCard,
-  GenericCarousel,
-  GenericMessage,
-  GenericQuickReply,
-  toSSML,
-} from 'jovo-output';
+import { GenericCard, GenericCarousel, GenericMessage, GenericQuickReply } from 'jovo-output';
+import { Card, Collection, Simple, TypeOverride, TypeOverrideMode } from './models';
 
 export function augmentGenericPrototypes(): void {
-  // GenericCard.prototype.toGoogleAssistantBasicCard = function () {
-  //   const basicCard: BasicCard = {
-  //     title: this.title,
-  //   };
-  //   if (this.subtitle) {
-  //     basicCard.formattedText = this.subtitle;
-  //   }
-  //   if (this.imageUrl) {
-  //     basicCard.image = {
-  //       url: this.imageUrl,
-  //       accessibilityText: this.title,
-  //     };
-  //   }
-  //   return basicCard;
-  // };
-  //
-  // GenericCarousel.prototype.toGoogleAssistantCarousel = function () {
-  //   return {
-  //     items: this.items.map((item) => {
-  //       const collectionItem: CollectionItem = {
-  //         optionInfo: {
-  //           key: item.key || item.title,
-  //           synonyms: [],
-  //         },
-  //         title: item.title,
-  //       };
-  //       if (item.subtitle) {
-  //         collectionItem.description = item.subtitle;
-  //       }
-  //       if (item.imageUrl) {
-  //         collectionItem.image = {
-  //           url: item.imageUrl,
-  //           accessibilityText: item.title,
-  //         };
-  //       }
-  //       return collectionItem;
-  //     }),
-  //   };
-  // };
-  //
-  // GenericMessage.prototype.toGoogleAssistantSimpleResponse = function () {
-  //   const simpleResponse: SimpleResponse = {
-  //     ssml: toSSML(this.text),
-  //   };
-  //   if (this.displayText) {
-  //     simpleResponse.displayText = this.displayText;
-  //   }
-  //   return simpleResponse;
-  // };
-  //
-  // GenericQuickReply.prototype.toGoogleAssistantSuggestion = function () {
-  //   return {
-  //     title: this.text,
-  //   };
-  // };
+  GenericCard.prototype.toGoogleAssistantCard = function () {
+    const card: Card = {
+      title: this.title,
+    };
+    if (this.subtitle) {
+      card.text = this.subtitle;
+    }
+    if (this.imageUrl) {
+      card.image = {
+        url: this.imageUrl,
+        alt: this.title,
+      };
+    }
+    return card;
+  };
+
+  GenericCarousel.prototype.toGoogleAssistantCollectionData = function () {
+    const typeOverride: TypeOverride = {
+      name: 'prompt_option',
+      mode: TypeOverrideMode.Replace,
+      synonym: {
+        entries: this.items.map((item, index) => {
+          return {
+            name: item.key || `ITEM_${index + 1}`,
+            synonyms: [],
+            display: {
+              title: item.title,
+              description: item.subtitle,
+              image: item.imageUrl ? { alt: item.title, url: item.imageUrl } : undefined,
+            },
+          };
+        }),
+      },
+    };
+
+    const collection: Collection = {
+      items: this.items.map((item, index) => {
+        return {
+          key: item.key || `ITEM_${index + 1}`,
+        };
+      }),
+    };
+
+    return { collection, typeOverride };
+  };
+
+  GenericMessage.prototype.toGoogleAssistantSimple = function () {
+    const simple: Simple = {
+      speech: this.text,
+    };
+    if (this.displayText) {
+      simple.text = this.displayText;
+    }
+    return simple;
+  };
+
+  GenericQuickReply.prototype.toGoogleAssistantSuggestion = function () {
+    return {
+      title: this.text,
+    };
+  };
 }

@@ -1,12 +1,14 @@
 import {
   formatValidationErrors,
+  GenericCard,
   IsEnum,
   IsNotEmpty,
   IsOptional,
   IsSomeValid,
   isString,
   IsString,
-  Type, validate,
+  Type,
+  validate,
   ValidateNested,
 } from 'jovo-output';
 import { Image, ImageFill } from '../common/Image';
@@ -66,4 +68,17 @@ export class Card {
   @ValidateNested()
   @Type(() => Link)
   button?: Link;
+
+  toGenericCard?(): GenericCard {
+    const card: GenericCard = {
+      title: (this.title || this.text || this.subtitle) as string,
+    };
+    if (this.text || this.subtitle) {
+      card.subtitle = this.text || this.subtitle;
+    }
+    if (this.image?.url) {
+      card.imageUrl = this.image.url;
+    }
+    return card;
+  }
 }

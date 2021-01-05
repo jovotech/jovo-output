@@ -5,6 +5,5 @@ import { IsObject } from 'jovo-output';
 export class Home {
   @IsOptional()
   @IsObject()
-  @IsString({ each: true })
-  params?: Record<string, string>;
+  params?: Record<string, unknown>;
 }
