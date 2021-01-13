@@ -1,4 +1,4 @@
-import {IsEnum, IsUrl } from 'jovo-output';
+import { IsEnum, IsUrl } from 'jovo-output';
 
 export enum UrlHint {
   Unspecified = 'LINK_UNSPECIFIED',
