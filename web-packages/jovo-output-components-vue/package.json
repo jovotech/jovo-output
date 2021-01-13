@@ -7,7 +7,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "jovo-output": "^1.0.0",
+    "jovo-output": "^4.0.0",
     "core-js": "^3.6.5",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.1",
     "vue": "^2.6.11",
