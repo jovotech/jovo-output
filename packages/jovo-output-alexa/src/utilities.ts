@@ -34,8 +34,6 @@ export function augmentGenericPrototypes(): void {
     return {
       type: OutputSpeechType.Ssml,
       ssml: this.text,
-      // TODO: determine whether ReplaceEnqueued should always be set
-      playBehavior: PlayBehavior.ReplaceEnqueued,
     };
   };
 }

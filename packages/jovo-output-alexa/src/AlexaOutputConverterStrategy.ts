@@ -75,12 +75,10 @@ export class AlexaOutputConverterStrategy implements OutputConverterStrategy<Ale
       ? {
           type: OutputSpeechType.Ssml,
           ssml: toSSML(message),
-          playBehavior: PlayBehavior.ReplaceEnqueued,
         }
       : message.toAlexaOutputSpeech?.() || {
           type: OutputSpeechType.Ssml,
           ssml: toSSML(message.text),
-          playBehavior: PlayBehavior.ReplaceEnqueued,
         };
   }
 }

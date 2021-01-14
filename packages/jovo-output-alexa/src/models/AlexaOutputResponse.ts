@@ -1,4 +1,4 @@
-import { IsObject, IsOptional, IsSemVer, Type, ValidateNested } from 'jovo-output';
+import { IsNotEmpty, IsObject, IsOptional, IsString, Type, ValidateNested } from 'jovo-output';
 import { AlexaResponse } from './AlexaResponse';
 import { Response } from './Response';
 
@@ -6,7 +6,8 @@ export class AlexaOutputResponse implements Partial<AlexaResponse> {
   [key: string]: unknown;
 
   @IsOptional()
-  @IsSemVer()
+  @IsString()
+  @IsNotEmpty()
   version?: string;
 
   @IsOptional()
