@@ -22,11 +22,15 @@
         :card="item"
         @input="handleCardInput($event, index)"
       />
+      <div v-if="isEditable" class="flex items-center justify-center">
+        <plus-icon class="text-black hover:text-gray-700 cursor-pointer" @click="addCard" />
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+import PlusIcon from 'vue-feather-icons/icons/PlusIcon';
 import GenericCardDisplay from '@/components/output/GenericCardDisplay.vue';
 import AutoResizeInput from '@/components/ui/AutoResizeInput.vue';
 import { GenericCard, GenericCarousel } from 'jovo-output';
@@ -34,7 +38,7 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 @Component({
   name: 'generic-carousel-display',
-  components: { AutoResizeInput, GenericCardDisplay },
+  components: { PlusIcon, AutoResizeInput, GenericCardDisplay },
 })
 export default class GenericCarouselDisplay extends Vue {
   @Prop({ required: true, type: Object })
@@ -44,6 +48,20 @@ export default class GenericCarouselDisplay extends Vue {
   isEditable!: boolean;
 
   editObject: GenericCarousel = { title: '', items: [] };
+
+  addCard() {
+    const items = this.carousel.items.slice();
+    items.push({
+      title: '',
+      subtitle: '',
+      key: '',
+      imageUrl: '',
+    });
+    this.handleInput({
+      ...this.carousel,
+      items,
+    });
+  }
 
   handleTitleInput(title: string) {
     this.handleInput({ ...this.carousel, title });
