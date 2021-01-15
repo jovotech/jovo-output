@@ -1,6 +1,9 @@
 {
   "name": "jovo-output-components-vue",
   "version": "4.0.0",
+  "main": "dist/JovoOutputComponentsVue.common.js",
+  "browser": "dist/JovoOutputComponentsVue.umd.min.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name JovoOutputComponentsVue src/index.ts",
