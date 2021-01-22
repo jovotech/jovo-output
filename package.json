@@ -3,7 +3,9 @@
   "private": true,
   "scripts": {
     "postinstall": "npm run init",
-    "init": "lerna bootstrap --hoist",
+    "init": "npm run init:packages & npm run init:web",
+    "init:packages": "lerna bootstrap --hoist",
+    "init:web": "cd web-packages/jovo-output-components-vue & npm i & cd ..",
     "clean": "lerna clean",
     "build": "lerna exec npm run build --ignore jovo-output-e2e",
     "test": "lerna exec npm run test --ignore jovo-output-components-*",
