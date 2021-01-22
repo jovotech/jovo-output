@@ -1,0 +1,10 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+[contenteditable='true']:empty:not(:focus):before {
+  font-size: inherit;
+  content: attr(placeholder);
+  pointer-events: none;
+  @apply flex text-gray-500 font-normal;
+}
