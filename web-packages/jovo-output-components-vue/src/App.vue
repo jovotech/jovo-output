@@ -73,7 +73,6 @@ import {
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
-  name: 'generic-output-overview',
   components: {
     GenericOutputDisplay,
     GenericQuickReplyDisplay,

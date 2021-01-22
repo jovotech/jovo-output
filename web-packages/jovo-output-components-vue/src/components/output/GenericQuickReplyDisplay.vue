@@ -1,5 +1,5 @@
 <template>
-  <div class="inline-flex border border-black bg-white px-4 py-1 rounded-full cursor-pointer">
+  <button class="inline-flex border border-black bg-white px-4 py-1 rounded-full cursor-pointer focus:outline-none hover:bg-gray-50">
     <auto-resize-input
       v-if="isEditable"
       v-model="editText"
@@ -9,7 +9,7 @@
     <div class="block" v-else>
       {{ text }}
     </div>
-  </div>
+  </button>
 </template>
 
 <script lang="ts">
