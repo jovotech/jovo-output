@@ -20,7 +20,7 @@ export class MessageAttachment {
 
   @IsObject()
   @ValidateNested()
-  @Transform((value, obj: MessageAttachment) => {
+  @Transform(({ value, obj }) => {
     let type:
       | typeof FileAttachment
       | typeof Template
