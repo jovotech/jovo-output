@@ -10,6 +10,7 @@ import { GenericOutputDisplay } from 'jovo-output-component-vue';
 import { Component, Vue } from 'vue-property-decorator';
 import { GenericOutput } from 'jovo-output-component-vue';
 
+
 const makeDefaultData: () => GenericOutput = () => ({
   message: 'Here is our most liked product on the menu. Do you want to see more?',
   reprompt: 'Do you want to see more?',

@@ -1,7 +1,3 @@
-import { Context } from './Context';
-import { EventInput } from './EventInput';
-import { Message } from './Message';
-import { SessionEntityType } from './SessionEntityType';
 import {
   IsArray,
   IsBoolean,
@@ -9,13 +5,18 @@ import {
   IsObject,
   IsOptional,
   IsString,
+  JovoResponse,
   Type,
   ValidateNested,
 } from 'jovo-output';
+import { Context } from './Context';
+import { EventInput } from './EventInput';
+import { Message } from './Message';
+import { SessionEntityType } from './SessionEntityType';
 
-export class DialogflowResponse<P extends Record<string, unknown> = Record<string, unknown>> {
-  [key: string]: unknown;
-
+export class DialogflowResponse<
+  P extends Record<string, unknown> = Record<string, unknown>
+> extends JovoResponse {
   @IsOptional()
   @IsString()
   @IsNotEmpty()

@@ -3,9 +3,8 @@ import GenericCarouselDisplay from '@/components/output/GenericCarouselDisplay.v
 import GenericMessageDisplay from '@/components/output/GenericMessageDisplay.vue';
 import GenericOutputDisplay from '@/components/output/GenericOutputDisplay.vue';
 import GenericQuickReplyDisplay from '@/components/output/GenericQuickReplyDisplay.vue';
-import './assets/css/theme.pcss';
 
-export type {
+import type {
   GenericOutput,
   GenericMessage,
   Message,
@@ -17,6 +16,8 @@ export type {
   GenericOutputPlatforms,
   GenericOutputBase,
 } from 'jovo-output';
+
+import './assets/css/theme.pcss';
 
 declare global {
   interface Window {
@@ -30,4 +31,14 @@ export {
   GenericMessageDisplay,
   GenericOutputDisplay,
   GenericQuickReplyDisplay,
+  GenericOutput,
+  GenericMessage,
+  Message,
+  GenericQuickReply,
+  QuickReply,
+  GenericCard,
+  GenericCarousel,
+  PlatformOutput,
+  GenericOutputPlatforms,
+  GenericOutputBase,
 };

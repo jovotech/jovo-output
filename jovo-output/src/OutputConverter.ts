@@ -1,10 +1,10 @@
 import { plainToClass } from 'class-transformer';
 import { validate, ValidationError } from 'class-validator';
 import { OutputValidationError } from './errors/OutputValidationError';
-import { GenericOutput, OutputConverterStrategy } from './index';
+import { GenericOutput, JovoResponse, OutputConverterStrategy } from './index';
 
 // TODO: check if validation should happen before and after conversion
-export class OutputConverter<Response extends Record<string, unknown>> {
+export class OutputConverter<Response extends JovoResponse> {
   constructor(public strategy: OutputConverterStrategy<Response>) {}
 
   validateOutput(output: GenericOutput): Promise<ValidationError[]> {

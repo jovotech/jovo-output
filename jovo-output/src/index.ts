@@ -13,6 +13,7 @@ export * from './decorators/validation/IsOfEitherType';
 export * from './decorators/validation/IsStringOrInstance';
 export * from './decorators/validation/ConditionalMaxLength';
 
+export * from './models/JovoResponse';
 export * from './models/GenericCard';
 export * from './models/GenericCarousel';
 export * from './models/GenericQuickReply';

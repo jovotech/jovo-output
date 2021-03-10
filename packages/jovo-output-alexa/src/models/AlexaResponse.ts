@@ -1,9 +1,15 @@
-import { IsNotEmpty, IsObject, IsOptional, IsString, Type, ValidateNested } from 'jovo-output';
+import {
+  IsNotEmpty,
+  IsObject,
+  IsOptional,
+  IsString,
+  JovoResponse,
+  Type,
+  ValidateNested,
+} from 'jovo-output';
 import { Response } from './Response';
 
-export class AlexaResponse {
-  [key: string]: unknown;
-
+export class AlexaResponse extends JovoResponse {
   @IsString()
   @IsNotEmpty()
   version: string;
@@ -15,4 +21,5 @@ export class AlexaResponse {
   @ValidateNested()
   @Type(() => Response)
   response: Response;
+
 }
