@@ -67,7 +67,7 @@ import {
   GenericCard,
   GenericCarousel,
   GenericMessage,
-  GenericOutput,
+  OutputTemplate,
   GenericQuickReply,
 } from '@jovotech/output';
 import { Component, Vue } from 'vue-property-decorator';
@@ -83,7 +83,7 @@ import { Component, Vue } from 'vue-property-decorator';
   },
 })
 export default class App extends Vue {
-  get genericOutputDefaultValue(): GenericOutput {
+  get genericOutputDefaultValue(): OutputTemplate {
     return {
       message: 'How are you?',
       quickReplies: ['Good', 'Okay', 'Not so good'],
@@ -91,7 +91,7 @@ export default class App extends Vue {
   }
 
   get genericOutputClass() {
-    return GenericOutput;
+    return OutputTemplate;
   }
 
   get genericMessageDefaultValue(): GenericMessage {

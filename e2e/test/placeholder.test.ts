@@ -1,9 +1,9 @@
-import { GenericOutput, OutputConverter } from '@jovotech/output';
+import { OutputTemplate, OutputTemplateConverter } from '@jovotech/output';
 import { AlexaOutputConverterStrategy } from '@jovotech/output-alexa';
 
-const outputConverter = new OutputConverter(new AlexaOutputConverterStrategy());
+const outputConverter = new OutputTemplateConverter(new AlexaOutputConverterStrategy());
 
-const output: GenericOutput = {
+const output: OutputTemplate = {
   message: "What's your name?",
   reprompt: "What's your name/",
 

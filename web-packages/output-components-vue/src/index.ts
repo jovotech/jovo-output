@@ -5,16 +5,16 @@ import GenericOutputDisplay from '@/components/output/GenericOutputDisplay.vue';
 import GenericQuickReplyDisplay from '@/components/output/GenericQuickReplyDisplay.vue';
 
 import type {
-  GenericOutput,
+  OutputTemplate,
   GenericMessage,
   Message,
   GenericQuickReply,
   QuickReply,
   GenericCard,
   GenericCarousel,
-  PlatformOutput,
-  GenericOutputPlatforms,
-  GenericOutputBase,
+  PlatformOutputTemplate,
+  OutputTemplatePlatforms,
+  OutputTemplateBase,
 } from '@jovotech/output';
 
 import './assets/css/theme.pcss';
@@ -31,14 +31,14 @@ export {
   GenericMessageDisplay,
   GenericOutputDisplay,
   GenericQuickReplyDisplay,
-  GenericOutput,
+  OutputTemplate,
   GenericMessage,
   Message,
   GenericQuickReply,
   QuickReply,
   GenericCard,
   GenericCarousel,
-  PlatformOutput,
-  GenericOutputPlatforms,
-  GenericOutputBase,
+  PlatformOutputTemplate,
+  OutputTemplatePlatforms,
+  OutputTemplateBase,
 };

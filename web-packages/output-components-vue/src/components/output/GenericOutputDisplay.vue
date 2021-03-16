@@ -27,7 +27,7 @@ import GenericCardDisplay from '@/components/output/GenericCardDisplay.vue';
 import GenericCarouselDisplay from '@/components/output/GenericCarouselDisplay.vue';
 import GenericMessageDisplay from '@/components/output/GenericMessageDisplay.vue';
 import GenericQuickReplyDisplay from '@/components/output/GenericQuickReplyDisplay.vue';
-import { GenericOutput } from '@jovotech/output';
+import { OutputTemplate } from '@jovotech/output';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({
@@ -41,6 +41,6 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 })
 export default class GenericOutputDisplay extends Vue {
   @Prop({ required: true, type: Object })
-  output!: GenericOutput;
+  output!: OutputTemplate;
 }
 </script>

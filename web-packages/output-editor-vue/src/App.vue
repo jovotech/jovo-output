@@ -8,10 +8,10 @@
 <script lang="ts">
 import { GenericOutputDisplay } from '@jovotech/output-component-vue';
 import { Component, Vue } from 'vue-property-decorator';
-import { GenericOutput } from '@jovotech/output-component-vue';
+import { OutputTemplate } from '@jovotech/output-component-vue';
 
 
-const makeDefaultData: () => GenericOutput = () => ({
+const makeDefaultData: () => OutputTemplate = () => ({
   message: 'Here is our most liked product on the menu. Do you want to see more?',
   reprompt: 'Do you want to see more?',
   quickReplies: ['Yes', 'No'],
@@ -31,7 +31,7 @@ const makeDefaultData: () => GenericOutput = () => ({
   },
 })
 export default class App extends Vue {
-  output: GenericOutput = makeDefaultData();
+  output: OutputTemplate = makeDefaultData();
 
   get rawOutput(): string {
     return JSON.stringify(this.output, undefined, 2);
