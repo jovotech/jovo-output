@@ -1,5 +1,5 @@
-import { GenericOutput, OutputConverter } from 'jovo-output';
-import { AlexaOutputConverterStrategy } from '../../packages/jovo-output-alexa';
+import { GenericOutput, OutputConverter } from '@jovotech/output';
+import { AlexaOutputConverterStrategy } from '@jovotech/output-alexa';
 
 const outputConverter = new OutputConverter(new AlexaOutputConverterStrategy());
 

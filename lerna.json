@@ -1,8 +1,8 @@
 {
   "packages": [
     "e2e",
-    "jovo-output",
-    "packages/*"
+    "output",
+    "output-*"
   ],
   "version": "independent"
 }

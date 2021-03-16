@@ -1,1 +1,1 @@
-# jovo-output
+# @jovotech/e2e-output

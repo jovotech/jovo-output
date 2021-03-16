@@ -1,5 +1,5 @@
 {
-  "name": "jovo-output-e2e",
+  "name": "@jovotech/e2e-output",
   "private": true,
   "version": "4.0.0",
   "scripts": {
@@ -8,8 +8,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "jovo-output": "^4.0.0",
-    "jovo-output-googleassistantlegacy": "^4.0.0"
+    "@jovotech/output": "^4.0.0",
+    "@jovotech/output-alexa": "^4.0.0",
+    "@jovotech/output-googleassistantlegacy": "^4.0.0"
   },
   "devDependencies": {
     "@types/jest": "^26.0.19",
