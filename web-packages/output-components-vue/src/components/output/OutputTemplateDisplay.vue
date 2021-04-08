@@ -5,15 +5,15 @@
         Can not display card and carousel in a single output.
       </span>
       <template v-else>
-        <generic-card-display v-if="output.card" :card="output.card" />
-        <generic-carousel-display v-if="output.carousel" :carousel="output.carousel" />
+        <card-display v-if="output.card" :card="output.card" />
+        <carousel-display v-if="output.carousel" :carousel="output.carousel" />
       </template>
     </div>
     <div v-if="output.message">
-      <generic-message-display :message="output.message" />
+      <message-display :message="output.message" />
     </div>
     <div v-if="output.quickReplies" class="space-x-2">
-      <generic-quick-reply-display
+      <quick-reply-display
         v-for="(quickReply, index) in output.quickReplies"
         :key="index"
         :quick-reply="quickReply"
@@ -23,23 +23,23 @@
 </template>
 
 <script lang="ts">
-import GenericCardDisplay from '@/components/output/GenericCardDisplay.vue';
-import GenericCarouselDisplay from '@/components/output/GenericCarouselDisplay.vue';
-import GenericMessageDisplay from '@/components/output/GenericMessageDisplay.vue';
-import GenericQuickReplyDisplay from '@/components/output/GenericQuickReplyDisplay.vue';
+import CardDisplay from '@/components/output/CardDisplay.vue';
+import CarouselDisplay from '@/components/output/CarouselDisplay.vue';
+import MessageDisplay from '@/components/output/MessageDisplay.vue';
+import QuickReplyDisplay from '@/components/output/QuickReplyDisplay.vue';
 import { OutputTemplate } from '@jovotech/output';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({
-  name: 'generic-output-display',
+  name: 'output-template-display',
   components: {
-    GenericCarouselDisplay,
-    GenericCardDisplay,
-    GenericQuickReplyDisplay,
-    GenericMessageDisplay,
+    CarouselDisplay,
+    CardDisplay,
+    QuickReplyDisplay,
+    MessageDisplay,
   },
 })
-export default class GenericOutputDisplay extends Vue {
+export default class OutputTemplateDisplay extends Vue {
   @Prop({ required: true, type: Object })
   output!: OutputTemplate;
 }

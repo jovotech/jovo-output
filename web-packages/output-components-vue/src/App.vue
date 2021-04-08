@@ -9,7 +9,7 @@
         :class-type="genericOutputClass"
       >
         <template v-slot:default="slotProps">
-          <generic-output-display :output="slotProps.value" />
+          <output-template-display :output="slotProps.value" />
         </template>
       </generic-output-overview-card>
 
@@ -18,7 +18,7 @@
         :class-type="genericMessageClass"
       >
         <template v-slot:default="slotProps">
-          <generic-message-display :message="slotProps.value" />
+          <message-display :message="slotProps.value" />
         </template>
       </generic-output-overview-card>
 
@@ -27,7 +27,7 @@
         :class-type="genericQuickReplyClass"
       >
         <template v-slot:default="slotProps">
-          <generic-quick-reply-display :quick-reply="slotProps.value" />
+          <quick-reply-display :quick-reply="slotProps.value" />
         </template>
       </generic-output-overview-card>
 
@@ -37,7 +37,7 @@
       >
         <template v-slot:default="slotProps">
           <div class="flex items-center justify-center h-full">
-            <generic-card-display :card="slotProps.value" />
+            <card-display :card="slotProps.value" />
           </div>
         </template>
       </generic-output-overview-card>
@@ -48,7 +48,7 @@
       >
         <template v-slot:default="slotProps">
           <div class="flex items-center justify-center h-full">
-            <generic-carousel-display :carousel="slotProps.value" />
+            <carousel-display :carousel="slotProps.value" />
           </div>
         </template>
       </generic-output-overview-card>
@@ -57,28 +57,22 @@
 </template>
 
 <script lang="ts">
-import GenericCardDisplay from '@/components/output/GenericCardDisplay.vue';
-import GenericCarouselDisplay from '@/components/output/GenericCarouselDisplay.vue';
-import GenericMessageDisplay from '@/components/output/GenericMessageDisplay.vue';
-import GenericOutputDisplay from '@/components/output/GenericOutputDisplay.vue';
+import CardDisplay from '@/components/output/CardDisplay.vue';
+import CarouselDisplay from '@/components/output/CarouselDisplay.vue';
+import MessageDisplay from '@/components/output/MessageDisplay.vue';
+import OutputTemplateDisplay from '@/components/output/OutputTemplateDisplay.vue';
+import QuickReplyDisplay from '@/components/output/QuickReplyDisplay.vue';
 import GenericOutputOverviewCard from '@/components/ui/GenericOutputOverviewCard.vue';
-import GenericQuickReplyDisplay from '@/components/output/GenericQuickReplyDisplay.vue';
-import {
-  GenericCard,
-  GenericCarousel,
-  GenericMessage,
-  OutputTemplate,
-  GenericQuickReply,
-} from '@jovotech/output';
-import { Component, Vue } from 'vue-property-decorator';
+import {Card, Carousel, Message, OutputTemplate, QuickReply} from '@jovotech/output';
+import {Component, Vue} from 'vue-property-decorator';
 
 @Component({
   components: {
-    GenericOutputDisplay,
-    GenericQuickReplyDisplay,
-    GenericMessageDisplay,
-    GenericCarouselDisplay,
-    GenericCardDisplay,
+    OutputTemplateDisplay,
+    QuickReplyDisplay,
+    MessageDisplay,
+    CarouselDisplay,
+    CardDisplay,
     GenericOutputOverviewCard,
   },
 })
@@ -94,25 +88,25 @@ export default class App extends Vue {
     return OutputTemplate;
   }
 
-  get genericMessageDefaultValue(): GenericMessage {
+  get genericMessageDefaultValue(): Message {
     return { text: 'hello' };
   }
 
   get genericMessageClass() {
-    return GenericMessage;
+    return Message;
   }
 
-  get genericQuickReplyDefaultValue(): GenericQuickReply {
+  get genericQuickReplyDefaultValue(): QuickReply {
     return {
       text: 'hello',
     };
   }
 
   get genericQuickReplyClass() {
-    return GenericQuickReply;
+    return QuickReply;
   }
 
-  get genericCardDefaultValue(): GenericCard {
+  get genericCardDefaultValue(): Card {
     return {
       title: 'hello',
       subtitle: '',
@@ -122,10 +116,10 @@ export default class App extends Vue {
   }
 
   get genericCardClass() {
-    return GenericCard;
+    return Card;
   }
 
-  get genericCarouselDefaultValue(): GenericCarousel {
+  get genericCarouselDefaultValue(): Carousel {
     return {
       title: '',
       items: [
@@ -146,7 +140,7 @@ export default class App extends Vue {
   }
 
   get genericCarouselClass() {
-    return GenericCarousel;
+    return Carousel;
   }
 }
 </script>

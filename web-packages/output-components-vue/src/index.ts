@@ -1,20 +1,20 @@
-import GenericCardDisplay from '@/components/output/GenericCardDisplay.vue';
-import GenericCarouselDisplay from '@/components/output/GenericCarouselDisplay.vue';
-import GenericMessageDisplay from '@/components/output/GenericMessageDisplay.vue';
-import GenericOutputDisplay from '@/components/output/GenericOutputDisplay.vue';
-import GenericQuickReplyDisplay from '@/components/output/GenericQuickReplyDisplay.vue';
+import CardDisplay from '@/components/output/CardDisplay.vue';
+import CarouselDisplay from '@/components/output/CarouselDisplay.vue';
+import MessageDisplay from '@/components/output/MessageDisplay.vue';
+import OutputTemplateDisplay from '@/components/output/OutputTemplateDisplay.vue';
+import QuickReplyDisplay from '@/components/output/QuickReplyDisplay.vue';
 
 import type {
-  OutputTemplate,
-  GenericMessage,
+  Card,
+  Carousel,
   Message,
-  GenericQuickReply,
-  QuickReply,
-  GenericCard,
-  GenericCarousel,
-  PlatformOutputTemplate,
-  OutputTemplatePlatforms,
+  MessageValue,
+  OutputTemplate,
   OutputTemplateBase,
+  OutputTemplatePlatforms,
+  PlatformOutputTemplate,
+  QuickReply,
+  QuickReplyValue,
 } from '@jovotech/output';
 
 import './assets/css/theme.pcss';
@@ -26,18 +26,18 @@ declare global {
 }
 
 export {
-  GenericCardDisplay,
-  GenericCarouselDisplay,
-  GenericMessageDisplay,
-  GenericOutputDisplay,
-  GenericQuickReplyDisplay,
+  CardDisplay,
+  CarouselDisplay,
+  MessageDisplay,
+  OutputTemplateDisplay,
+  QuickReplyDisplay,
   OutputTemplate,
-  GenericMessage,
   Message,
-  GenericQuickReply,
+  MessageValue,
   QuickReply,
-  GenericCard,
-  GenericCarousel,
+  QuickReplyValue,
+  Card,
+  Carousel,
   PlatformOutputTemplate,
   OutputTemplatePlatforms,
   OutputTemplateBase,

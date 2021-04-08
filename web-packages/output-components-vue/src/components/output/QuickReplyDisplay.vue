@@ -1,5 +1,7 @@
 <template>
-  <button class="inline-flex border border-black bg-white px-4 py-1 rounded-full cursor-pointer focus:outline-none hover:bg-gray-50">
+  <button
+    class="inline-flex border border-black bg-white px-4 py-1 rounded-full cursor-pointer focus:outline-none hover:bg-gray-50"
+  >
     <auto-resize-input
       v-if="isEditable"
       v-model="editText"
@@ -14,16 +16,16 @@
 
 <script lang="ts">
 import AutoResizeInput from '@/components/ui/AutoResizeInput.vue';
-import { QuickReply } from '@jovotech/output';
+import { QuickReply, QuickReplyValue } from '@jovotech/output';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 @Component({
-  name: 'generic-quick-reply-display',
+  name: 'quick-reply-display',
   components: { AutoResizeInput },
 })
-export default class GenericQuickReplyDisplay extends Vue {
+export default class QuickReplyDisplay extends Vue {
   @Prop({ required: true, type: [Object, String] })
-  quickReply!: QuickReply;
+  quickReply!: QuickReplyValue;
 
   @Prop({ required: false, type: Boolean, default: false })
   isEditable!: boolean;
@@ -35,7 +37,7 @@ export default class GenericQuickReplyDisplay extends Vue {
   }
 
   handleInput() {
-    const newQuickReply: QuickReply =
+    const newQuickReply: QuickReplyValue =
       typeof this.quickReply === 'string'
         ? this.editText
         : {

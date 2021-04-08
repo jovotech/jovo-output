@@ -41,21 +41,21 @@
 
 <script lang="ts">
 import AutoResizeInput from '@/components/ui/AutoResizeInput.vue';
+import { Card } from '@jovotech/output';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
-import { GenericCard } from '@jovotech/output';
 
 @Component({
-  name: 'generic-card-display',
+  name: 'card-display',
   components: { AutoResizeInput },
 })
-export default class GenericCardDisplay extends Vue {
+export default class CardDisplay extends Vue {
   @Prop({ required: true, type: Object })
-  card!: GenericCard;
+  card!: Card;
 
   @Prop({ required: false, type: Boolean, default: false })
   isEditable!: boolean;
 
-  editObject: GenericCard = { title: '', subtitle: '', key: '', imageUrl: '' };
+  editObject: Card = { title: '', subtitle: '', key: '', imageUrl: '' };
 
   handleImageUrlInput(imageUrl: string) {
     this.handleInput({ ...this.card, imageUrl });
@@ -69,7 +69,7 @@ export default class GenericCardDisplay extends Vue {
     this.handleInput({ ...this.card, subtitle });
   }
 
-  handleInput(newCard: GenericCard) {
+  handleInput(newCard: Card) {
     this.$emit('input', newCard);
   }
 

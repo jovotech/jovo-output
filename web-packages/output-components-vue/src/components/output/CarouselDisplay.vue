@@ -14,7 +14,7 @@
       class="flex overflow-x-auto pb-2 space-x-3"
       @wheel.prevent="$refs.cardContainer.scrollBy({ left: $event.deltaY })"
     >
-      <generic-card-display
+      <card-display
         v-for="(item, index) in carousel.items"
         :key="index"
         :is-editable="isEditable"
@@ -31,23 +31,23 @@
 
 <script lang="ts">
 import PlusIcon from 'vue-feather-icons/icons/PlusIcon';
-import GenericCardDisplay from '@/components/output/GenericCardDisplay.vue';
+import CardDisplay from '@/components/output/CardDisplay.vue';
 import AutoResizeInput from '@/components/ui/AutoResizeInput.vue';
-import { GenericCard, GenericCarousel } from '@jovotech/output';
+import { Card, Carousel } from '@jovotech/output';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 @Component({
-  name: 'generic-carousel-display',
-  components: { PlusIcon, AutoResizeInput, GenericCardDisplay },
+  name: 'carousel-display',
+  components: { PlusIcon, AutoResizeInput, CardDisplay },
 })
-export default class GenericCarouselDisplay extends Vue {
+export default class CarouselDisplay extends Vue {
   @Prop({ required: true, type: Object })
-  carousel!: GenericCarousel;
+  carousel!: Carousel;
 
   @Prop({ required: false, type: Boolean, default: false })
   isEditable!: boolean;
 
-  editObject: GenericCarousel = { title: '', items: [] };
+  editObject: Carousel = { title: '', items: [] };
 
   addCard() {
     const items = this.carousel.items.slice();
@@ -67,7 +67,7 @@ export default class GenericCarouselDisplay extends Vue {
     this.handleInput({ ...this.carousel, title });
   }
 
-  handleCardInput(card: GenericCard, index: number) {
+  handleCardInput(card: Card, index: number) {
     const items = this.carousel.items.slice();
     items[index] = card;
     this.handleInput({
@@ -76,7 +76,7 @@ export default class GenericCarouselDisplay extends Vue {
     });
   }
 
-  handleInput(newCarousel: GenericCarousel) {
+  handleInput(newCarousel: Carousel) {
     this.$emit('input', newCarousel);
   }
 

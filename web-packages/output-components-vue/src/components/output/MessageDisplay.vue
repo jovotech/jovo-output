@@ -14,16 +14,16 @@
 
 <script lang="ts">
 import AutoResizeInput from '@/components/ui/AutoResizeInput.vue';
-import { Message } from '@jovotech/output';
+import { Message, MessageValue } from '@jovotech/output';
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 
 @Component({
-  name: 'generic-message-display',
+  name: 'message-display',
   components: { AutoResizeInput },
 })
-export default class GenericMessageDisplay extends Vue {
+export default class MessageDisplay extends Vue {
   @Prop({ required: true, type: [Object, String] })
-  message!: Message;
+  message!: MessageValue;
 
   @Prop({ required: false, type: Boolean, default: false })
   isEditable!: boolean;
@@ -37,7 +37,7 @@ export default class GenericMessageDisplay extends Vue {
   }
 
   handleInput() {
-    const newMessage: Message =
+    const newMessage: MessageValue =
       typeof this.message === 'string'
         ? this.editText
         : {
