@@ -13,6 +13,9 @@ module.exports = {
       return args;
     });
 
+    config.module.rule('vue').uses.delete('cache-loader');
+    config.module.rule('ts').uses.delete('cache-loader');
+
     config.module
       .rule('ts')
       .use('ts-loader')
@@ -21,6 +24,7 @@ module.exports = {
         options.context = __dirname;
         options.configFile = tsConfigPath;
         options.transpileOnly = false;
+        options.happyPackMode = false;
         return options;
       });
 
@@ -32,6 +36,7 @@ module.exports = {
         options.context = __dirname;
         options.configFile = tsConfigPath;
         options.transpileOnly = false;
+        options.happyPackMode = false;
         return options;
       });
   },
