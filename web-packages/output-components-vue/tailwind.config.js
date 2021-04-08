@@ -8,8 +8,8 @@ module.exports = {
   },
   purge: ['./src/**/*.html', './src/**/*.vue', './src/**/*.tsx', './src/**/*.ts'],
   theme: {
-    fontFamily: {},
-    extend: {},
+    extend: {
+    },
   },
   variants: {
     extend: {},

@@ -1,8 +1,8 @@
-import CardDisplay from '@/components/output/CardDisplay.vue';
-import CarouselDisplay from '@/components/output/CarouselDisplay.vue';
-import MessageDisplay from '@/components/output/MessageDisplay.vue';
-import OutputTemplateDisplay from '@/components/output/OutputTemplateDisplay.vue';
-import QuickReplyDisplay from '@/components/output/QuickReplyDisplay.vue';
+import CardDisplay from '@/components/CardDisplay.vue';
+import CarouselDisplay from '@/components/CarouselDisplay.vue';
+import MessageDisplay from '@/components/MessageDisplay.vue';
+import OutputTemplateDisplay from '@/components/OutputTemplateDisplay.vue';
+import QuickReplyDisplay from '@/components/QuickReplyDisplay.vue';
 
 import type {
   Card,

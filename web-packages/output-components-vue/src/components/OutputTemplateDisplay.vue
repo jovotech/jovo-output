@@ -23,10 +23,10 @@
 </template>
 
 <script lang="ts">
-import CardDisplay from '@/components/output/CardDisplay.vue';
-import CarouselDisplay from '@/components/output/CarouselDisplay.vue';
-import MessageDisplay from '@/components/output/MessageDisplay.vue';
-import QuickReplyDisplay from '@/components/output/QuickReplyDisplay.vue';
+import CardDisplay from '@/components/CardDisplay.vue';
+import CarouselDisplay from '@/components/CarouselDisplay.vue';
+import MessageDisplay from '@/components/MessageDisplay.vue';
+import QuickReplyDisplay from '@/components/QuickReplyDisplay.vue';
 import { OutputTemplate } from '@jovotech/output';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 

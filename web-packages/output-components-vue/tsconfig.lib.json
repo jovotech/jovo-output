@@ -5,6 +5,7 @@
     "declaration": true
   },
   "exclude": [
-    "src/main.ts"
+    "src/main.ts",
+    "src/stories"
   ]
 }
