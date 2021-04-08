@@ -1,8 +1,8 @@
 <template>
   <div class="inline-flex px-4 py-2 rounded-xl text-sm bg-white">
-    <span class="block leading-6">
+    <p class="leading-6">
       {{ text }}
-    </span>
+    </p>
   </div>
 </template>
 
