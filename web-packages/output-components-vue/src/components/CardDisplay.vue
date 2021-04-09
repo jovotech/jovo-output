@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white inline-flex flex-col shadow rounded-xl">
+  <div class="card-display">
     <div v-if="card.imageUrl" class="px-4 pt-5 sm:pt-6 sm:px-6">
       <img class="mx-auto rounded-xl w-full h-auto" :src="card.imageUrl" />
     </div>
@@ -21,6 +21,12 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 })
 export default class CardDisplay extends Vue {
   @Prop({ required: true, type: Object })
-  card!: Card;
+  readonly card!: Card;
 }
 </script>
+
+<style>
+.card-display {
+  @apply bg-white inline-flex flex-col shadow rounded-xl;
+}
+</style>

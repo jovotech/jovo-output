@@ -1,7 +1,5 @@
 <template>
-  <button
-    class="inline-flex border border-black bg-white px-4 py-1 rounded-full cursor-pointer focus:outline-none hover:bg-gray-50"
-  >
+  <button class="quick-reply-display">
     <p>
       {{ text }}
     </p>
@@ -18,10 +16,16 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 })
 export default class QuickReplyDisplay extends Vue {
   @Prop({ required: true, type: [Object, String] })
-  quickReply!: QuickReplyValue;
+  readonly quickReply!: QuickReplyValue;
 
   get text(): string {
     return typeof this.quickReply === 'string' ? this.quickReply : this.quickReply.text;
   }
 }
 </script>
+
+<style>
+.quick-reply-display {
+  @apply inline-flex border border-black bg-white px-4 py-1 rounded-full cursor-pointer focus:outline-none hover:bg-gray-50;
+}
+</style>

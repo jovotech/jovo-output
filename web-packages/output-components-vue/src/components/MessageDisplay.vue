@@ -1,5 +1,5 @@
 <template>
-  <div class="inline-flex px-4 py-2 rounded-xl text-sm bg-white">
+  <div class="message-display">
     <p class="leading-6">
       {{ text }}
     </p>
@@ -16,7 +16,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 })
 export default class MessageDisplay extends Vue {
   @Prop({ required: true, type: [Object, String] })
-  message!: MessageValue;
+  readonly message!: MessageValue;
 
   get text(): string {
     return typeof this.message === 'string'
@@ -25,3 +25,9 @@ export default class MessageDisplay extends Vue {
   }
 }
 </script>
+
+<style>
+.message-display {
+  @apply inline-flex px-4 py-2 rounded-xl text-sm bg-white shadow;
+}
+</style>

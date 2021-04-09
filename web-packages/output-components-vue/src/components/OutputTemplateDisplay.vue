@@ -1,17 +1,13 @@
 <template>
-  <div class="space-y-2">
-    <div v-if="output.card || output.carousel">
-      <span v-if="output.card && output.carousel" class="text-red-600">
+  <div class="output-template-display">
+    <template v-if="output.card || output.carousel">
+      <p v-if="output.card && output.carousel" class="text-red-600">
         Can not display card and carousel in a single output.
-      </span>
-      <template v-else>
-        <card-display v-if="output.card" :card="output.card" />
-        <carousel-display v-if="output.carousel" :carousel="output.carousel" />
-      </template>
-    </div>
-    <div v-if="output.message">
-      <message-display :message="output.message" />
-    </div>
+      </p>
+      <card-display v-else-if="output.card" :card="output.card" />
+      <carousel-display v-else-if="output.carousel" :carousel="output.carousel" />
+    </template>
+    <message-display v-if="output.message" :message="output.message" />
     <div v-if="output.quickReplies" class="space-x-2">
       <quick-reply-display
         v-for="(quickReply, index) in output.quickReplies"
@@ -41,6 +37,12 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 })
 export default class OutputTemplateDisplay extends Vue {
   @Prop({ required: true, type: Object })
-  output!: OutputTemplate;
+  readonly output!: OutputTemplate;
 }
 </script>
+
+<style>
+.output-template-display {
+  @apply space-y-2 inline-flex flex-col;
+}
+</style>

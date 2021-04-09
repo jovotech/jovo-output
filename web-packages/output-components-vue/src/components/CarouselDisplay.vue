@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white flex flex-col shadow rounded-xl">
+  <div class="carousel-display">
     <div v-if="carousel.title" class="px-4 pt-5 sm:pt-6 sm:px-6">
       <p class="font-thin text-2xl">{{ carousel.title }}</p>
     </div>
@@ -28,7 +28,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 })
 export default class CarouselDisplay extends Vue {
   @Prop({ required: true, type: Object })
-  carousel!: Carousel;
+  readonly carousel!: Carousel;
 
   scrollHorizontally(event: WheelEvent) {
     (this.$refs.scrollContainer as HTMLDivElement).scrollBy({
@@ -37,3 +37,9 @@ export default class CarouselDisplay extends Vue {
   }
 }
 </script>
+
+<style>
+.carousel-display {
+  @apply bg-white flex flex-col shadow rounded-xl;
+}
+</style>
