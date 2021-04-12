@@ -1,7 +1,12 @@
 <template>
   <div class="card-display">
     <div v-if="card.imageUrl" class="px-4 pt-5 sm:pt-6 sm:px-6">
-      <img class="mx-auto rounded-xl w-full h-auto" :src="card.imageUrl" />
+      <img
+        class="mx-auto rounded-xl w-full h-auto"
+        :src="card.imageUrl"
+        :alt="card.imageAlt || card.title"
+        @loaded="$emit('image-loaded')"
+      />
     </div>
     <div class="px-4 py-5 sm:p-6">
       <p class="font-semibold text-xl">{{ card.title }}</p>

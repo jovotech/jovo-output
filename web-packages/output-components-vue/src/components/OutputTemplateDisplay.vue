@@ -4,8 +4,16 @@
       <p v-if="output.card && output.carousel" class="text-red-600">
         Can not display card and carousel in a single output.
       </p>
-      <card-display v-else-if="output.card" :card="output.card" />
-      <carousel-display v-else-if="output.carousel" :carousel="output.carousel" />
+      <card-display
+        v-else-if="output.card"
+        :card="output.card"
+        @image-loaded="$emit('image-loaded')"
+      />
+      <carousel-display
+        v-else-if="output.carousel"
+        :carousel="output.carousel"
+        @image-loaded="$emit('image-loaded')"
+      />
     </template>
     <message-display v-if="output.message" :message="output.message" />
     <div v-if="output.quickReplies" class="space-x-2">

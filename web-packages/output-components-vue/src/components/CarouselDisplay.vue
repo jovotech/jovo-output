@@ -11,6 +11,7 @@
           :key="index"
           class="flex-shrink-0 overflow-hidden"
           :card="card"
+          @image-loaded="$emit('image-loaded')"
         />
       </div>
     </div>
