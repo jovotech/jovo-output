@@ -5,7 +5,7 @@
         class="mx-auto rounded-xl w-full h-auto"
         :src="card.imageUrl"
         :alt="card.imageAlt || card.title"
-        @loaded="$emit('image-loaded')"
+        @load="$emit('image-loaded')"
       />
     </div>
     <div class="px-4 py-5 sm:p-6">

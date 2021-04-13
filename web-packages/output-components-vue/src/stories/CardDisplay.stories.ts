@@ -11,6 +11,9 @@ const meta: Meta = {
         title: 'Card',
       },
     },
+    onImageLoaded: {
+      action: 'image-loaded'
+    }
   },
   args: {},
 };
@@ -19,7 +22,8 @@ export default meta;
 const Template: ComponentStory = (args, { argTypes }) => ({
   components: { CardDisplay },
   props: Object.keys(argTypes),
-  template: `<card-display v-bind="$props" />`,
+  template: `
+    <CardDisplay v-bind="$props" @image-loaded="onImageLoaded"/>`,
 });
 
 export const Minimal = Template.bind({});
