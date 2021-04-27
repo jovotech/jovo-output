@@ -4,5 +4,16 @@
     "output",
     "output-*"
   ],
+  "ignoreChanges": [
+    "*.md",
+    "*.json",
+    "*.txt",
+    "test/**"
+  ],
+  "command": {
+    "publish": {
+      "message": ":bookmark: Publish"
+    }
+  },
   "version": "independent"
 }
