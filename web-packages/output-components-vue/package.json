@@ -14,7 +14,7 @@
   "browser": "dist/JovoOutputComponentsVue.umd.min.js",
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@jovotech/output": "file:../../output",
+    "@jovotech/output": "^4.0.0-alpha.2",
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "core-js": "^3.6.5",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
@@ -50,5 +50,8 @@
   "peerDependencies": {
     "vue": "^2.6.11"
   },
-  "prettier": "../../.prettierrc.js"
+  "prettier": "../../.prettierrc.js",
+  "files": [
+    "dist"
+  ]
 }
