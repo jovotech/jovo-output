@@ -1,16 +1,16 @@
 {
   "name": "@jovotech/e2e-output",
   "private": true,
-  "version": "4.0.0-alpha.4",
+  "version": "4.0.0-alpha.5",
   "scripts": {
     "prettier": "prettier -w -l test",
     "eslint": "eslint test --fix --ext .ts",
     "test": "jest"
   },
   "dependencies": {
-    "@jovotech/output": "^4.0.0-alpha.4",
-    "@jovotech/output-alexa": "^4.0.0-alpha.4",
-    "@jovotech/output-googleassistantlegacy": "^4.0.0-alpha.4"
+    "@jovotech/output": "^4.0.0-alpha.5",
+    "@jovotech/output-alexa": "^4.0.0-alpha.5",
+    "@jovotech/output-googleassistantlegacy": "^4.0.0-alpha.5"
   },
   "devDependencies": {
     "@types/jest": "^26.0.20",
