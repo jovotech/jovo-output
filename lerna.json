@@ -6,7 +6,6 @@
   ],
   "ignoreChanges": [
     "*.md",
-    "*.json",
     "*.txt",
     "test/**"
   ],
