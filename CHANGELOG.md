@@ -1,6 +1,21 @@
 # Jovo Output Changelog
 
-### Latest Prerelease Output Version: 4.0.0-alpha.10
+### Latest Prerelease Output Version: 4.0.0-alpha.11
+
+## 2021-08-02
+
+##### `@jovotech/output [4.0.0-alpha.11]`
+
+- [#6](https://github.com/jovotech/jovo-output/pull/6) :bug: Fix invalid listen for SingleResponseOutputTemplateConverterStrategy
+- [#7](https://github.com/jovotech/jovo-output/pull/7) :bug: Fix bug that was caused by merging nativeResponse
+
+##### `@jovotech/output-alexa [4.0.0-alpha.11]`
+
+- [#9](https://github.com/jovotech/jovo-output/pull/9) :recycle: Improve dynamic entities for Alexa and do not add quick-replies if APL is disabled
+
+##### `@jovotech/output-googleassistant [4.0.0-alpha.11]`
+
+- [#8](https://github.com/jovotech/jovo-output/pull/8) :bug: Fix bug that was caused by not allowing an empty id
 
 ## 2021-06-25
 
