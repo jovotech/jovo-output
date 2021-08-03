@@ -10,6 +10,12 @@ import {
 } from './models';
 import { augmentModelPrototypes } from './utilities';
 
+declare module '@jovotech/output/dist/types/models/RichAudio' {
+  interface RichAudio {
+    toApla?(): AplRenderDocumentDirective;
+  }
+}
+
 declare module '@jovotech/output/dist/types/models/Card' {
   interface Card {
     header?: AplHeader;

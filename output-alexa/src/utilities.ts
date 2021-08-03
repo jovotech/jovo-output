@@ -1,4 +1,4 @@
-import { Card, Carousel, Message } from '@jovotech/output';
+import { Card, Carousel, Message, RichAudio } from '@jovotech/output';
 import AplCardJson from './apl/Card.json';
 import AplCarouselJson from './apl/Carousel.json';
 import {
@@ -94,6 +94,25 @@ export function augmentModelPrototypes(): void {
       type: 'Alexa.Presentation.APL.RenderDocument',
       token: 'token',
       ...AplCarouselJson,
+    };
+  };
+
+  RichAudio.prototype.toApla = function () {
+    const AplaRichAudioJson = {
+      document: {
+        type: 'APLA',
+        version: '0.8',
+        mainTemplate: {
+          parameters: ['payload'],
+          item: this.toJson(),
+        }
+      },
+      datasources: {},
+    };
+    return {
+      type: 'Alexa.Presentation.APLA.RenderDocument',
+      token: 'token',
+      ...AplaRichAudioJson
     };
   };
 

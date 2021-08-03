@@ -21,6 +21,12 @@ declare module '@jovotech/output/dist/types/models/Carousel' {
   }
 }
 
+declare module '@jovotech/output/dist/types/models/RichAudio' {
+  interface RichAudio {
+    toGoogleAssistantSsml?(): string;
+  }
+}
+
 declare module '@jovotech/output/dist/types/models/Message' {
   interface Message {
     toGoogleAssistantSimple?(): Simple;

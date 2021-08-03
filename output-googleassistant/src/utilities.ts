@@ -1,4 +1,4 @@
-import { Card, Carousel, Message, QuickReply } from '@jovotech/output';
+import { Card, Carousel, Message, QuickReply, RichAudio } from '@jovotech/output';
 import {
   Card as GoogleAssistantCard,
   Collection,
@@ -6,6 +6,33 @@ import {
   TypeOverride,
   TypeOverrideMode,
 } from './models';
+
+function genGoogleChildSSML(elem: RichAudio): string {
+  if (elem.type === 'Mixer' || elem.type === 'Sequencer') {
+    return genGoogleSSML(elem);
+  }
+  return `<media>${genGoogleSSML(elem)}</media>`;
+}
+
+export function genGoogleSSML(elem: RichAudio): string {
+  if (elem.type === 'Audio') {
+    return `<audio src="${elem.source}" />`;
+  }
+  if (elem.type === 'Speech') {
+    return `<p>${elem.content}</p>`;
+  }
+  if (elem.type === 'Silence') {
+    return `<break time="${elem.duration}ms" />`;
+  }
+  if (elem.type === 'Sequencer') {
+    return `<seq>${elem.items.map(genGoogleChildSSML).join('')}</seq>`;
+  }
+  if (elem.type === 'Mixer') {
+    return `<par>${elem.items.map(genGoogleChildSSML).join('')}</par>`;
+  }
+
+  throw new Error(`Unrecognised RichAudio item: ${elem}`);
+}
 
 export function augmentModelPrototypes(): void {
   Card.prototype.toGoogleAssistantCard = function () {
@@ -55,6 +82,10 @@ export function augmentModelPrototypes(): void {
     };
 
     return { collection, typeOverride };
+  };
+
+  RichAudio.prototype.toGoogleAssistantSsml = function () {
+    return genGoogleSSML(this);
   };
 
   Message.prototype.toGoogleAssistantSimple = function () {

@@ -64,8 +64,13 @@ export class AlexaOutputTemplateConverterStrategy extends SingleResponseOutputTe
       }
     }
 
+    const richAudio = output.platforms?.Alexa?.richAudio || output.richAudio;
+    if (richAudio) {
+      addToDirectives(richAudio.toAplA?.() as AplRenderDocumentDirective);
+    }
+
     const message = output.platforms?.Alexa?.message || output.message;
-    if (message) {
+    if (message && !richAudio) {
       response.response.outputSpeech = this.convertMessageToOutputSpeech(message);
     }
 

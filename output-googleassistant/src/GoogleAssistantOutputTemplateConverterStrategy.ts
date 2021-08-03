@@ -50,8 +50,16 @@ export class GoogleAssistantOutputTemplateConverterStrategy extends SingleRespon
       );
     }
 
+    const richAudio = output.platforms?.GoogleAssistant?.richAudio || output.richAudio;
+    if (richAudio) {
+      if (!response.prompt) {
+        response.prompt = {};
+      }
+      response.prompt.firstSimple = richAudio.toGoogleAssistantSsml?();
+    }
+
     const message = output.platforms?.GoogleAssistant?.message || output.message;
-    if (message) {
+    if (message && !richAudio) {
       if (!response.prompt) {
         response.prompt = {};
       }

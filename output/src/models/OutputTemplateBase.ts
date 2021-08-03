@@ -13,6 +13,7 @@ import { IsStringOrInstance } from '../decorators/validation/IsStringOrInstance'
 import { Card } from './Card';
 import { Carousel } from './Carousel';
 import { Message, MessageValue } from './Message';
+import { RichAudio } from './RichAudio';
 import { QuickReply, QuickReplyValue } from './QuickReply';
 
 export class OutputTemplateBase {
@@ -52,4 +53,10 @@ export class OutputTemplateBase {
   @ValidateNested()
   @Type(() => Carousel)
   carousel?: Carousel;
+
+  @IsOptional()
+  @IsInstance(RichAudio)
+  @ValidateNested()
+  @Type(() => RichAudio)
+  richAudio?: RichAudio;
 }
