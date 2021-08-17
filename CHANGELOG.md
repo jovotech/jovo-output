@@ -1,6 +1,12 @@
 # Jovo Output Changelog
 
-### Latest Prerelease Output Version: 4.0.0-alpha.11
+### Latest Prerelease Output Version: 4.0.0-alpha.12
+
+## 2021-08-10
+
+##### `@jovotech/output-alexa [4.0.0-alpha.12]`
+
+- [#10](https://github.com/jovotech/jovo-output/pull/10) :sparkles: Add optional permissions-property to Alexa-Card
 
 ## 2021-08-02
 
