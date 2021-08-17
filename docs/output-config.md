@@ -57,7 +57,7 @@ const app = new App({
 
 It includes the following properties:
 
-* `omitWarnings`: If `true`, it does not log warnings if an output element fails the validation.
+* `omitWarnings`: If `true`, it does not log warnings if an output element gets sanitized.
 * `validation`: If `true`, output properties are validated before and after the conversion. [Learn more below](#validation).
 * `sanitization`: If `true`, output properties that exceed their limit get automatically sanitized. [Learn more below](#sanitization).
 
@@ -86,8 +86,6 @@ Here are some examples of what is validated:
 * Are all required properties available? For example, does a card contain a `title`?
 * Do none of the properties exceed the maximum size? For example, does a card's `title` not exceed the number of allowed characters?
 
-If validation fails, a warning is logged.
-
 ### Sanitization
 
 As mentioned in the [validation](#validation) section, it might happen that an element may exceed its limits, for example a `title` having too many characters, or a `carousel` having too many `items`.
@@ -110,6 +108,7 @@ The Jovo output template converter can automatically truncate elements that exce
 
 For arrays, the overflowing items get removed. Strings get truncated to fit the right amount of characters.
 
+If sanitization happens, a warning is logged. This can be omitted with the [`omitWarnings` config](#generic-output-config-properties) referenced in the section above.
 
 ## Platform-specific Config Properties
 
