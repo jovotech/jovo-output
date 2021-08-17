@@ -6,3 +6,4 @@ Learn more here:
 
 * [Returning output using the Jovo Framework](https://github.com/jovotech/jovo-framework/blob/v4dev/docs/output.md)
 * [The structure of output templates](./docs/output-templates.md)
+* [Output configuration](./docs/output-config.md)
