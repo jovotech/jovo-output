@@ -4,5 +4,5 @@ This repository contains all packages related to `@jovotech/output`, used by the
 
 Learn more here:
 
-* [Retuning output using the Jovo Framework](https://github.com/jovotech/jovo-framework/blob/v4dev/docs/output.md)
+* [Returning output using the Jovo Framework](https://github.com/jovotech/jovo-framework/blob/v4dev/docs/output.md)
 * [The structure of output templates](./docs/output-templates.md)

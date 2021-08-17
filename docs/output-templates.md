@@ -1,6 +1,6 @@
 # Output Templates
 
-Learn more about the structure of Jovo output templates, which off the ability to create cross-platform output for voice and chat experiences.
+Learn more about the structure of Jovo output templates, which offer the ability to create cross-platform output for voice and chat experiences.
 - [Introduction](#introduction)
 - [Generic Output Elements](#generic-output-elements)
   - [Message](#message)
