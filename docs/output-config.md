@@ -95,8 +95,8 @@ The Jovo output template converter can automatically truncate elements that exce
 ```typescript
 {
   sanitization: {
-    maxArraySize: true,
-    maxStringLength: true,
+    trimArrays: true,
+    trimStrings: true,
   },
 }
 
