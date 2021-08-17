@@ -90,13 +90,14 @@ Here are some examples of what is validated:
 
 As mentioned in the [validation](#validation) section, it might happen that an element may exceed its limits, for example a `title` having too many characters, or a `carousel` having too many `items`.
 
-The Jovo output template converter can automatically truncate elements that exceed their maximum size.
+The Jovo output template converter can automatically trim elements that exceed their maximum size.
 
 ```typescript
 {
   sanitization: {
     trimArrays: true,
     trimStrings: true,
+    trimMaps: true,
   },
 }
 
