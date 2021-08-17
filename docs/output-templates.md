@@ -1,6 +1,6 @@
 # Output Templates
 
-Learn more about the structure of Jovo output templates, structured output for voice and chat experiences.
+Learn more about the structure of Jovo output templates, which off the ability to create cross-platform output for voice and chat experiences.
 - [Introduction](#introduction)
 - [Generic Output Elements](#generic-output-elements)
   - [Message](#message)
@@ -50,7 +50,7 @@ Jovo output templates come with a selection of generic elements that are support
 * `quickReplies`
 * `listen`
 
-Not all platforms support all of these elements. For example, Alexa doesn't have carousels. In such a case, the platform just ignores that element and still successfully builds the rest of the output template.
+Not all platforms support all of these elements. In such a case, the platform just ignores that element and still successfully builds the rest of the output template.
 
 ### Message
 
@@ -68,7 +68,7 @@ A `message` can either be a `string` or have the following properties:
 {
   message: {
     text: 'Hello world!', // Default message
-    displayText: 'Hello screen!', // For platforms that support display text
+    displayText: 'Hello screen!', // For voice platforms that support display text
   }
 }
 ```
@@ -215,6 +215,8 @@ It's also possible to turn `listen` into an object to tell the platform to liste
 }
 ```
 
+[Learn more about dynamic entities in the entities documentation](https://github.com/jovotech/jovo-framework/blob/v4dev/docs/entities.md).
+
 
 ## Platform Specific Output Elements
 
@@ -243,6 +245,7 @@ You can reference each platform by using their name, for example `Alexa` or `Goo
 ```
 
 There are two ways how this can be used:
+
 * Add content types that are only available on one platform (for example an account linking card on Alexa)
 * Override [generic output elements](#generic-output-elements) for specific platforms
 
@@ -275,7 +278,7 @@ A platform can also remove generic output by setting it to `null`:
 
 ### Native Response
 
-For each platform, you can add a `nativeResponse` object that is directly transplated into the native platform JSON.
+For each platform, you can add a `nativeResponse` object that is directly translated into the native platform JSON.
 
 ```typescript
 {
