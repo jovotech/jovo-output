@@ -171,12 +171,11 @@ Usually, the `value` of the quick reply gets passed to a platform's natural lang
     {
       text: 'Berlin',
       intent: 'CityIntent',
-      entities: [
-        {
-          name: 'city',
+      entities: {
+        city: {
           value: 'berlin',
-        }
-      ]
+        },
+      },
     },
     // ...
   ],
@@ -200,18 +199,17 @@ It's also possible to turn `listen` into an object to tell the platform to liste
 {
   // ...
   listen: {
-    entities: [
-      {
-        name: 'CityType',
+    entities: {
+      CityType: {
         values: [
           {
-            value: 'berlin'
-          }
+            value: 'berlin',
+          },
           // ...
         ],
       }
-    ]
-  }
+    },
+  },
 }
 ```
 
