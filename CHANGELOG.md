@@ -1,58 +1,104 @@
-# Jovo Output Changelog
+# Changelog
 
-### Latest Prerelease Output Version: 4.0.0-alpha.12
+## [Unreleased](https://github.com/jovotech/jovo-output/compare/@jovotech/output@4.0.0-beta.1...HEAD)
 
-## 2021-08-10
+> 26 August 2021
 
-##### `@jovotech/output-alexa [4.0.0-alpha.12]`
+### Commits 
+- :hammer: Add `preparePublish`-script [#fc661f0](https://github.com/jovotech/jovo-output/commit/fc661f036ae0f2c5c67a398b54f0ae0594187de6)
+- 🔀 Merge pull request #19 from jovotech/bugfix/google-assistant-dynamic-entities [#ac904c1](https://github.com/jovotech/jovo-output/commit/ac904c15e3905ebe488a119898bbf4637064d729)
+- :bug: Fix bug of GoogleAssistantOutputTemplateConverterStrategy [#58bd77d](https://github.com/jovotech/jovo-output/commit/58bd77d18f4c5eef85f9d1359cf5188062b4a991)
 
-- [#10](https://github.com/jovotech/jovo-output/pull/10) :sparkles: Add optional permissions-property to Alexa-Card
+## [@jovotech/output@4.0.0-beta.1](https://github.com/jovotech/jovo-output/compare/@jovotech/output@4.0.0-beta.0...@jovotech/output@4.0.0-beta.1)
 
-## 2021-08-02
+> 18 August 2021
 
-##### `@jovotech/output [4.0.0-alpha.11]`
+### Commits 
+- 🔀 Merge pull request #18 from jovotech/bugfix/invalid-import-and-types [#cff2b50](https://github.com/jovotech/jovo-output/commit/cff2b50d4c7c6e64a7a0cbbaf9ef7ca23e1b5cd0)
+- :bug: Fix invalid import and invalid type [#941cd3f](https://github.com/jovotech/jovo-output/commit/941cd3fe7b2e2aab7976f168018e537c11c071c6)
 
-- [#6](https://github.com/jovotech/jovo-output/pull/6) :bug: Fix invalid listen for SingleResponseOutputTemplateConverterStrategy
-- [#7](https://github.com/jovotech/jovo-output/pull/7) :bug: Fix bug that was caused by merging nativeResponse
+## [@jovotech/output-googlebusiness@4.0.0-beta.1](https://github.com/jovotech/jovo-output/compare/@jovotech/output-googlebusiness@4.0.0-beta.0...@jovotech/output-googlebusiness@4.0.0-beta.1)
 
-##### `@jovotech/output-alexa [4.0.0-alpha.11]`
+> 18 August 2021
 
-- [#9](https://github.com/jovotech/jovo-output/pull/9) :recycle: Improve dynamic entities for Alexa and do not add quick-replies if APL is disabled
+### Commits 
+- 🔀 Merge pull request #18 from jovotech/bugfix/invalid-import-and-types [#cff2b50](https://github.com/jovotech/jovo-output/commit/cff2b50d4c7c6e64a7a0cbbaf9ef7ca23e1b5cd0)
+- :bug: Fix invalid import and invalid type [#941cd3f](https://github.com/jovotech/jovo-output/commit/941cd3fe7b2e2aab7976f168018e537c11c071c6)
 
-##### `@jovotech/output-googleassistant [4.0.0-alpha.11]`
+## [@jovotech/output-googleassistantlegacy@4.0.0-beta.1](https://github.com/jovotech/jovo-output/compare/@jovotech/output-googleassistantlegacy@4.0.0-beta.0...@jovotech/output-googleassistantlegacy@4.0.0-beta.1)
 
-- [#8](https://github.com/jovotech/jovo-output/pull/8) :bug: Fix bug that was caused by not allowing an empty id
+> 18 August 2021
 
-## 2021-06-25
+### Commits 
+- 🔀 Merge pull request #18 from jovotech/bugfix/invalid-import-and-types [#cff2b50](https://github.com/jovotech/jovo-output/commit/cff2b50d4c7c6e64a7a0cbbaf9ef7ca23e1b5cd0)
+- :bug: Fix invalid import and invalid type [#941cd3f](https://github.com/jovotech/jovo-output/commit/941cd3fe7b2e2aab7976f168018e537c11c071c6)
 
-##### `@jovotech/output [4.0.0-alpha.10]`
+## [@jovotech/output-googleassistant@4.0.0-beta.2](https://github.com/jovotech/jovo-output/compare/@jovotech/output-googleassistant@4.0.0-beta.1...@jovotech/output-googleassistant@4.0.0-beta.2)
 
-- [#4](https://github.com/jovotech/jovo-output/pull/4) :sparkles: Implement getKeys to return all possible keys of OutputTemplate
-- [0517836](https://github.com/jovotech/jovo-output/commit/051783642822859c433ca5f035ee24fa384bc260) :sparkles: :art: Implement DynamicEntity-models and link it via Listen, also improve imports to be standardized
+> 25 August 2021
 
-##### `@jovotech/output-alexa [4.0.0-alpha.10]`
+### Commits 
+- :hammer: Add `preparePublish`-script [#fc661f0](https://github.com/jovotech/jovo-output/commit/fc661f036ae0f2c5c67a398b54f0ae0594187de6)
+- 🔀 Merge pull request #19 from jovotech/bugfix/google-assistant-dynamic-entities [#ac904c1](https://github.com/jovotech/jovo-output/commit/ac904c15e3905ebe488a119898bbf4637064d729)
+- :bug: Fix bug of GoogleAssistantOutputTemplateConverterStrategy [#58bd77d](https://github.com/jovotech/jovo-output/commit/58bd77d18f4c5eef85f9d1359cf5188062b4a991)
 
-- [#3](https://github.com/jovotech/jovo-output/pull/3) :sparkles: Add selection to Carousel and List items
-- [31454f3](https://github.com/jovotech/jovo-output/commit/31454f3891fc9ab7849916e4c7e14b588054ad21) :sparkles: Implement dynamic entities for Alexa
+## [@jovotech/output-googleassistant@4.0.0-beta.1](https://github.com/jovotech/jovo-output/compare/@jovotech/output-googleassistant@4.0.0-beta.0...@jovotech/output-googleassistant@4.0.0-beta.1)
 
-##### `@jovotech/output-dialogflow [4.0.0-alpha.10]`
+> 18 August 2021
 
-- [571e15a](https://github.com/jovotech/jovo-output/commit/571e15a53c765ff2f66165911b7eb945e3fbf85e) :sparkles: Implement dynamic entities for Dialogflow
+### Commits 
+- 🔀 Merge pull request #18 from jovotech/bugfix/invalid-import-and-types [#cff2b50](https://github.com/jovotech/jovo-output/commit/cff2b50d4c7c6e64a7a0cbbaf9ef7ca23e1b5cd0)
+- :bug: Fix invalid import and invalid type [#941cd3f](https://github.com/jovotech/jovo-output/commit/941cd3fe7b2e2aab7976f168018e537c11c071c6)
 
-##### `@jovotech/output-googleassistant [4.0.0-alpha.10]`
+## [@jovotech/output-facebookmessenger@4.0.0-beta.1](https://github.com/jovotech/jovo-output/compare/@jovotech/output-facebookmessenger@4.0.0-beta.0...@jovotech/output-facebookmessenger@4.0.0-beta.1)
 
-- [1502c42](https://github.com/jovotech/jovo-output/commit/1502c421b6bb0c4b0bd22f6fe99b96d548ac6b45) :sparkles: Implement dynamic entities for GoogleAssistant
+> 18 August 2021
 
-## 2021-06-07
+### Commits 
+- 🔀 Merge pull request #18 from jovotech/bugfix/invalid-import-and-types [#cff2b50](https://github.com/jovotech/jovo-output/commit/cff2b50d4c7c6e64a7a0cbbaf9ef7ca23e1b5cd0)
+- :bug: Fix invalid import and invalid type [#941cd3f](https://github.com/jovotech/jovo-output/commit/941cd3fe7b2e2aab7976f168018e537c11c071c6)
 
-##### `@jovotech/output-* [4.0.0-alpha.9]`
+## [@jovotech/output-dialogflow@4.0.0-beta.1](https://github.com/jovotech/jovo-output/compare/@jovotech/output-dialogflow@4.0.0-beta.0...@jovotech/output-dialogflow@4.0.0-beta.1)
 
-:boom: All 4.0.0-alpha.9-packages are only compatible with other 4.0.0-alpha.9-packages or newer due to changes of exports.
+> 18 August 2021
 
-- [a0d4bfb](https://github.com/jovotech/jovo-output/commit/a0d4bfb8530f235b0f3dd4bb743fc966e7cd74f5) :wrench: Update build-system - All output-packages now support tree-shaking
+### Commits 
+- 🔀 Merge pull request #18 from jovotech/bugfix/invalid-import-and-types [#cff2b50](https://github.com/jovotech/jovo-output/commit/cff2b50d4c7c6e64a7a0cbbaf9ef7ca23e1b5cd0)
+- :bug: Fix invalid import and invalid type [#941cd3f](https://github.com/jovotech/jovo-output/commit/941cd3fe7b2e2aab7976f168018e537c11c071c6)
 
-## 2021-06-02
+## [@jovotech/output-core@4.0.0-beta.2](https://github.com/jovotech/jovo-output/compare/@jovotech/output-core@4.0.0-beta.1...@jovotech/output-core@4.0.0-beta.2)
 
-##### `@jovotech/output-alexa [4.0.0-alpha.8]`
+> 25 August 2021
 
-- [#2](https://github.com/jovotech/jovo-output/pull/2) :sparkles: Generate APL from generic output
+### Commits 
+- :hammer: Add `preparePublish`-script [#fc661f0](https://github.com/jovotech/jovo-output/commit/fc661f036ae0f2c5c67a398b54f0ae0594187de6)
+- 🔀 Merge pull request #19 from jovotech/bugfix/google-assistant-dynamic-entities [#ac904c1](https://github.com/jovotech/jovo-output/commit/ac904c15e3905ebe488a119898bbf4637064d729)
+- :bug: Fix bug of GoogleAssistantOutputTemplateConverterStrategy [#58bd77d](https://github.com/jovotech/jovo-output/commit/58bd77d18f4c5eef85f9d1359cf5188062b4a991)
+
+## [@jovotech/output-core@4.0.0-beta.1](https://github.com/jovotech/jovo-output/compare/@jovotech/output-core@4.0.0-beta.0...@jovotech/output-core@4.0.0-beta.1)
+
+> 18 August 2021
+
+### Commits 
+- 🔀 Merge pull request #18 from jovotech/bugfix/invalid-import-and-types [#cff2b50](https://github.com/jovotech/jovo-output/commit/cff2b50d4c7c6e64a7a0cbbaf9ef7ca23e1b5cd0)
+- :bug: Fix invalid import and invalid type [#941cd3f](https://github.com/jovotech/jovo-output/commit/941cd3fe7b2e2aab7976f168018e537c11c071c6)
+
+## [@jovotech/output-alexa@4.0.0-beta.1](https://github.com/jovotech/jovo-output/compare/@jovotech/output-alexa@4.0.0-beta.0...@jovotech/output-alexa@4.0.0-beta.1)
+
+> 18 August 2021
+
+### Commits 
+- 🔀 Merge pull request #18 from jovotech/bugfix/invalid-import-and-types [#cff2b50](https://github.com/jovotech/jovo-output/commit/cff2b50d4c7c6e64a7a0cbbaf9ef7ca23e1b5cd0)
+- :bug: Fix invalid import and invalid type [#941cd3f](https://github.com/jovotech/jovo-output/commit/941cd3fe7b2e2aab7976f168018e537c11c071c6)
+
+## [@jovotech/output-alexa@4.0.0-beta.0]()
+
+> 18 August 2021
+
+### Merged
+- :recycle: Update CorePlatform response [#16](https://github.com/jovotech/jovo-output/pull/16)
+
+### Commits 
+- 📌 Update @jovotech/output peer-dependency in preparation for beta release [#7db777b](https://github.com/jovotech/jovo-output/commit/7db777b30aa09ed8cf9e487384f516aca7b3bca3)
+- 🔀 Merge pull request #17 from jovotech/bugfix/strategy [#5996476](https://github.com/jovotech/jovo-output/commit/59964768c018f652a1fb8d2ff136f842a58baea7)
+- :recycle: :wip: Completely refactor strategies [#224f861](https://github.com/jovotech/jovo-output/commit/224f861b4bf5e46be1986cb860d5dd64a0829ccc)
