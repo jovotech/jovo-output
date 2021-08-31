@@ -235,7 +235,7 @@ You can reference each platform by using their name, for example `alexa` or `goo
 {
   message: 'Hello world!',
   platforms: {
-    alexa {
+    alexa: {
       // ...
     },
   },
@@ -253,7 +253,7 @@ For example, the `message` can be overridden for Alexa users:
 {
   message: 'Hello world!',
   platforms: {
-    alexa {
+    alexa: {
       message: 'Hello Alexa!',
     },
   },
@@ -266,7 +266,7 @@ A platform can also remove generic output by setting it to `null`:
 {
   message: 'Hello world!',
   platforms: {
-    alexa {
+    alexa: {
       message: null,
     },
   },
@@ -282,7 +282,7 @@ For each platform, you can add a `nativeResponse` object that is directly transl
 {
   message: 'Hello world!',
   platforms: {
-    alexa {
+    alexa: {
       nativeResponse: {
         // Add elements in the same way they show up in the response JSON
       }
