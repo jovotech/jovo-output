@@ -2,4 +2,8 @@
 
 This repository contains all packages related to `@jovotech/output`, used by the [Jovo Framework](https://github.com/jovotech/jovo-framework) `v4` (alpha) as multimodal template engine.
 
-[Learn more in our documentation](https://github.com/jovotech/jovo-framework/blob/v4dev/docs/output.md).
+Learn more here:
+
+* [Returning output using the Jovo Framework](https://github.com/jovotech/jovo-framework/blob/v4dev/docs/output.md)
+* [The structure of output templates](./docs/output-templates.md)
+* [Output configuration](./docs/output-config.md)
