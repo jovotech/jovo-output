@@ -307,3 +307,28 @@ Platforms that support multiple responses will display the example above in 2 ch
 }
 ```
 
+If the [`message`](#message) is an object for one of the output objects, the other `message` strings are treated as if the spoken `text` and `displayText` are the same. Here is an example:
+
+```typescript
+// Before merging
+[
+  {
+    message: 'Hello world!',
+  },
+  {
+    message: {
+      text: 'This is spoken text.',
+      displayText: 'This is display text.'
+    },
+  }
+]
+
+// After merging
+{
+  message: {
+    text: 'Hello world! This is spoken text.',
+    displayText: 'Hello world! This is display text.'
+  },
+}
+```
+
