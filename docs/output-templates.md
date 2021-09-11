@@ -1,17 +1,10 @@
+---
+title: 'Output Template'
+excerpt: 'Learn more about the structure of Jovo output templates, which offer the ability to create cross-platform output for voice and chat experiences.'
+---
 # Output Templates
 
 Learn more about the structure of Jovo output templates, which offer the ability to create cross-platform output for voice and chat experiences.
-- [Introduction](#introduction)
-- [Generic Output Elements](#generic-output-elements)
-  - [Message](#message)
-  - [Reprompt](#reprompt)
-  - [Card](#card)
-  - [Carousel](#carousel)
-  - [Quick Replies](#quick-replies)
-  - [Listen](#listen)
-- [Platform Specific Output Elements](#platform-specific-output-elements)
-  - [Native Response](#native-response)
-- [Multiple Responses](#multiple-responses)
 
 ## Introduction
 
@@ -213,7 +206,7 @@ It's also possible to turn `listen` into an object to tell the platform to liste
 }
 ```
 
-[Learn more about dynamic entities in the entities documentation](https://github.com/jovotech/jovo-framework/blob/v4dev/docs/entities.md).
+[Learn more about dynamic entities in the entities documentation](https://v4.jovo.tech/docs/entities).
 
 
 ## Platform Specific Output Elements
@@ -311,6 +304,31 @@ Platforms that support multiple responses will display the example above in 2 ch
 ```typescript
 {
   message: 'Hello world! This is a second chat bubble.',
+}
+```
+
+If the [`message`](#message) is an object for one of the output objects, the other `message` strings are treated as if the spoken `text` and `displayText` are the same. Here is an example:
+
+```typescript
+// Before merging
+[
+  {
+    message: 'Hello world!',
+  },
+  {
+    message: {
+      text: 'This is spoken text.',
+      displayText: 'This is display text.'
+    },
+  }
+]
+
+// After merging
+{
+  message: {
+    text: 'Hello world! This is spoken text.',
+    displayText: 'Hello world! This is display text.'
+  },
 }
 ```
 
