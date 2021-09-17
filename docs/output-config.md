@@ -1,17 +1,16 @@
+---
+title: 'Output Configuration'
+excerpt: 'There are certain configurations that determine how an output template is translated into a native platform response.'
+---
 # Output Configuration
 
 Learn how to configure the Jovo output template converter.
-- [Introduction](#introduction)
-- [Generic Output Config Properties](#generic-output-config-properties)
-  - [Validation](#validation)
-  - [Sanitization](#sanitization)
-- [Platform-specific Config Properties](#platform-specific-config-properties)
 
 ## Introduction
 
 There are certain configurations that determine how an output template is translated into a native platform response.
 
-You can add output configuration to the [Jovo app configuration](https://github.com/jovotech/jovo-framework/blob/v4dev/docs/app-config.md). For example, this is how [generic output config properties](#generic-output-config-properties) can be added to `app.ts`:
+You can add output configuration to the [Jovo app configuration](https://v4.jovo.tech/docs/app-config). For example, this is how [generic output config properties](#generic-output-config-properties) can be added to `app.ts`:
 
 ```typescript
 const app = new App({
@@ -129,4 +128,4 @@ const app = new App({
 });
 ```
 
-You can find platform-specific output configuration properties in the respective platform output documentation.
+You can find platform-specific output configuration properties in the respective platform output documentation, which you can find in the [Jovo Marketplace](https://v4.jovo.tech/marketplace/).
