@@ -60,8 +60,8 @@ A `message` can either be a `string` or have the following properties:
 ```typescript
 {
   message: {
-    speech: 'Hello world!', // Default message
-    text: 'Hello screen!', // For voice platforms that support display text
+    speech: 'Hello world!', // For voice platforms
+    text: 'Hello screen!', // For chat platforms and voice platforms that support display text
   }
 }
 ```
