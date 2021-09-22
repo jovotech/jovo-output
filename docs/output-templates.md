@@ -24,7 +24,6 @@ And here is an example that asks the user a question and offers guidance how to 
 {
   message: 'Do you like pizza?',
   quickReplies: [ 'yes', 'no' ],
-  listen: true,
 }
 ```
 
@@ -36,16 +35,16 @@ Jovo output offers both [generic output](#generic-output-elements) as well as [p
 
 Jovo output templates come with a selection of generic elements that are supported by most platforms, including:
 
-* `message`
-* `reprompt`
-* `carousel`
-* `card`
-* `quickReplies`
-* `listen`
+* [`message`](#message)
+* [`reprompt`](#reprompt)
+* [`carousel`](#carousel)
+* [`card`](#card)
+* [`quickReplies`](#quickreplies)
+* [`listen`](#listen)
 
 Not all platforms support all of these elements. In such a case, the platform just ignores that element and still successfully builds the rest of the output template.
 
-### Message
+### message
 
 The `message` is usually either what you hear (speech output) or what see you see in the form of a chat bubble.
 
@@ -66,7 +65,7 @@ A `message` can either be a `string` or have the following properties:
 }
 ```
 
-### Reprompt
+### reprompt
 
 The `reprompt` is typically only relevant for voice interfaces. It represents the output that is presented to the user if they haven't responded to a previous question.
 
@@ -80,7 +79,7 @@ The `reprompt` is typically only relevant for voice interfaces. It represents th
 A `reprompt` can have the same values (`text`, `displayText`) as a [`message`](#message).
 
 
-### Card
+### card
 
 Cards are often used to display content in a visual and structured way.
 
@@ -103,7 +102,7 @@ A `card` consists of the following properties:
 * `imageAlt`
 
 
-### Carousel
+### carousel
 
 A carousel is a (usually horizontally scrollable) collection of at least 2 [cards](#card).
 
@@ -129,7 +128,7 @@ A `carousel` consists of the following properties:
 * `title`
 * `items`: An array of [card](#card) items
 
-### Quick Replies
+### quickReplies
 
 Quick replies (sometimes called *suggestion chips*) are little buttons that provide suggestions for the user to tap instead of having to type out a response to a question.
 
@@ -175,14 +174,16 @@ Usually, the `value` of the quick reply gets passed to a platform's natural lang
 }
 ```
 
-### Listen
+### listen
 
-Especially for voice platforms, it is important to indicate that you are expecting the user to answer. You can do this by setting `listen` to `true`. The platform will then leave the microphone open.
+Especially for voice platforms, it is important to indicate whether you are expecting the user to answer (keep the microphone open) or want the session to close. The `listen` property is used for this. By default, it is set to `true`, even if you don't specify it in your output template. 
+
+If you want the session to close, you need to set it to `false`:
 
 ```typescript
 {
-  message: `Hello world! What's your name?`,
-  listen: true,
+  message: `Goodbye!`,
+  listen: false,
 }
 ```
 
