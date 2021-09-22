@@ -59,8 +59,8 @@ A `message` can either be a `string` or have the following properties:
 ```typescript
 {
   message: {
-    text: 'Hello world!', // Default message
-    displayText: 'Hello screen!', // For voice platforms that support display text
+    speech: 'Hello world!', // For voice platforms
+    text: 'Hello screen!', // For chat platforms and voice platforms that support display text
   }
 }
 ```
@@ -76,7 +76,7 @@ The `reprompt` is typically only relevant for voice interfaces. It represents th
 }
 ```
 
-A `reprompt` can have the same values (`text`, `displayText`) as a [`message`](#message).
+A `reprompt` can have the same values (`speech`, `text`) as a [`message`](#message).
 
 
 ### card
@@ -308,7 +308,7 @@ Platforms that support multiple responses will display the example above in 2 ch
 }
 ```
 
-If the [`message`](#message) is an object for one of the output objects, the other `message` strings are treated as if the spoken `text` and `displayText` are the same. Here is an example:
+If the [`message`](#message) is an object for one of the output objects, the other `message` strings are treated as if the spoken `speech` and `text` are the same. Here is an example:
 
 ```typescript
 // Before merging
@@ -318,8 +318,8 @@ If the [`message`](#message) is an object for one of the output objects, the oth
   },
   {
     message: {
-      text: 'This is spoken text.',
-      displayText: 'This is display text.'
+      speech: 'This is spoken text.',
+      text: 'This is display text.'
     },
   }
 ]
@@ -327,8 +327,8 @@ If the [`message`](#message) is an object for one of the output objects, the oth
 // After merging
 {
   message: {
-    text: 'Hello world! This is spoken text.',
-    displayText: 'Hello world! This is display text.'
+    speech: 'Hello world! This is spoken text.',
+    text: 'Hello world! This is display text.'
   },
 }
 ```
