@@ -209,6 +209,7 @@ It's also possible to turn `listen` into an object to tell the platform to liste
 
 [Learn more about dynamic entities in the entities documentation](https://v4.jovo.tech/docs/entities).
 
+In the case that your output is an [array of objects](#array-of-output-templates) with differing `listen` values, the one of the last array will be prioritized. The only exception is that a `listen: true` value does not override dynamic entities, because setting dynamic entities implicitly sets `listen` to `true`. A last item in an array with `listen: false` closes the session and removes previous dynamic entities.
 
 ## Platform Specific Output Elements
 
@@ -285,7 +286,7 @@ For each platform, you can add a `nativeResponse` object that is directly transl
 }
 ```
 
-## Multiple Responses
+## Array of Output Templates
 
 You can also have an array of output objects:
 
@@ -333,3 +334,4 @@ If the [`message`](#message) is an object for one of the output objects, the oth
 }
 ```
 
+For elements that are only allowed once per response (like [`card`](#card) or [`carousel`](#carousel)), the last object of the array will be prioritized, overriding previous elements.
