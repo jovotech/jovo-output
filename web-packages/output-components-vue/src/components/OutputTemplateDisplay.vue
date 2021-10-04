@@ -21,6 +21,7 @@
         v-for="(quickReply, index) in output.quickReplies"
         :key="index"
         :quick-reply="quickReply"
+        @click="$emit('quick-reply-click', $event)"
       />
     </div>
   </div>
