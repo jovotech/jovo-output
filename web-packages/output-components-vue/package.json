@@ -14,7 +14,7 @@
   "browser": "dist/JovoOutputComponentsVue.umd.min.js",
   "types": "dist/index.d.ts",
   "dependencies": {
-    "@jovotech/output": "^4.0.0-alpha.2",
+    "@jovotech/output": "^4.0.0-beta.6",
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "core-js": "^3.6.5",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
