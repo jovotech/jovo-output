@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { MessageValue } from '@jovotech/output';
+import { MessageValue, removeSSML } from '@jovotech/output';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({
@@ -21,7 +21,8 @@ export default class MessageDisplay extends Vue {
   get text(): string {
     return typeof this.message === 'string'
       ? this.message
-      : this.message.displayText || this.message.text;
+      : // TODO determine if showing of ssml should be toggleable
+        this.message.text || removeSSML(this.message.speech || '');
   }
 }
 </script>

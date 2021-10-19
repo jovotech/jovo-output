@@ -1,5 +1,5 @@
 <template>
-  <button class="quick-reply-display">
+  <button class="quick-reply-display" @click="$emit('click', quickReply)">
     <p>
       {{ text }}
     </p>
