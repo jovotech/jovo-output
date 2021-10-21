@@ -59,9 +59,17 @@ A `message` can either be a `string` or have the following properties:
 ```typescript
 {
   message: {
-    speech: 'Hello world!', // For voice platforms
-    text: 'Hello screen!', // For chat platforms and voice platforms that support display text
+    speech: 'Hello listener!', // For voice platforms
+    text: 'Hello reader!', // For chat platforms and voice platforms that support display text
   }
+}
+```
+
+`message` also supports randomization. If you use an array, one of the elements will be picked randomly. This works for both strings as well as the object structure shown above.
+
+```typescript
+{
+  message: [ 'Hi!', 'Hello!', { speech: 'Hello listener.', text: 'Hello reader.' ]
 }
 ```
 
@@ -76,8 +84,16 @@ The `reprompt` is typically only relevant for voice interfaces. It represents th
 }
 ```
 
-A `reprompt` can have the same values (`speech`, `text`) as a [`message`](#message).
+A `reprompt` can have the same values (`speech`, `text`) as a [`message`](#message) and also supports randomization if you use an array.
 
+```typescript
+{
+  reprompt: [
+    'Could you tell me your name?',
+    'I missed your name, could you please repeat it?'
+  ],
+}
+```
 
 ### card
 
