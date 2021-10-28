@@ -1,6 +1,6 @@
 {
   "name": "@jovotech/output-components-vue",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "scripts": {
     "build": "vue-cli-service build --target lib --name JovoOutputComponentsVue src/index.ts",
     "lint": "vue-cli-service lint src",
@@ -8,7 +8,8 @@
     "storybook:serve": "vue-cli-service storybook:serve -p 6006 -c config/storybook",
     "preupdate-package": "npm i",
     "update-package": "npm run build",
-    "postupdate-package": "rimraf node_modules/vue"
+    "postupdate-package": "rimraf node_modules/vue",
+    "publish:patch": "npm version patch && npm publish"
   },
   "main": "dist/JovoOutputComponentsVue.common.js",
   "browser": "dist/JovoOutputComponentsVue.umd.min.js",
