@@ -29,6 +29,6 @@ export default class MessageDisplay extends Vue {
 
 <style>
 .message-display {
-  @apply inline-flex px-4 py-2 rounded-xl text-sm bg-white shadow;
+  @apply inline-flex px-4 py-2 rounded-xl text-sm bg-white shadow-sm;
 }
 </style>
