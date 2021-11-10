@@ -1,5 +1,5 @@
 <template>
-  <button class="quick-reply-display" @click="$emit('click', quickReply)">
+  <button class="quick-reply-display inline-flex items-center border shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:cursor-not-allowed ml-auto rounded-full border-transparent text-gray-700 bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 px-4 py-2 text-sm rounded-md" @click="$emit('click', quickReply)">
     <p>
       {{ text }}
     </p>
@@ -25,7 +25,4 @@ export default class QuickReplyDisplay extends Vue {
 </script>
 
 <style>
-.quick-reply-display {
-  @apply inline-flex border border-black bg-white px-4 py-1 rounded-full cursor-pointer focus:outline-none hover:bg-gray-50;
-}
 </style>
